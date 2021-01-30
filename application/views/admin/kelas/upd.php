@@ -24,6 +24,7 @@
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <div class="nk-int-st">
                         <select class="selectpicker" id="inpwalikelas" name="inpwalikelas">
+                            <option value="">- Pilih -</option>
                             <?php foreach ($guru as $key => $value) { ?>
                                 <option value="<?= $value->id ?>" <?= ($walikelas === $value->id ? 'selected' : '') ?>><?= $value->nama ?></option>
                             <?php } ?>
