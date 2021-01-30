@@ -31,7 +31,6 @@
     <link rel="stylesheet" href="<?= assets_url() ?>admin/css/bootstrap-select/bootstrap-select.css">
     <link rel="stylesheet" href="<?= assets_url() ?>admin/css/responsive.css">
 
-
     <!-- begin:: css local -->
     <?php empty($css) ? '' : $this->load->view($css); ?>
     <!-- end:: css local -->

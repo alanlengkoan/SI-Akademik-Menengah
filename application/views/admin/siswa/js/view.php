@@ -1,13 +1,33 @@
+<script src="<?= assets_url() ?>admin/js/datapicker/bootstrap-datepicker.js"></script>
+<script src="<?= assets_url() ?>admin/js/datapicker/datepicker-active.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 
 <script>
+    // untuk tanggal
+    var untukTanggal = function() {
+        $('#modalAdd').on('shown.bs.modal', function() {
+            $('.mydate').datepicker({
+                format: "dd-mm-yyyy",
+                autoclose: true,
+                todayHighlight: true,
+                container: '#modalAdd modal-body'
+            });
+        });
+    }();
+
     // untuk tambah data
     var untukTambahData = function() {
         $(document).on('submit', '#form-add', function(e) {
             e.preventDefault();
-            $('#inpnama').attr('required', 'required');
-            $('#inpnip').attr('required', 'required');
-            $('#inppendidikan').attr('required', 'required');
+            $('#inpnis').attr('required', 'required')
+            $('#inpnama').attr('required', 'required')
+            $('#inptmplahir').attr('required', 'required')
+            $('#inptgllahir').attr('required', 'required')
+            $('#inportuwali').attr('required', 'required')
+            $('#inpalamat').attr('required', 'required')
+            $('#inpkelas').attr('required', 'required')
+            $('#inpjenkel').attr('required', 'required')
+            $('#inptahunmasuk').attr('required', 'required')
 
             if ($('#form-add').parsley().isValid() == true) {
                 $.ajax({
@@ -44,7 +64,7 @@
 
             $.ajax({
                 type: "post",
-                url: "<?= admin_url() ?>guru/get",
+                url: "<?= admin_url() ?>siswa/get",
                 dataType: 'html',
                 data: {
                     id: ini.data('id')
@@ -56,6 +76,14 @@
                 success: function(response) {
                     $('#get-form-upd').html(response);
                     $('.selectpicker').selectpicker();
+                    $('#modalUpd').on('shown.bs.modal', function() {
+                        $('.mydate').datepicker({
+                            format: "dd-mm-yyyy",
+                            autoclose: true,
+                            todayHighlight: true,
+                            container: '#modalUpd modal-body'
+                        });
+                    });
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>');
                 }
@@ -67,9 +95,15 @@
     var untukUbahData = function() {
         $(document).on('submit', '#form-upd', function(e) {
             e.preventDefault();
-            $('#inpnama').attr('required', 'required');
-            $('#inpnip').attr('required', 'required');
-            $('#inppendidikan').attr('required', 'required');
+            $('#inpnis').attr('required', 'required')
+            $('#inpnama').attr('required', 'required')
+            $('#inptmplahir').attr('required', 'required')
+            $('#inptgllahir').attr('required', 'required')
+            $('#inportuwali').attr('required', 'required')
+            $('#inpalamat').attr('required', 'required')
+            $('#inpkelas').attr('required', 'required')
+            $('#inpjenkel').attr('required', 'required')
+            $('#inptahunmasuk').attr('required', 'required')
 
             if ($('#form-upd').parsley().isValid() == true) {
                 $.ajax({
@@ -114,7 +148,7 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>guru/process_del",
+                            url: "<?= admin_url() ?>siswa/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')
