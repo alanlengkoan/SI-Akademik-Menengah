@@ -44,7 +44,7 @@
 
             $.ajax({
                 type: "post",
-                url: "<?= admin_url() ?>guru/get",
+                url: "<?= admin_url() ?>kelas/get",
                 dataType: 'html',
                 data: {
                     id: ini.data('id')
@@ -55,6 +55,7 @@
                 },
                 success: function(response) {
                     $('#get-form-upd').html(response);
+                    $('.selectpicker').selectpicker();
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>');
                 }
@@ -113,7 +114,7 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>guru/process_del",
+                            url: "<?= admin_url() ?>kelas/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')

@@ -65,8 +65,8 @@
                                 <li><a data-toggle="collapse" data-target="#akademik" href="#">Akademik</a>
                                     <ul class="collapse dropdown-header-top">
                                         <li><a href="<?= admin_url() ?>guru">Guru</a></li>
-                                        <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
                                         <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
+                                        <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
                                         <li><a href="<?= admin_url() ?>pelajaran">Pelajaran</a></li>
                                         <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
                                     </ul>
@@ -105,8 +105,8 @@
                         <div id="akademik" class="tab-pane in active notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= admin_url() ?>guru">Guru</a></li>
-                                <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
                                 <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
+                                <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
                                 <li><a href="<?= admin_url() ?>matpel">Pelajaran</a></li>
                                 <li><a href="<?= admin_url() ?>penugasanguru">Penugasan Guru</a></li>
                             </ul>
