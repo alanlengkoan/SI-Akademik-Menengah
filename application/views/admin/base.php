@@ -66,7 +66,7 @@
                                         <li><a href="<?= admin_url() ?>guru">Guru</a></li>
                                         <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
                                         <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
-                                        <li><a href="<?= admin_url() ?>pelajaran">Pelajaran</a></li>
+                                        <li><a href="<?= admin_url() ?>mapel">Pelajaran</a></li>
                                         <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
                                     </ul>
                                 </li>
@@ -106,7 +106,7 @@
                                 <li><a href="<?= admin_url() ?>guru">Guru</a></li>
                                 <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
                                 <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
-                                <li><a href="<?= admin_url() ?>matpel">Pelajaran</a></li>
+                                <li><a href="<?= admin_url() ?>mapel">Pelajaran</a></li>
                                 <li><a href="<?= admin_url() ?>penugasanguru">Penugasan Guru</a></li>
                             </ul>
                         </div>
