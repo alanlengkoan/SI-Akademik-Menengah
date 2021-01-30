@@ -107,7 +107,7 @@
                                 <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
                                 <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
                                 <li><a href="<?= admin_url() ?>mapel">Pelajaran</a></li>
-                                <li><a href="<?= admin_url() ?>penugasanguru">Penugasan Guru</a></li>
+                                <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
                             </ul>
                         </div>
                         <div id="user" class="tab-pane notika-tab-menu-bg animated flipInX">

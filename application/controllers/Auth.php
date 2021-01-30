@@ -38,7 +38,7 @@ class Auth extends CI_Controller
     // untuk mengecek data username dan password
     public function auth($username, $password)
     {
-        $user = $this->db->get_where('tb_users', ['username' => $username]);
+        $user = $this->db->get_where('users', ['username' => $username]);
         $count = $user->result();
         if (count($count) >= 1) {
             $row = $user->row_array();

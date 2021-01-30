@@ -82,7 +82,7 @@
             <div class="modal-body">
                 <h2>Tambah Siswa</h2>
 
-                <form id="form-add" action="<?= admin_url() ?>penugasanguru/process_add" method="POST">
+                <form id="form-add" action="<?= admin_url() ?>penugasan_guru/process_add" method="POST">
                     <div class="form-example-int form-horizental mg-t-15">
                         <div class="form-group">
                             <div class="row">

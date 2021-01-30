@@ -44,7 +44,7 @@
 
             $.ajax({
                 type: "post",
-                url: "<?= admin_url() ?>penugasanguru/get",
+                url: "<?= admin_url() ?>penugasan_guru/get",
                 dataType: 'html',
                 data: {
                     id: ini.data('id')
@@ -114,7 +114,7 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>penugasanguru/process_del",
+                            url: "<?= admin_url() ?>penugasan_guru/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')

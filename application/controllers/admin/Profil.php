@@ -50,7 +50,7 @@ class Profil extends MY_Controller
             ];
         }
         $this->db->trans_start();
-        $this->crud->u('tb_users', $data, ['id' => $post['inpidusers']]);
+        $this->crud->u('users', $data, ['id' => $post['inpidusers']]);
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Data diubah.', 'type' => 'error', 'button' => 'Ok!'];

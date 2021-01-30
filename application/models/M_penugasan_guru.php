@@ -1,6 +1,6 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
-class M_penugasanguru extends CI_Model
+class M_penugasan_guru extends CI_Model
 {
     public function getAll()
     {

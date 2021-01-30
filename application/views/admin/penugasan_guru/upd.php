@@ -1,4 +1,4 @@
-<form id="form-upd" action="<?= admin_url() ?>penugasanguru/process_upd" method="POST">
+<form id="form-upd" action="<?= admin_url() ?>penugasan_guru/process_upd" method="POST">
     <input type="hidden" name="inpid" value="<?= $id ?>">
 
     <div class="form-example-int form-horizental mg-t-15">

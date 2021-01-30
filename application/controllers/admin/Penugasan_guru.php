@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Penugasanguru extends MY_Controller
+class Penugasan_guru extends MY_Controller
 {
     public function __construct()
     {
@@ -12,7 +12,7 @@ class Penugasanguru extends MY_Controller
 
         // untuk load model
         $this->load->model('crud');
-        $this->load->model('m_penugasanguru');
+        $this->load->model('m_penugasan_guru');
         $this->load->model('m_kelas');
         $this->load->model('m_mapel');
         $this->load->model('m_guru');
@@ -23,13 +23,13 @@ class Penugasanguru extends MY_Controller
     {
         $data = [
             'halaman'   => 'Penugasan Guru',
-            'content'   => 'admin/penugasanguru/view',
-            'data'      => $this->m_penugasanguru->getAll(),
+            'content'   => 'admin/penugasan_guru/view',
+            'data'      => $this->m_penugasan_guru->getAll(),
             'kelas'     => $this->m_kelas->getAll(),
             'mapel'     => $this->m_mapel->getAll(),
             'guru'      => $this->m_guru->getAll(),
-            'css'       => 'admin/penugasanguru/css/view',
-            'js'        => 'admin/penugasanguru/js/view'
+            'css'       => 'admin/penugasan_guru/css/view',
+            'js'        => 'admin/penugasan_guru/js/view'
         ];
         // untuk load view
         $this->load->view('admin/base', $data);
@@ -50,7 +50,7 @@ class Penugasanguru extends MY_Controller
             'guru'     => $this->m_guru->getAll(),
         ];
         // untuk load view
-        $this->load->view('admin/penugasanguru/upd', $data);
+        $this->load->view('admin/penugasan_guru/upd', $data);
     }
 
     // untuk proses tambah data

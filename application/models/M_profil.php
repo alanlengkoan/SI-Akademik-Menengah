@@ -4,7 +4,7 @@ class M_profil extends CI_Model
 {
     public function getWhere($id)
     {
-        $result = $this->db->query("SELECT * FROM tb_users WHERE id = '$id'")->row();
+        $result = $this->db->query("SELECT * FROM users WHERE id = '$id'")->row();
         return $result;
     }
 }
