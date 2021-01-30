@@ -74,8 +74,8 @@
             </div>
         </div>
     </div>
-    <div class="text-center">
-        <button type="submit" name="upd" id="upd" class="btn btn-success"><i class="fa fa-save"></i></button>
+    <div class="text-center button-icon-btn button-icon-btn-cl">
+        <button type="submit" class="btn btn-success" name="upd" id="upd"><i class="fa fa-save"></i></button>
         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
     </div>
 </form>

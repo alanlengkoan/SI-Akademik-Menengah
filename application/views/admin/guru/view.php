@@ -32,7 +32,9 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="mybox mg-t-30">
                     <div class="bsc-tbl">
-                        <button type="button" class="btn btn-primary primary-icon-notika btn-icon-notika notika-btn-primary" data-toggle="modal" data-target="#modalAdd"><i class="fa fa-plus"></i></button>
+                        <div class="button-icon-btn button-icon-btn-cl">
+                            <button type="button" class="btn btn-primary primary-icon-notika btn-cl" data-toggle="modal" data-target="#modalAdd"><i class="fa fa-plus"></i></button>
+                        </div>
                         <hr>
                         <div class="table-responsive">
                             <table id="data-table-basic" class="table table-striped">
@@ -58,8 +60,8 @@
                                             <td><?= 'Matematika' ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id ?>" class="btn btn-primary primary-icon-notika btn-reco-mg btn-button-mg" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id ?>" class="btn btn-danger danger-icon-notika btn-reco-mg btn-button-mg"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" id="btn-upd" data-id="<?= $value->id ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
+                                                    <button type="button" id="btn-del" data-id="<?= $value->id ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -79,9 +81,6 @@
 <div class="modal fade" id="modalAdd" role="dialog">
     <div class="modal-dialog modals-default">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
             <div class="modal-body">
                 <h2>Tambah Guru</h2>
 
@@ -142,8 +141,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="text-center">
-                        <button type="submit" name="add" id="add" class="btn btn-success"><i class="fa fa-save"></i></button>
+                    <div class="text-center button-icon-btn button-icon-btn-cl">
+                        <button type="submit" class="btn btn-success" name="add" id="add"><i class="fa fa-save"></i></button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
                     </div>
                 </form>
@@ -157,9 +156,6 @@
 <div class="modal fade" id="modalUpd" role="dialog">
     <div class="modal-dialog modals-default">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
             <div class="modal-body">
                 <h2>Ubah Guru</h2>
 
