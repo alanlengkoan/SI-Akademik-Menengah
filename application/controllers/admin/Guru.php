@@ -33,19 +33,16 @@ class Guru extends MY_Controller
     public function get()
     {
         $post   = $this->input->post(NULL, TRUE);
-        $result = $this->crud->gda('tb_kecamatan', ['id_kecamatan' => $post['id']]);
+        $result = $this->crud->gda('guru', ['id' => $post['id']]);
         $data = [
-            'id_kecamatan' => $result['id_kecamatan'],
-            'kd_kecamatan' => $result['kd_kecamatan'],
-            'nama'         => $result['nama'],
-            'url'          => $result['url'],
-            'luas_lahan'   => $result['luas_lahan'],
-            'latitude'     => $result['latitude'],
-            'longitude'    => $result['longitude'],
-            'keterangan'   => $result['keterangan'],
+            'id'          => $result['id'],
+            'nip'         => $result['nip'],
+            'nama'        => $result['nama'],
+            'pendidikan'  => $result['pendidikan'],
+            'tahun_masuk' => $result['thn_masuk'],
         ];
-        // untuk response json
-        $this->_response($data);
+        // untuk load view
+        $this->load->view('admin/guru/upd', $data);
     }
 
     // untuk proses tambah data
@@ -76,15 +73,13 @@ class Guru extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
+            'nip'        => $post['inpnip'],
             'nama'       => $post['inpnama'],
-            'url'        => $post['inpurl'],
-            'luas_lahan' => $post['inpluslan'],
-            'latitude'   => $post['inplatitude'],
-            'longitude'  => $post['inplongitude'],
-            'keterangan' => $post['inpketerangan'],
+            'pendidikan' => $post['inppendidikan'],
+            'thn_masuk'  => $post['inptahunmasuk'],
         ];
         $this->db->trans_start();
-        $this->crud->u('tb_kecamatan', $data, ['id_kecamatan' => $post['inpidkecamatan']]);
+        $this->crud->u('guru', $data, ['id' => $post['inpid']]);
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
@@ -100,7 +95,7 @@ class Guru extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $this->db->trans_start();
-        $this->crud->d('tb_kecamatan', $post['id'], 'id_kecamatan');
+        $this->crud->d('guru', $post['id'], 'id');
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Hapus!', 'type' => 'error', 'button' => 'Ok!'];

@@ -39,34 +39,24 @@
 
     // untuk get id
     var untukGetIdData = function() {
-        $(document).on('click', '#upd', function() {
+        $(document).on('click', '#btn-upd', function() {
             var ini = $(this);
+
             $.ajax({
                 type: "post",
-                url: "<?= admin_url() ?>kecamatan/get",
-                dataType: 'json',
+                url: "<?= admin_url() ?>guru/get",
+                dataType: 'html',
                 data: {
                     id: ini.data('id')
                 },
                 beforeSend: function() {
                     ini.attr('disabled', 'disabled');
-                    ini.html('<i class="fas fa-spinner"></i>&nbsp;Waiting...');
+                    ini.html('<i class="fa fa-spinner"></i>');
                 },
-                success: function(data) {
-                    $('form').attr('action', '<?= admin_url() ?>/kecamatan/upd');
-                    $('form').attr('id', 'form-upd');
-                    $('#inpidkecamatan').attr('name', 'inpidkecamatan');
-                    $('#inpidkecamatan').val(data.id_kecamatan);
-                    $('#inpkode').val(data.kd_kecamatan);
-                    $('#inpnama').val(data.nama);
-                    $('#inpurl').val(data.url);
-                    $('#inpluslan').val(data.luas_lahan);
-                    $('#inplatitude').val(data.latitude);
-                    $('#inplongitude').val(data.longitude);
-                    $('#inpketerangan').val(data.keterangan);
-                    $('#add').html('<i class="fas fa-plus"></i>&nbsp;Simpan');
+                success: function(response) {
+                    $('#get-form-upd').html(response);
                     ini.removeAttr('disabled');
-                    ini.html('<i class="fas fa-edit"></i>&nbsp;Edit');
+                    ini.html('<i class="fa fa-pencil"></i>');
                 }
             });
         });
@@ -77,11 +67,9 @@
         $(document).on('submit', '#form-upd', function(e) {
             e.preventDefault();
             $('#inpnama').attr('required', 'required');
-            $('#inpurl').attr('required', 'required');
-            $('#inpluslan').attr('required', 'required');
-            $('#inplatitude').attr('required', 'required');
-            $('#inplongitude').attr('required', 'required');
-            $('#inpketerangan').attr('required', 'required');
+            $('#inpnip').attr('required', 'required');
+            $('#inppendidikan').attr('required', 'required');
+
             if ($('#form-upd').parsley().isValid() == true) {
                 $.ajax({
                     method: $(this).attr('method'),
@@ -91,8 +79,8 @@
                     processData: false,
                     dataType: 'json',
                     beforeSend: function() {
-                        $('#add').attr('disabled', 'disabled');
-                        $('#add').html('<i class="fas fa-spinner"></i>&nbsp;Waiting...');
+                        $('#upd').attr('disabled', 'disabled');
+                        $('#upd').html('<i class="fa fa-spinner"></i>');
                     },
                     success: function(data) {
                         swal({
@@ -112,7 +100,7 @@
 
     // untuk hapus data
     var untukHapusData = function() {
-        $(document).on('click', '#del', function() {
+        $(document).on('click', '#btn-del', function() {
             var ini = $(this);
             swal({
                     title: "Apakah Anda yakin ingin menghapusnya?",
@@ -125,14 +113,14 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>kecamatan/del",
+                            url: "<?= admin_url() ?>guru/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')
                             },
                             beforeSend: function() {
                                 ini.attr('disabled', 'disabled');
-                                ini.html('<i class="fas fa-spinner"></i>&nbsp;Waiting...');
+                                ini.html('<i class="fa fa-spinner"></i>');
                             },
                             success: function(data) {
                                 swal({
