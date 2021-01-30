@@ -1,0 +1,10 @@
+done :
+laporan ikuti format 2016
+tambahkan tabel dibawah chart
+disable datatable highchart
+Basis Data Statistik Perkebunan
+tambahkan label pada filter admin
+tambahkan label pada pin
+tambahkan garis pembatas pada peta
+tambahkan label pada filter user (tahun awal, tahun akhir, kabupaten, kecamatan)
+filter untuk user ikuti https://aplikasi2.pertanian.go.id/bdsp/id/komoditas
