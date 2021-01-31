@@ -58,7 +58,7 @@
                                             <td><?= $value->nis ?></td>
                                             <td><?= $value->siswa ?></td>
                                             <td><?= $value->kelas ?></td>
-                                            <td><?= ($value->jenis_kelamin === 'L' ? 'Laki - laki' : 'Perempuan') ?></td>
+                                            <td><?= ($value->jen_kel === 'L' ? 'Laki - laki' : 'Perempuan') ?></td>
                                             <td><?= $value->ortu_wali ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
@@ -161,11 +161,19 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Alamat</label>
+                                    <label class="hrzn-fm">Agama</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control input-sm" name="inpalamat" id="inpalamat" placeholder="Alamat" />
+                                        <select class="selectpicker" name="inpagama" id="inpagama">
+                                            <option value="">- Pilih -</option>
+                                            <option value="Islam">Islam</option>
+                                            <option value="Kristen">Kristen</option>
+                                            <option value="Katolik">Katolik</option>
+                                            <option value="Hindu">Hindu</option>
+                                            <option value="Buddha">Buddha</option>
+                                            <option value="Konghucu">Konghucu</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -200,9 +208,23 @@
                                         <select class="selectpicker" id="inpkelas" name="inpkelas">
                                             <option value="">- Pilih -</option>
                                             <?php foreach ($kelas as $key => $value) { ?>
-                                                <option value="<?= $value->id_kelas ?>"><?= $value->kelas ?></option>
+                                                <option value="<?= $value->id_kelas ?>"><?= $value->nama ?></option>
                                             <?php } ?>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Alamat</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control input-sm" name="inpalamat" id="inpalamat" placeholder="Alamat" />
                                     </div>
                                 </div>
                             </div>

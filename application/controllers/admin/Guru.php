@@ -36,13 +36,14 @@ class Guru extends MY_Controller
         $post   = $this->input->post(NULL, TRUE);
         $result = $this->crud->gda('guru', ['id_guru' => $post['id']]);
         $data = [
-            'id_guru'     => $result['id_guru'],
-            'id_user'     => $this->m_users->getWhere($result['id_user']),
-            'nip'         => $result['nip'],
-            'nama'        => $result['nama'],
-            'pendidikan'  => $result['pendidikan'],
-            'tahun_masuk' => $result['thn_masuk'],
-            'users'       => $this->m_users->getUsers('guru')
+            'id_guru'    => $result['id_guru'],
+            'nip'        => $result['nip'],
+            'nama'       => $result['nama'],
+            'agama'      => $result['agama'],
+            'jen_kel'    => $result['jen_kel'],
+            'alamat'     => $result['alamat'],
+            'pendidikan' => $result['pendidikan'],
+            'thn_masuk'  => $result['thn_masuk'],
         ];
         // untuk load view
         $this->load->view('admin/guru/upd', $data);
@@ -56,6 +57,9 @@ class Guru extends MY_Controller
             'id_guru'    => acak_id('guru', 'id_guru'),
             'nip'        => $post['inpnip'],
             'nama'       => $post['inpnama'],
+            'agama'      => $post['inpagama'],
+            'jen_kel'    => $post['inpjenkel'],
+            'alamat'     => $post['inpalamat'],
             'pendidikan' => $post['inppendidikan'],
             'thn_masuk'  => $post['inptahunmasuk'],
         ];
@@ -76,9 +80,11 @@ class Guru extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
-            'id_user'    => $post['inpiduser'],
             'nip'        => $post['inpnip'],
             'nama'       => $post['inpnama'],
+            'agama'      => $post['inpagama'],
+            'jen_kel'    => $post['inpjenkel'],
+            'alamat'     => $post['inpalamat'],
             'pendidikan' => $post['inppendidikan'],
             'thn_masuk'  => $post['inptahunmasuk'],
         ];

@@ -8,9 +8,15 @@ class M_guru extends CI_Model
         return $result;
     }
 
-    public function getWhere($id)
+    public function getUse()
     {
-        $result = $this->db->query("SELECT * FROM guru WHERE id = '$id'")->row();
+        $result = $this->db->query("SELECT guru.id_guru, guru.nama FROM guru LEFT JOIN wali_kelas ON guru.id_guru = wali_kelas.id_guru WHERE wali_kelas.id_guru IS NULL")->result();
+        return $result;
+    }
+
+    public function getUseUsers()
+    {
+        $result = $this->db->query("SELECT guru.id_guru, guru.nama FROM guru LEFT JOIN users ON guru.id_guru = users.id_users WHERE users.id_users IS NULL")->result();
         return $result;
     }
 }

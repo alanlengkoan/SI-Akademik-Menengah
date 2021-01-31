@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Siswa extends MY_Controller
+class Wakel extends MY_Controller
 {
     public function __construct()
     {
@@ -12,7 +12,8 @@ class Siswa extends MY_Controller
 
         // untuk load model
         $this->load->model('crud');
-        $this->load->model('m_siswa');
+        $this->load->model('m_wakel');
+        $this->load->model('m_guru');
         $this->load->model('m_kelas');
     }
 
@@ -20,12 +21,13 @@ class Siswa extends MY_Controller
     public function index()
     {
         $data = [
-            'halaman' => 'Siswa',
-            'content' => 'admin/siswa/view',
-            'data'    => $this->m_siswa->getAll(),
-            'kelas'   => $this->m_kelas->getAll(),
-            'css'     => 'admin/siswa/css/view',
-            'js'      => 'admin/siswa/js/view'
+            'halaman'   => 'Wali Kelas',
+            'content'   => 'admin/wakel/view',
+            'data'      => $this->m_wakel->getAll(),
+            'guru'      => $this->m_guru->getUse(),
+            'kelas'     => $this->m_kelas->getUse(),
+            'css'       => 'admin/wakel/css/view',
+            'js'        => 'admin/wakel/js/view'
         ];
         // untuk load view
         $this->load->view('admin/base', $data);
@@ -35,23 +37,16 @@ class Siswa extends MY_Controller
     public function get()
     {
         $post   = $this->input->post(NULL, TRUE);
-        $result = $this->crud->gda('siswa', ['id_siswa' => $post['id']]);
+        $result = $this->crud->gda('wali_kelas', ['id_wali_kelas' => $post['id']]);
         $data = [
-            'id_siswa'  => $result['id_siswa'],
-            'id_kelas'  => $result['id_kelas'],
-            'nis'       => $result['nis'],
-            'nama'      => $result['nama'],
-            'tmp_lahir' => $result['tmp_lahir'],
-            'tgl_lahir' => date("d-m-Y", strtotime($result['tgl_lahir'])),
-            'ortu_wali' => $result['ortu_wali'],
-            'agama'     => $result['agama'],
-            'jen_kel'   => $result['jen_kel'],
-            'alamat'    => $result['alamat'],
-            'thn_masuk' => $result['thn_masuk'],
-            'kelas'     => $this->m_kelas->getAll(),
+            'id_wali_kelas' => $result['id_wali_kelas'],
+            'id_guru'       => $result['id_guru'],
+            'id_kelas'      => $result['id_kelas'],
+            'guru'          => $this->m_guru->getAll(),
+            'kelas'         => $this->m_kelas->getAll(),
         ];
         // untuk load view
-        $this->load->view('admin/siswa/upd', $data);
+        $this->load->view('admin/wakel/upd', $data);
     }
 
     // untuk proses tambah data
@@ -59,20 +54,12 @@ class Siswa extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
-            'id_siswa'  => acak_id('siswa', 'id_siswa'),
-            'id_kelas'  => $post['inpkelas'],
-            'nis'       => $post['inpnis'],
-            'nama'      => $post['inpnama'],
-            'tmp_lahir' => $post['inptmplahir'],
-            'tgl_lahir' => date("Y-m-d", strtotime($post['inptgllahir'])),
-            'ortu_wali' => $post['inportuwali'],
-            'agama'     => $post['inpagama'],
-            'jen_kel'   => $post['inpjenkel'],
-            'alamat'    => $post['inpalamat'],
-            'thn_masuk' => $post['inptahunmasuk'],
+            'id_wali_kelas' => acak_id('wali_kelas', 'id_wali_kelas'),
+            'id_guru'       => $post['inpguru'],
+            'id_kelas'      => $post['inpkelas'],
         ];
         $this->db->trans_start();
-        $this->crud->i('siswa', $data);
+        $this->crud->i('wali_kelas', $data);
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
@@ -88,19 +75,11 @@ class Siswa extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
-            'id_kelas'  => $post['inpkelas'],
-            'nis'       => $post['inpnis'],
-            'nama'      => $post['inpnama'],
-            'tmp_lahir' => $post['inptmplahir'],
-            'tgl_lahir' => date("Y-m-d", strtotime($post['inptgllahir'])),
-            'ortu_wali' => $post['inportuwali'],
-            'agama'     => $post['inpagama'],
-            'jen_kel'   => $post['inpjenkel'],
-            'alamat'    => $post['inpalamat'],
-            'thn_masuk' => $post['inptahunmasuk'],
+            'id_guru'  => $post['inpguru'],
+            'id_kelas' => $post['inpkelas'],
         ];
         $this->db->trans_start();
-        $this->crud->u('siswa', $data, ['id_siswa' => $post['inpid']]);
+        $this->crud->u('wali_kelas', $data, ['id_wali_kelas' => $post['inpid']]);
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
@@ -116,7 +95,7 @@ class Siswa extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $this->db->trans_start();
-        $this->crud->d('siswa', $post['id'], 'id_siswa');
+        $this->crud->d('wali_kelas', $post['id'], 'id_wali_kelas');
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Hapus!', 'type' => 'error', 'button' => 'Ok!'];

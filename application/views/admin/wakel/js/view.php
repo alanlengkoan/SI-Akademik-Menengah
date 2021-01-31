@@ -1,81 +1,13 @@
-<script src="<?= assets_url() ?>admin/js/datapicker/bootstrap-datepicker.js"></script>
-<script src="<?= assets_url() ?>admin/js/datapicker/datepicker-active.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 
 <script>
-    // untuk tanggal
-    var untukTanggal = function() {
-        $('#modalAdd').on('shown.bs.modal', function() {
-            $('.mydate').datepicker({
-                format: "dd-mm-yyyy",
-                autoclose: true,
-                todayHighlight: true,
-                container: '#modalAdd modal-body'
-            });
-        });
-    }();
-
-    // untu users
-    var untukUsers = function() {
-        $(document).on('change', '#inprole', function() {
-            var ini = $(this);
-
-            $.ajax({
-                type: "post",
-                url: "<?= admin_url() ?>users/get_users",
-                dataType: 'html',
-                data: {
-                    role: ini.val()
-                },
-                success: function(response) {
-                    var row = JSON.parse(response);
-
-                    if (row.status === true) {
-                        $('#users').html(`
-                        <div class="form-example-int form-horizental mg-t-15">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Users</label>
-                                    </div>
-                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                        <div class="nk-int-st">
-                                            <select class="selectpicker" id="inpusers" name="inpusers">
-                                                <option value="">- Pilih -</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        `);
-
-                        $.each(row.data, function(i, item) {
-                            $('#inpusers').append($('<option>', {
-                                value: item.id,
-                                text: item.nama
-                            }));
-                        });
-
-                        $('.selectpicker').selectpicker();
-                        $("#inpusers").selectpicker("refresh");
-                    } else {
-                        $('#users').empty();
-                    }
-                }
-            });
-        });
-    }();
-
     // untuk tambah data
     var untukTambahData = function() {
         $(document).on('submit', '#form-add', function(e) {
             e.preventDefault();
-            $('#inpusername').attr('required', 'required');
-            $('#inpnis').attr('required', 'required');
-            $('#inppasswordsatu').attr('required', 'required');
-            $('#inppassworddua').attr('required', 'required');
-            $('#inprole').attr('required', 'required');
+            $('#inpkelas').attr('required', 'required');
+            $('#inpguru').attr('required', 'required');
+            $('#inpmapel').attr('required', 'required');
 
             if ($('#form-add').parsley().isValid() == true) {
                 $.ajax({
@@ -112,7 +44,7 @@
 
             $.ajax({
                 type: "post",
-                url: "<?= admin_url() ?>users/get",
+                url: "<?= admin_url() ?>wakel/get",
                 dataType: 'html',
                 data: {
                     id: ini.data('id')
@@ -135,11 +67,9 @@
     var untukUbahData = function() {
         $(document).on('submit', '#form-upd', function(e) {
             e.preventDefault();
-            $('#inpusername').attr('required', 'required');
-            $('#inpnis').attr('required', 'required');
-            $('#inppasswordsatu').attr('required', 'required');
-            $('#inppassworddua').attr('required', 'required');
-            $('#inprole').attr('required', 'required');
+            $('#inpkelas').attr('required', 'required')
+            $('#inpguru').attr('required', 'required')
+            $('#inpmapel').attr('required', 'required')
 
             if ($('#form-upd').parsley().isValid() == true) {
                 $.ajax({
@@ -184,7 +114,7 @@
                     if (del) {
                         $.ajax({
                             type: "post",
-                            url: "<?= admin_url() ?>users/process_del",
+                            url: "<?= admin_url() ?>wakel/process_del",
                             dataType: 'json',
                             data: {
                                 id: ini.data('id')

@@ -13,6 +13,8 @@ class Users extends MY_Controller
         // untuk load model
         $this->load->model('crud');
         $this->load->model('m_users');
+        $this->load->model('m_guru');
+        $this->load->model('m_siswa');
     }
 
     // untuk default
@@ -34,22 +36,48 @@ class Users extends MY_Controller
     public function get()
     {
         $post   = $this->input->post(NULL, TRUE);
-        $result = $this->crud->gda('siswa', ['id' => $post['id']]);
+        $result = $this->crud->gda('users', ['id' => $post['id']]);
         $data = [
-            'id'            => $result['id'],
-            'nis'           => $result['nis'],
-            'nama'          => $result['nama'],
-            'tempat_lahir'  => $result['tempat_lahir'],
-            'tgl_lahir'     => date("d-m-Y", strtotime($result['tgl_lahir'])),
-            'ortu_wali'     => $result['ortu_wali'],
-            'alamat'        => $result['alamat'],
-            'id_kelas'      => $result['id_kelas'],
-            'jenis_kelamin' => $result['jenis_kelamin'],
-            'thn_masuk'     => $result['thn_masuk'],
-            'kelas'         => $this->m_kelas->getAll(),
+            'id'       => $result['id'],
+            'id_users' => $result['id_users'],
+            'username' => $result['username'],
+            'role'     => $result['role'],
+            'guru'     => $this->m_guru->getAll(),
+            'siswa'    => $this->m_siswa->getAll(),
         ];
         // untuk load view
-        $this->load->view('admin/siswa/upd', $data);
+        $this->load->view('admin/users/upd', $data);
+    }
+
+    // untuk get users by role
+    public function get_users()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $response['status'] = false;
+        if ($post['role'] === 'guru') {
+            $result = $this->m_guru->getUseUsers();
+
+            $response['status'] = true;
+            foreach ($result as $key => $value) {
+                $response['data'][] = [
+                    'id'   => $value->id_guru,
+                    'nama' => $value->nama
+                ];
+            }
+        } else if ($post['role'] === 'siswa') {
+            $result = $this->m_siswa->getUseUsers();
+
+            $response['status'] = true;
+            foreach ($result as $key => $value) {
+                $response['data'][] = [
+                    'id'   => $value->id_siswa,
+                    'nama' => $value->nama
+                ];
+            }
+        }
+        // untuk response json
+        $this->_response($response);
     }
 
     // untuk proses tambah data
@@ -62,6 +90,7 @@ class Users extends MY_Controller
             $pwd_hash = password_hash($pwd_dua, PASSWORD_DEFAULT);
             $data = [
                 'id'       => acak_id('users', 'id'),
+                'id_users' => $post['inpusers'],
                 'username' => $post['inpusername'],
                 'password' => $pwd_hash,
                 'role'     => $post['inprole'],
@@ -84,25 +113,38 @@ class Users extends MY_Controller
     // untuk proses ubah data
     public function process_upd()
     {
-        $post = $this->input->post(NULL, TRUE);
-        $data = [
-            'nis'           => $post['inpnis'],
-            'nama'          => $post['inpnama'],
-            'tempat_lahir'  => $post['inptmplahir'],
-            'tgl_lahir'     => date("Y-m-d", strtotime($post['inptgllahir'])),
-            'ortu_wali'     => $post['inportuwali'],
-            'alamat'        => $post['inpalamat'],
-            'id_kelas'      => $post['inpkelas'],
-            'jenis_kelamin' => $post['inpjenkel'],
-            'thn_masuk'     => $post['inptahunmasuk'],
-        ];
-        $this->db->trans_start();
-        $this->crud->u('siswa', $data, ['id' => $post['inpid']]);
-        $this->db->trans_complete();
-        if ($this->db->trans_status() === FALSE) {
-            $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+        $post     = $this->input->post(NULL, TRUE);
+        $pwd_lama = $post['inppasswordlama'];
+        $pwd_satu = $post['inppasswordsatu'];
+        $pwd_dua  = $post['inppassworddua'];
+
+        $user = $this->crud->gda('users', ['id' => $post['inpid']]);
+        $check_pwd = password_verify($pwd_lama, $user['password']);
+
+        if ($check_pwd === true) {
+            if ($pwd_satu === $pwd_dua) {
+                $pwd_hash = password_hash($pwd_dua, PASSWORD_DEFAULT);
+
+                $data = [
+                    'id_users' => $post['inpusers'],
+                    'username' => $post['inpusername'],
+                    'password' => $pwd_hash,
+                    'role'     => $post['inprole'],
+                ];
+
+                $this->db->trans_start();
+                $this->crud->u('users', $data, ['id' => $post['inpid']]);
+                $this->db->trans_complete();
+                if ($this->db->trans_status() === FALSE) {
+                    $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+                } else {
+                    $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+                }
+            } else {
+                $response = ['title' => 'Peringatan!', 'text' => 'Password yang Anda masukkan tidak sama!!', 'type' => 'warning', 'button' => 'Ok!'];
+            }
         } else {
-            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+            $response = ['title' => 'Peringatan!', 'text' => 'Password lama yang Anda masukkan tidak sama!!', 'type' => 'warning', 'button' => 'Ok!'];
         }
         // untuk response json
         $this->_response($response);
@@ -113,7 +155,7 @@ class Users extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $this->db->trans_start();
-        $this->crud->d('siswa', $post['id'], 'id');
+        $this->crud->d('users', $post['id'], 'id');
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Hapus!', 'type' => 'error', 'button' => 'Ok!'];

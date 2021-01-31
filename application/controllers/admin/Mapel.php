@@ -35,8 +35,8 @@ class Mapel extends MY_Controller
         $post   = $this->input->post(NULL, TRUE);
         $result = $this->crud->gda('mapel', ['id_mapel' => $post['id']]);
         $data = [
-            'id_mapel'  => $result['id_mapel'],
-            'pelajaran' => $result['pelajaran'],
+            'id_mapel' => $result['id_mapel'],
+            'nama'     => $result['nama'],
         ];
         // untuk load view
         $this->load->view('admin/mapel/upd', $data);
@@ -47,8 +47,8 @@ class Mapel extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
-            'id_mapel'  => acak_id('mapel', 'id_mapel'),
-            'pelajaran' => $post['inpmapel'],
+            'id_mapel' => acak_id('mapel', 'id_mapel'),
+            'nama'     => $post['inpmapel'],
         ];
         $this->db->trans_start();
         $this->crud->i('mapel', $data);
@@ -67,7 +67,7 @@ class Mapel extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
-            'pelajaran' => $post['inpmapel'],
+            'nama' => $post['inpmapel'],
         ];
         $this->db->trans_start();
         $this->crud->u('mapel', $data, ['id_mapel' => $post['inpid']]);

@@ -51,7 +51,7 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->pelajaran ?></td>
+                                            <td><?= $value->nama ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
                                                     <button type="button" id="btn-upd" data-id="<?= $value->id_mapel ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>

@@ -61,20 +61,21 @@
                     <div class="mobile-menu">
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
-                                <li><a data-toggle="collapse" data-target="#akademik" href="#">Akademik</a>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#master" href="#">Master</a>
                                     <ul class="collapse dropdown-header-top">
-                                        <li><a href="<?= admin_url() ?>guru">Guru</a></li>
                                         <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
-                                        <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
-                                        <li><a href="<?= admin_url() ?>mapel">Pelajaran</a></li>
-                                        <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
+                                        <li><a href="<?= admin_url() ?>mapel">Mata Pelajaran</a></li>
                                     </ul>
                                 </li>
-                                <li><a data-toggle="collapse" data-target="#user" href="#">Pengguna</a>
-                                    <ul id="demoevent" class="collapse dropdown-header-top">
-                                        <li>
-                                            <a href="<?= admin_url() ?>users">Manajemen User</a>
-                                        </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#pustaka" href="#">Pustaka</a>
+                                    <ul class="collapse dropdown-header-top">
+                                        <li><a href="<?= admin_url() ?>guru">Guru</a></li>
+                                        <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
+                                        <li><a href="<?= admin_url() ?>wakel">Wali Kelas</a></li>
+                                        <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
+                                        <li><a href="<?= admin_url() ?>users">Users</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -95,26 +96,34 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li class="active"><a data-toggle="tab" href="#akademik"><i class="notika-icon notika-house"></i> Akademik</a>
+                        <li class="<?= ($this->uri->segment(2) == 'kelas' || $this->uri->segment(2) == 'mapel' ? 'active' : '') ?>">
+                            <a data-toggle="tab" href="#master">
+                                <i class="notika-icon notika-house"></i> Master
+                            </a>
                         </li>
-                        <li><a data-toggle="tab" href="#user"><i class="fa fa-user"></i> Pengguna </a></li>
-                        <li><a href="<?= logout_url() ?>"><i class="fa fa-close"></i> Logout </a></li>
+                        <li class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'siswa' || $this->uri->segment(2) == 'wakel' ||  $this->uri->segment(2) == 'penugasan_guru' ? 'active' : '') ?>">
+                            <a data-toggle="tab" href="#pustaka">
+                                <i class="notika-icon notika-house"></i> Pustaka
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<?= logout_url() ?>"><i class="fa fa-close"></i> Logout </a>
+                        </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
-                        <div id="akademik" class="tab-pane in active notika-tab-menu-bg animated flipInX">
+                        <div id="master" class="<?= ($this->uri->segment(2) == 'kelas' || $this->uri->segment(2) == 'mapel' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="<?= admin_url() ?>guru">Guru</a></li>
                                 <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
-                                <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
-                                <li><a href="<?= admin_url() ?>mapel">Pelajaran</a></li>
-                                <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
+                                <li><a href="<?= admin_url() ?>mapel">Mata Pelajaran</a></li>
                             </ul>
                         </div>
-                        <div id="user" class="tab-pane notika-tab-menu-bg animated flipInX">
+                        <div id="pustaka" class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'siswa' || $this->uri->segment(2) == 'wakel' ||  $this->uri->segment(2) == 'penugasan_guru' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li>
-                                    <a href="<?= admin_url() ?>users">Manajemen User</a>
-                                </li>
+                                <li><a href="<?= admin_url() ?>guru">Guru</a></li>
+                                <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
+                                <li><a href="<?= admin_url() ?>wakel">Wali Kelas</a></li>
+                                <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
+                                <li><a href="<?= admin_url() ?>users">Users</a></li>
                             </ul>
                         </div>
                     </div>

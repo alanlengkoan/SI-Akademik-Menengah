@@ -1,6 +1,20 @@
 <form id="form-upd" action="<?= admin_url() ?>guru/process_upd" method="POST">
     <input type="hidden" name="inpid" value="<?= $id_guru ?>">
 
+    <div class="form-example-int form-horizental mg-t-15">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label class="hrzn-fm">Nip / No. Induk</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="nk-int-st">
+                        <input type="text" class="form-control input-sm" name="inpnip" id="inpnip" value="<?= $nip ?>">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="form-example-int form-horizental">
         <div class="form-group">
             <div class="row">
@@ -19,11 +33,51 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <label class="hrzn-fm">Nip / No. Induk</label>
+                    <label class="hrzn-fm">Agama</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <div class="nk-int-st">
-                        <input type="text" class="form-control input-sm" name="inpnip" id="inpnip" value="<?= $nip ?>">
+                        <select class="selectpicker" name="inpagama" id="inpagama">
+                            <option value="">- Pilih -</option>
+                            <option value="Islam" <?= ($agama === 'Islam' ? 'selected' : '') ?>>Islam</option>
+                            <option value="Kristen" <?= ($agama === 'Kristen' ? 'selected' : '') ?>>Kristen</option>
+                            <option value="Katolik" <?= ($agama === 'Katolik' ? 'selected' : '') ?>>Katolik</option>
+                            <option value="Hindu" <?= ($agama === 'Hindu' ? 'selected' : '') ?>>Hindu</option>
+                            <option value="Buddha" <?= ($agama === 'Buddha' ? 'selected' : '') ?>>Buddha</option>
+                            <option value="Konghucu" <?= ($agama === 'Konghucu' ? 'selected' : '') ?>>Konghucu</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-example-int form-horizental mg-t-15">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label class="hrzn-fm">Jenis Kelamin</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="nk-int-st">
+                        <select class="selectpicker" name="inpjenkel" id="inpjenkel">
+                            <option value="">- Pilih -</option>
+                            <option value="L" <?= ($jen_kel === 'L' ? 'selected' : '') ?>>Laki-Laki</option>
+                            <option value="P" <?= ($jen_kel === 'P' ? 'selected' : '') ?>>Perempuan</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-example-int form-horizental mg-t-15">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label class="hrzn-fm">Alamat</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="nk-int-st">
+                        <input type="text" class="form-control input-sm" name="inpalamat" id="inpalamat" value="<?= $alamat ?>" />
                     </div>
                 </div>
             </div>
@@ -51,26 +105,7 @@
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <div class="nk-int-st">
-                        <input type="text" class="form-control input-sm" name="inptahunmasuk" id="inptahunmasuk" value="<?= $tahun_masuk ?>">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="form-example-int form-horizental mg-t-15">
-        <div class="form-group">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <label class="hrzn-fm">Username</label>
-                </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                    <div class="nk-int-st">
-                        <select class="selectpicker" id="inpiduser" name="inpiduser">
-                            <option value=""><?= ($id_user === null ? '- Pilih -' : $id_user->username) ?></option>
-                            <?php foreach ($users as $key => $value) { ?>
-                                <option value="<?= $value->id ?>" <?= ($id_user === $value->id ? 'selected' : '') ?>><?= $value->username ?></option>
-                            <?php } ?>
-                        </select>
+                        <input type="text" class="form-control input-sm" name="inptahunmasuk" id="inptahunmasuk" value="<?= $thn_masuk ?>">
                     </div>
                 </div>
             </div>

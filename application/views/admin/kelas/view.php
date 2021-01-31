@@ -42,7 +42,6 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Kelas</th>
-                                        <th>Wali Kelas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -52,8 +51,7 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->kelas ?></td>
-                                            <td><?= $value->guru ?></td>
+                                            <td><?= $value->nama ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
                                                     <button type="button" id="btn-upd" data-id="<?= $value->id_kelas ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
@@ -90,25 +88,6 @@
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
                                         <input type="text" class="form-control input-sm" name="inpnama" id="inpnama" placeholder="Nama Kelas">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-example-int form-horizental mg-t-15">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Wali Kelas</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                    <div class="nk-int-st">
-                                        <select class="selectpicker" id="inpwalikelas" name="inpwalikelas">
-                                            <option value="">- Pilih -</option>
-                                            <?php foreach ($guru as $key => $value) { ?>
-                                                <option value="<?= $value->id_guru ?>"><?= $value->nama ?></option>
-                                            <?php } ?>
-                                        </select>
                                     </div>
                                 </div>
                             </div>

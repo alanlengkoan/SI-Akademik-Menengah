@@ -12,7 +12,6 @@ class Kelas extends MY_Controller
 
         // untuk load model
         $this->load->model('crud');
-        $this->load->model('m_guru');
         $this->load->model('m_kelas');
     }
 
@@ -23,7 +22,6 @@ class Kelas extends MY_Controller
             'halaman' => 'Kelas',
             'content' => 'admin/kelas/view',
             'data'    => $this->m_kelas->getAll(),
-            'guru'    => $this->m_guru->getAll(),
             'css'     => '',
             'js'      => 'admin/kelas/js/view'
         ];
@@ -38,9 +36,7 @@ class Kelas extends MY_Controller
         $result = $this->crud->gda('kelas', ['id_kelas' => $post['id']]);
         $data = [
             'id_kelas' => $result['id_kelas'],
-            'id_guru'  => $result['id_guru'],
             'nama'     => $result['nama'],
-            'guru'     => $this->m_guru->getAll(),
         ];
         // untuk load view
         $this->load->view('admin/kelas/upd', $data);
@@ -52,7 +48,6 @@ class Kelas extends MY_Controller
         $post = $this->input->post(NULL, TRUE);
         $data = [
             'id_kelas' => acak_id('kelas', 'id_kelas'),
-            'id_guru'  => $post['inpwalikelas'],
             'nama'     => $post['inpnama'],
         ];
         $this->db->trans_start();
@@ -72,8 +67,7 @@ class Kelas extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
-            'id_guru' => $post['inpwalikelas'],
-            'nama'    => $post['inpnama'],
+            'nama' => $post['inpnama'],
         ];
         $this->db->trans_start();
         $this->crud->u('kelas', $data, ['id_kelas' => $post['inpid']]);

@@ -41,9 +41,12 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>NIP / No. Induk</th>
                                         <th>Nama</th>
-                                        <th>Ni / No. Induk</th>
+                                        <th>Agama</th>
+                                        <th>Jenis Kelamin</th>
                                         <th>Pendidikan</th>
+                                        <th>Tahun Masuk</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -53,9 +56,12 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->nama ?></td>
                                             <td><?= $value->nip ?></td>
+                                            <td><?= $value->nama ?></td>
+                                            <td><?= $value->agama ?></td>
+                                            <td><?= ($value->jen_kel === 'L' ? 'Laki - laki' : 'Perempuan') ?></td>
                                             <td><?= $value->pendidikan ?></td>
+                                            <td><?= $value->thn_masuk ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
                                                     <button type="button" id="btn-upd" data-id="<?= $value->id_guru ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
@@ -83,6 +89,20 @@
                 <h2>Tambah Guru</h2>
 
                 <form id="form-add" action="<?= admin_url() ?>guru/process_add" method="POST">
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Nip / No. Induk</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control input-sm" name="inpnip" id="inpnip" placeholder="Nip atau No. Induk Guru">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="form-example-int form-horizental">
                         <div class="form-group">
                             <div class="row">
@@ -101,11 +121,51 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Nip / No. Induk</label>
+                                    <label class="hrzn-fm">Agama</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control input-sm" name="inpnip" id="inpnip" placeholder="Nip atau No. Induk Guru">
+                                        <select class="selectpicker" name="inpagama" id="inpagama">
+                                            <option value="">- Pilih -</option>
+                                            <option value="Islam">Islam</option>
+                                            <option value="Kristen">Kristen</option>
+                                            <option value="Katolik">Katolik</option>
+                                            <option value="Hindu">Hindu</option>
+                                            <option value="Buddha">Buddha</option>
+                                            <option value="Konghucu">Konghucu</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Jenis Kelamin</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <select class="selectpicker" name="inpjenkel" id="inpjenkel">
+                                            <option value="">- Pilih -</option>
+                                            <option value="L">Laki-Laki</option>
+                                            <option value="P">Perempuan</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental mg-t-15">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Alamat</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control input-sm" name="inpalamat" id="inpalamat" placeholder="Alamat" />
                                     </div>
                                 </div>
                             </div>

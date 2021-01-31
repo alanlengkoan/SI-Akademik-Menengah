@@ -105,7 +105,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="password" class="form-control input-sm" name="inppasswordsatu" id="inppasswordsatu" placeholder="Masukkan Username" />
+                                        <input type="password" class="form-control input-sm" name="inppasswordsatu" id="inppasswordsatu" placeholder="Masukkan Password" />
                                     </div>
                                 </div>
                             </div>
@@ -119,7 +119,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="password" class="form-control input-sm" name="inppassworddua" id="inppassworddua" placeholder="Masukkan Username" />
+                                        <input type="password" class="form-control input-sm" name="inppassworddua" id="inppassworddua" placeholder="Masukkan Ulangi Password" />
                                     </div>
                                 </div>
                             </div>
@@ -144,6 +144,9 @@
                             </div>
                         </div>
                     </div>
+                    <!-- begin:: untuk users -->
+                    <div id="users"></div>
+                    <!-- end:: untuk users -->
                     <div class="text-center button-icon-btn button-icon-btn-cl">
                         <button type="submit" class="btn btn-success" name="add" id="add"><i class="fa fa-save"></i></button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>

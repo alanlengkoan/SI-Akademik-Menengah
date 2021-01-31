@@ -6,7 +6,7 @@ if (!function_exists('checking_session')) {
     function checking_session($user_data)
     {
         if (empty($user_data)) {
-            redirect('home');
+            redirect('auth/login');
         }
     }
 }
