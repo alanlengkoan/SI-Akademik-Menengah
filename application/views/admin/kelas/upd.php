@@ -1,5 +1,5 @@
 <form id="form-upd" action="<?= admin_url() ?>kelas/process_upd" method="POST">
-    <input type="hidden" name="inpid" value="<?= $id ?>">
+    <input type="hidden" name="inpid" value="<?= $id_kelas ?>">
 
     <div class="form-example-int form-horizental">
         <div class="form-group">
@@ -26,7 +26,7 @@
                         <select class="selectpicker" id="inpwalikelas" name="inpwalikelas">
                             <option value="">- Pilih -</option>
                             <?php foreach ($guru as $key => $value) { ?>
-                                <option value="<?= $value->id ?>" <?= ($walikelas === $value->id ? 'selected' : '') ?>><?= $value->nama ?></option>
+                                <option value="<?= $value->id_guru ?>" <?= ($id_guru === $value->id_guru ? 'selected' : '') ?>><?= $value->nama ?></option>
                             <?php } ?>
                         </select>
                     </div>

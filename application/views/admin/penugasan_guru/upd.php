@@ -1,5 +1,5 @@
 <form id="form-upd" action="<?= admin_url() ?>penugasan_guru/process_upd" method="POST">
-    <input type="hidden" name="inpid" value="<?= $id ?>">
+    <input type="hidden" name="inpid" value="<?= $id_penugasan_guru ?>">
 
     <div class="form-example-int form-horizental mg-t-15">
         <div class="form-group">
@@ -12,7 +12,7 @@
                         <select class="selectpicker" id="inpkelas" name="inpkelas">
                             <option value="">- Pilih -</option>
                             <?php foreach ($kelas as $key => $value) { ?>
-                                <option value="<?= $value->id ?>" <?= ($id_kelas == $value->id ? 'selected' : '') ?>><?= $value->kelas ?></option>
+                                <option value="<?= $value->id_kelas ?>" <?= ($id_kelas == $value->id_kelas ? 'selected' : '') ?>><?= $value->kelas ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -31,7 +31,7 @@
                         <select class="selectpicker" id="inpmapel" name="inpmapel">
                             <option value="">- Pilih -</option>
                             <?php foreach ($mapel as $key => $value) { ?>
-                                <option value="<?= $value->id ?>" <?= ($id_mapel == $value->id ? 'selected' : '') ?>><?= $value->pelajaran ?></option>
+                                <option value="<?= $value->id_mapel ?>" <?= ($id_mapel == $value->id_mapel ? 'selected' : '') ?>><?= $value->pelajaran ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -50,7 +50,7 @@
                         <select class="selectpicker" id="inpguru" name="inpguru">
                             <option value="">- Pilih -</option>
                             <?php foreach ($guru as $key => $value) { ?>
-                                <option value="<?= $value->id ?>" <?= ($id_guru == $value->id ? 'selected' : '') ?>><?= $value->nama ?></option>
+                                <option value="<?= $value->id_guru ?>" <?= ($id_guru == $value->id_guru ? 'selected' : '') ?>><?= $value->nama ?></option>
                             <?php } ?>
                         </select>
                     </div>

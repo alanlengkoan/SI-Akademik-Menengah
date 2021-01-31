@@ -1,5 +1,5 @@
 <form id="form-upd" action="<?= admin_url() ?>mapel/process_upd" method="POST">
-    <input type="hidden" name="inpid" value="<?= $id ?>">
+    <input type="hidden" name="inpid" value="<?= $id_mapel ?>">
 
     <div class="form-example-int form-horizental">
         <div class="form-group">

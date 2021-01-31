@@ -73,7 +73,7 @@
                                 <li><a data-toggle="collapse" data-target="#user" href="#">Pengguna</a>
                                     <ul id="demoevent" class="collapse dropdown-header-top">
                                         <li>
-                                            <a href="index.php?mode=manajemen_user">Manajemen User</a>
+                                            <a href="<?= admin_url() ?>users">Manajemen User</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -113,7 +113,7 @@
                         <div id="user" class="tab-pane notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li>
-                                    <a href="index.php?mode=manajemen_user">Manajemen User</a>
+                                    <a href="<?= admin_url() ?>users">Manajemen User</a>
                                 </li>
                             </ul>
                         </div>

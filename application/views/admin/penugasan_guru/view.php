@@ -58,8 +58,8 @@
                                             <td><?= $value->guru ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_penugasan_guru ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
+                                                    <button type="button" id="btn-del" data-id="<?= $value->id_penugasan_guru ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -94,7 +94,7 @@
                                         <select class="selectpicker" id="inpkelas" name="inpkelas">
                                             <option value="">- Pilih -</option>
                                             <?php foreach ($kelas as $key => $value) { ?>
-                                                <option value="<?= $value->id ?>"><?= $value->kelas ?></option>
+                                                <option value="<?= $value->id_kelas ?>"><?= $value->kelas ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -113,7 +113,7 @@
                                         <select class="selectpicker" id="inpmapel" name="inpmapel">
                                             <option value="">- Pilih -</option>
                                             <?php foreach ($mapel as $key => $value) { ?>
-                                                <option value="<?= $value->id ?>"><?= $value->pelajaran ?></option>
+                                                <option value="<?= $value->id_mapel ?>"><?= $value->pelajaran ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -132,7 +132,7 @@
                                         <select class="selectpicker" id="inpguru" name="inpguru">
                                             <option value="">- Pilih -</option>
                                             <?php foreach ($guru as $key => $value) { ?>
-                                                <option value="<?= $value->id ?>"><?= $value->nama ?></option>
+                                                <option value="<?= $value->id_guru ?>"><?= $value->nama ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>

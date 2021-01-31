@@ -44,7 +44,6 @@
                                         <th>Nama</th>
                                         <th>Ni / No. Induk</th>
                                         <th>Pendidikan</th>
-                                        <th>Mata Pelajaran</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -57,11 +56,10 @@
                                             <td><?= $value->nama ?></td>
                                             <td><?= $value->nip ?></td>
                                             <td><?= $value->pendidikan ?></td>
-                                            <td><?= 'Matematika' ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_guru ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
+                                                    <button type="button" id="btn-del" data-id="<?= $value->id_guru ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -93,7 +91,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control input-sm" name="inpnama" id="inpnama" placeholder="Nama Gurus">
+                                        <input type="text" class="form-control input-sm" name="inpnama" id="inpnama" placeholder="Nama Guru">
                                     </div>
                                 </div>
                             </div>

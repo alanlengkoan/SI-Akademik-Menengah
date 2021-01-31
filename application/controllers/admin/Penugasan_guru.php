@@ -39,15 +39,15 @@ class Penugasan_guru extends MY_Controller
     public function get()
     {
         $post   = $this->input->post(NULL, TRUE);
-        $result = $this->crud->gda('penugasan_guru', ['id' => $post['id']]);
+        $result = $this->crud->gda('penugasan_guru', ['id_penugasan_guru' => $post['id']]);
         $data = [
-            'id'       => $result['id'],
-            'id_kelas' => $result['id_kelas'],
-            'id_guru'  => $result['id_guru'],
-            'id_mapel' => $result['id_mapel'],
-            'kelas'    => $this->m_kelas->getAll(),
-            'mapel'    => $this->m_mapel->getAll(),
-            'guru'     => $this->m_guru->getAll(),
+            'id_penugasan_guru' => $result['id_penugasan_guru'],
+            'id_kelas'          => $result['id_kelas'],
+            'id_guru'           => $result['id_guru'],
+            'id_mapel'          => $result['id_mapel'],
+            'kelas'             => $this->m_kelas->getAll(),
+            'mapel'             => $this->m_mapel->getAll(),
+            'guru'              => $this->m_guru->getAll(),
         ];
         // untuk load view
         $this->load->view('admin/penugasan_guru/upd', $data);
@@ -58,10 +58,10 @@ class Penugasan_guru extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
-            'id'       => acak_id('penugasan_guru', 'id'),
-            'id_kelas' => $post['inpkelas'],
-            'id_guru'  => $post['inpguru'],
-            'id_mapel' => $post['inpmapel'],
+            'id_penugasan_guru' => acak_id('penugasan_guru', 'id_penugasan_guru'),
+            'id_kelas'          => $post['inpkelas'],
+            'id_guru'           => $post['inpguru'],
+            'id_mapel'          => $post['inpmapel'],
         ];
         $this->db->trans_start();
         $this->crud->i('penugasan_guru', $data);
@@ -85,7 +85,7 @@ class Penugasan_guru extends MY_Controller
             'id_mapel' => $post['inpmapel'],
         ];
         $this->db->trans_start();
-        $this->crud->u('penugasan_guru', $data, ['id' => $post['inpid']]);
+        $this->crud->u('penugasan_guru', $data, ['id_penugasan_guru' => $post['inpid']]);
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
@@ -101,7 +101,7 @@ class Penugasan_guru extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $this->db->trans_start();
-        $this->crud->d('penugasan_guru', $post['id'], 'id');
+        $this->crud->d('penugasan_guru', $post['id'], 'id_penugasan_guru');
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Hapus!', 'type' => 'error', 'button' => 'Ok!'];

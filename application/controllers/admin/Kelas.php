@@ -35,12 +35,12 @@ class Kelas extends MY_Controller
     public function get()
     {
         $post   = $this->input->post(NULL, TRUE);
-        $result = $this->crud->gda('kelas', ['id' => $post['id']]);
+        $result = $this->crud->gda('kelas', ['id_kelas' => $post['id']]);
         $data = [
-            'id'        => $result['id'],
-            'nama'      => $result['nama'],
-            'walikelas' => $result['walikelas'],
-            'guru'      => $this->m_guru->getAll(),
+            'id_kelas' => $result['id_kelas'],
+            'id_guru'  => $result['id_guru'],
+            'nama'     => $result['nama'],
+            'guru'     => $this->m_guru->getAll(),
         ];
         // untuk load view
         $this->load->view('admin/kelas/upd', $data);
@@ -51,9 +51,9 @@ class Kelas extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
-            'id'        => acak_id('kelas', 'id'),
-            'nama'      => $post['inpnama'],
-            'walikelas' => $post['inpwalikelas'],
+            'id_kelas' => acak_id('kelas', 'id_kelas'),
+            'id_guru'  => $post['inpwalikelas'],
+            'nama'     => $post['inpnama'],
         ];
         $this->db->trans_start();
         $this->crud->i('kelas', $data);
@@ -72,11 +72,11 @@ class Kelas extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
-            'nama'      => $post['inpnama'],
-            'walikelas' => $post['inpwalikelas'],
+            'id_guru' => $post['inpwalikelas'],
+            'nama'    => $post['inpnama'],
         ];
         $this->db->trans_start();
-        $this->crud->u('kelas', $data, ['id' => $post['inpid']]);
+        $this->crud->u('kelas', $data, ['id_kelas' => $post['inpid']]);
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
@@ -92,7 +92,7 @@ class Kelas extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $this->db->trans_start();
-        $this->crud->d('kelas', $post['id'], 'id');
+        $this->crud->d('kelas', $post['id'], 'id_kelas');
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Hapus!', 'type' => 'error', 'button' => 'Ok!'];

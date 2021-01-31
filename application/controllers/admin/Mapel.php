@@ -33,9 +33,9 @@ class Mapel extends MY_Controller
     public function get()
     {
         $post   = $this->input->post(NULL, TRUE);
-        $result = $this->crud->gda('mapel', ['id' => $post['id']]);
+        $result = $this->crud->gda('mapel', ['id_mapel' => $post['id']]);
         $data = [
-            'id'        => $result['id'],
+            'id_mapel'  => $result['id_mapel'],
             'pelajaran' => $result['pelajaran'],
         ];
         // untuk load view
@@ -47,7 +47,7 @@ class Mapel extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $data = [
-            'id'        => acak_id('mapel', 'id'),
+            'id_mapel'  => acak_id('mapel', 'id_mapel'),
             'pelajaran' => $post['inpmapel'],
         ];
         $this->db->trans_start();
@@ -70,7 +70,7 @@ class Mapel extends MY_Controller
             'pelajaran' => $post['inpmapel'],
         ];
         $this->db->trans_start();
-        $this->crud->u('mapel', $data, ['id' => $post['inpid']]);
+        $this->crud->u('mapel', $data, ['id_mapel' => $post['inpid']]);
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
@@ -86,7 +86,7 @@ class Mapel extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $this->db->trans_start();
-        $this->crud->d('mapel', $post['id'], 'id');
+        $this->crud->d('mapel', $post['id'], 'id_mapel');
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Hapus!', 'type' => 'error', 'button' => 'Ok!'];

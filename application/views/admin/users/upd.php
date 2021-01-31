@@ -1,5 +1,5 @@
 <form id="form-upd" action="<?= admin_url() ?>siswa/process_upd" method="POST">
-    <input type="hidden" name="inpid" value="<?= $id_siswa ?>">
+    <input type="hidden" name="inpid" value="<?= $id ?>">
 
     <div class="form-example-int form-horizental">
         <div class="form-group">
@@ -114,7 +114,7 @@
                         <select class="selectpicker" id="inpkelas" name="inpkelas">
                             <option value="">- Pilih -</option>
                             <?php foreach ($kelas as $key => $value) { ?>
-                                <option value="<?= $value->id_kelas ?>" <?= ($id_kelas == $value->id_kelas ? 'selected' : '') ?>><?= $value->kelas ?></option>
+                                <option value="<?= $value->id ?>" <?= ($id_kelas == $value->id ? 'selected' : '') ?>><?= $value->kelas ?></option>
                             <?php } ?>
                         </select>
                     </div>
@@ -131,25 +131,6 @@
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <div class="nk-int-st">
                         <input type="text" class="form-control" name="inptahunmasuk" id="inptahunmasuk" value="<?= $thn_masuk ?>">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="form-example-int form-horizental mg-t-15">
-        <div class="form-group">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <label class="hrzn-fm">Username</label>
-                </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                    <div class="nk-int-st">
-                        <select class="selectpicker" id="inpiduser" name="inpiduser">
-                            <option value=""><?= ($id_user === null ? '- Pilih -' : $id_user->username) ?></option>
-                            <?php foreach ($users as $key => $value) { ?>
-                                <option value="<?= $value->id ?>" <?= ($id_user === $value->id ? 'selected' : '') ?>><?= $value->username ?></option>
-                            <?php } ?>
-                        </select>
                     </div>
                 </div>
             </div>

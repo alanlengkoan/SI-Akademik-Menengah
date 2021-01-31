@@ -1,5 +1,5 @@
 <form id="form-upd" action="<?= admin_url() ?>guru/process_upd" method="POST">
-    <input type="hidden" name="inpid" value="<?= $id ?>">
+    <input type="hidden" name="inpid" value="<?= $id_guru ?>">
 
     <div class="form-example-int form-horizental">
         <div class="form-group">
@@ -65,9 +65,11 @@
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <div class="nk-int-st">
-                        <select class="selectpicker" id="inpusername" name="inpusername">
-                            <option value="">Kosong</option>
-                            <option value="">Kosong</option>
+                        <select class="selectpicker" id="inpiduser" name="inpiduser">
+                            <option value=""><?= ($id_user === null ? '- Pilih -' : $id_user->username) ?></option>
+                            <?php foreach ($users as $key => $value) { ?>
+                                <option value="<?= $value->id ?>" <?= ($id_user === $value->id ? 'selected' : '') ?>><?= $value->username ?></option>
+                            <?php } ?>
                         </select>
                     </div>
                 </div>

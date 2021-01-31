@@ -54,8 +54,8 @@
                                             <td><?= $value->pelajaran ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_mapel ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
+                                                    <button type="button" id="btn-del" data-id="<?= $value->id_mapel ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -76,7 +76,7 @@
     <div class="modal-dialog modals-default">
         <div class="modal-content">
             <div class="modal-body">
-                <h2>Tambah Siswa</h2>
+                <h2>Tambah Mata Pelajaran</h2>
 
                 <form id="form-add" action="<?= admin_url() ?>mapel/process_add" method="POST">
                     <div class="form-example-int form-horizental">
@@ -109,7 +109,7 @@
     <div class="modal-dialog modals-default">
         <div class="modal-content">
             <div class="modal-body">
-                <h2>Ubah Siswa</h2>
+                <h2>Ubah Mata Pelajaran</h2>
 
                 <!-- begin:: form ubah -->
                 <div id="get-form-upd"></div>

@@ -4,13 +4,13 @@ class M_penugasan_guru extends CI_Model
 {
     public function getAll()
     {
-        $result = $this->db->query("SELECT penugasan_guru.id, kelas.nama AS kelas, guru.nama AS guru, mapel.pelajaran FROM penugasan_guru LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id LEFT JOIN guru ON penugasan_guru.id_guru = guru.id LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id")->result();
+        $result = $this->db->query("SELECT penugasan_guru.id_penugasan_guru, kelas.nama AS kelas, guru.nama AS guru, mapel.pelajaran FROM penugasan_guru LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel")->result();
         return $result;
     }
 
     public function getWhere($id)
     {
-        $result = $this->db->query("SELECT penugasan_guru.id, kelas.nama AS kelas, guru.nama AS guru, mapel.pelajaran FROM penugasan_guru LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id LEFT JOIN guru ON penugasan_guru.id_guru = guru.id LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id WHERE penugasan_guru.id = '$id'")->row();
+        $result = $this->db->query("SELECT penugasan_guru.id_penugasan_guru, kelas.nama AS kelas, guru.nama AS guru, mapel.pelajaran FROM penugasan_guru LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel WHERE penugasan_guru.id = '$id'")->row();
         return $result;
     }
 }

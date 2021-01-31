@@ -58,12 +58,12 @@
                                             <td><?= $value->nis ?></td>
                                             <td><?= $value->siswa ?></td>
                                             <td><?= $value->kelas ?></td>
-                                            <td><?= $value->jenis_kelamin ?></td>
+                                            <td><?= ($value->jenis_kelamin === 'L' ? 'Laki - laki' : 'Perempuan') ?></td>
                                             <td><?= $value->ortu_wali ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_siswa ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
+                                                    <button type="button" id="btn-del" data-id="<?= $value->id_siswa ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -200,7 +200,7 @@
                                         <select class="selectpicker" id="inpkelas" name="inpkelas">
                                             <option value="">- Pilih -</option>
                                             <?php foreach ($kelas as $key => $value) { ?>
-                                                <option value="<?= $value->id ?>"><?= $value->kelas ?></option>
+                                                <option value="<?= $value->id_kelas ?>"><?= $value->kelas ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>

@@ -41,8 +41,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Nama Kelas</th>
-                                        <th>Wali Kelas</th>
+                                        <th>Username</th>
+                                        <th>Role</th>
+                                        <th>Nama</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -52,12 +53,13 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->kelas ?></td>
-                                            <td><?= $value->guru ?></td>
+                                            <td><?= $value->username ?></td>
+                                            <td><?= ucfirst($value->role) ?></td>
+                                            <td><?= ($value->nama === null ? '-' : $value->nama) ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_kelas ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id_kelas ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" id="btn-upd" data-id="<?= $value->id ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
+                                                    <button type="button" id="btn-del" data-id="<?= $value->id ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -78,18 +80,46 @@
     <div class="modal-dialog modals-default">
         <div class="modal-content">
             <div class="modal-body">
-                <h2>Tambah Kelas</h2>
+                <h2>Tambah Siswa</h2>
 
-                <form id="form-add" action="<?= admin_url() ?>kelas/process_add" method="POST">
+                <form id="form-add" action="<?= admin_url() ?>users/process_add" method="POST">
                     <div class="form-example-int form-horizental">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Nama</label>
+                                    <label class="hrzn-fm">Username</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control input-sm" name="inpnama" id="inpnama" placeholder="Nama Kelas">
+                                        <input type="text" class="form-control input-sm" name="inpusername" id="inpusername" placeholder="Masukkan Username" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Password</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="password" class="form-control input-sm" name="inppasswordsatu" id="inppasswordsatu" placeholder="Masukkan Username" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Ulangi Password</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="password" class="form-control input-sm" name="inppassworddua" id="inppassworddua" placeholder="Masukkan Username" />
                                     </div>
                                 </div>
                             </div>
@@ -99,15 +129,15 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Wali Kelas</label>
+                                    <label class="hrzn-fm">Role</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <select class="selectpicker" id="inpwalikelas" name="inpwalikelas">
+                                        <select class="selectpicker" id="inprole" name="inprole">
                                             <option value="">- Pilih -</option>
-                                            <?php foreach ($guru as $key => $value) { ?>
-                                                <option value="<?= $value->id_guru ?>"><?= $value->nama ?></option>
-                                            <?php } ?>
+                                            <option value="admin">Admin</option>
+                                            <option value="guru">Guru</option>
+                                            <option value="siswa">Siswa</option>
                                         </select>
                                     </div>
                                 </div>
@@ -130,7 +160,7 @@
     <div class="modal-dialog modals-default">
         <div class="modal-content">
             <div class="modal-body">
-                <h2>Ubah Kelas</h2>
+                <h2>Ubah Siswa</h2>
 
                 <!-- begin:: form ubah -->
                 <div id="get-form-upd"></div>
