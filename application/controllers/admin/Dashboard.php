@@ -14,7 +14,7 @@ class Dashboard extends MY_Controller
     public function index()
     {
         $data = [
-            'halaman' => 'Dashboard',
+            'halaman' => 'Dashboard Admin',
             'css'     => '',
             'content' => 'admin/dashboard/view',
             'js'      => ''

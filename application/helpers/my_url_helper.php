@@ -30,6 +30,16 @@ if ( ! function_exists('admin_url'))
     }
 }
 
+// untuk guru url
+if ( ! function_exists('guru_url'))
+{
+    function guru_url($url = NULL)
+    {
+        $link = ($url)? '/'.$url : '';
+        return site_url('guru/').$link;
+    }
+}
+
 // untuk home url
 if ( ! function_exists('home_url'))
 {

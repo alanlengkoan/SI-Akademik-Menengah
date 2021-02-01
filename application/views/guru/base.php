@@ -64,24 +64,17 @@
                                 <li>
                                     <a data-toggle="collapse" data-target="#dashboard" href="#">Dashboard</a>
                                     <ul class="collapse dropdown-header-top">
-                                        <li><a href="<?= admin_url() ?>dashboard">Dashboard</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a data-toggle="collapse" data-target="#master" href="#">Master</a>
-                                    <ul class="collapse dropdown-header-top">
-                                        <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
-                                        <li><a href="<?= admin_url() ?>mapel">Mata Pelajaran</a></li>
+                                        <li><a href="<?= guru_url() ?>dashboard">Dashboard</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a data-toggle="collapse" data-target="#pustaka" href="#">Pustaka</a>
                                     <ul class="collapse dropdown-header-top">
-                                        <li><a href="<?= admin_url() ?>guru">Guru</a></li>
-                                        <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
-                                        <li><a href="<?= admin_url() ?>wakel">Wali Kelas</a></li>
-                                        <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
-                                        <li><a href="<?= admin_url() ?>users">Users</a></li>
+                                        <li><a href="<?= guru_url() ?>siswa_pengajar">Siswa Pengajar</a></li>
+                                        <li><a href="<?= guru_url() ?>siswa_wali">Siswa Wali</a></li>
+                                        <li><a href="<?= guru_url() ?>materi">Materi</a></li>
+                                        <li><a href="<?= guru_url() ?>tugas">Tugas</a></li>
+                                        <li><a href="<?= guru_url() ?>ujian">Ujian</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -107,12 +100,7 @@
                                 <i class="notika-icon notika-house"></i> Dashboard
                             </a>
                         </li>
-                        <li class="<?= ($this->uri->segment(2) == 'kelas' || $this->uri->segment(2) == 'mapel' ? 'active' : '') ?>">
-                            <a data-toggle="tab" href="#master">
-                                <i class="notika-icon notika-house"></i> Master
-                            </a>
-                        </li>
-                        <li class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'siswa' || $this->uri->segment(2) == 'wakel' || $this->uri->segment(2) == 'penugasan_guru' || $this->uri->segment(2) == 'users' ? 'active' : '') ?>">
+                        <li class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#pustaka">
                                 <i class="notika-icon notika-house"></i> Pustaka
                             </a>
@@ -124,22 +112,16 @@
                     <div class="tab-content custom-menu-content">
                         <div id="dashboard" class="<?= ($this->uri->segment(2) == 'dashboard' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="<?= admin_url() ?>dashboard">Dashboard</a></li>
+                                <li><a href="<?= guru_url() ?>dashboard">Dashboard</a></li>
                             </ul>
                         </div>
-                        <div id="master" class="<?= ($this->uri->segment(2) == 'kelas' || $this->uri->segment(2) == 'mapel' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="pustaka" class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
-                                <li><a href="<?= admin_url() ?>mapel">Mata Pelajaran</a></li>
-                            </ul>
-                        </div>
-                        <div id="pustaka" class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'siswa' || $this->uri->segment(2) == 'wakel' || $this->uri->segment(2) == 'penugasan_guru' || $this->uri->segment(2) == 'users' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="<?= admin_url() ?>guru">Guru</a></li>
-                                <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
-                                <li><a href="<?= admin_url() ?>wakel">Wali Kelas</a></li>
-                                <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
-                                <li><a href="<?= admin_url() ?>users">Users</a></li>
+                                <li><a href="<?= guru_url() ?>siswa_pengajar">Siswa Pengajar</a></li>
+                                <li><a href="<?= guru_url() ?>siswa_wali">Siswa Wali</a></li>
+                                <li><a href="<?= guru_url() ?>materi">Materi</a></li>
+                                <li><a href="<?= guru_url() ?>tugas">Tugas</a></li>
+                                <li><a href="<?= guru_url() ?>ujian">Ujian</a></li>
                             </ul>
                         </div>
                     </div>

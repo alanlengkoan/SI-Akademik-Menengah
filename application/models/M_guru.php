@@ -7,6 +7,18 @@ class M_guru extends CI_Model
         $result = $this->db->query("SELECT * FROM guru ORDER BY nama")->result();
         return $result;
     }
+   
+    public function getDetailGuruWali($id)
+    {
+        $result = $this->db->query("SELECT id_kelas FROM wali_kelas WHERE id_guru = '$id'")->row();
+        return $result;
+    }
+
+    public function getDetailGuruPengajar($id)
+    {
+        $result = $this->db->query("SELECT id_kelas FROM penugasan_guru WHERE id_guru = '$id'")->result();
+        return $result;
+    }
 
     public function getUse()
     {

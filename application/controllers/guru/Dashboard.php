@@ -14,12 +14,12 @@ class Dashboard extends MY_Controller
     public function index()
     {
         $data = [
-            'halaman' => 'Dashboard',
+            'halaman' => 'Dashboard Guru',
             'css'     => '',
-            'content' => 'admin/dashboard/view',
+            'content' => 'guru/dashboard/view',
             'js'      => ''
         ];
         // untuk load view
-        $this->load->view('admin/base', $data);
+        $this->load->view('guru/base', $data);
     }
 }

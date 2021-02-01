@@ -52,6 +52,15 @@ class Auth extends CI_Controller
                     ];
                     $this->session->set_userdata($data);
                     exit(json_encode(array('status' => true, 'link' => admin_url() . 'dashboard')));
+                } else if ($row['role'] == 'guru') {
+                    $data = [
+                        'id'       => $row['id'],
+                        'username' => $row['username'],
+                        'password' => $password,
+                        'role'     => $row['role'],
+                    ];
+                    $this->session->set_userdata($data);
+                    exit(json_encode(array('status' => true, 'link' => guru_url() . 'dashboard')));
                 }
             } else {
                 exit(json_encode(['title' => 'Gagal!', 'text' => 'username atau password Anda salah!', 'type' => 'error', 'button' => 'Ok!']));
