@@ -97,16 +97,16 @@
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                         <li class="<?= ($this->uri->segment(2) == 'dashboard' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#dashboard">
-                                <i class="notika-icon notika-house"></i> Dashboard
+                                <i class="fa fa-home"></i> Dashboard
                             </a>
                         </li>
                         <li class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#pustaka">
-                                <i class="notika-icon notika-house"></i> Pustaka
+                                <i class="fa fa-archive"></i> Pustaka
                             </a>
                         </li>
                         <li>
-                            <a href="<?= logout_url() ?>"><i class="fa fa-close"></i> Logout </a>
+                            <a href="<?= logout_url() ?>"><i class="fa fa-sign-out"></i> Logout </a>
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
