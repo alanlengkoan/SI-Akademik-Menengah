@@ -76,7 +76,7 @@
     <div class="modal-dialog modals-default">
         <div class="modal-content">
             <div class="modal-body">
-                <h2>Tambah Mata Pelajaran</h2>
+                <h2>Tambah <?= $halaman ?></h2>
 
                 <form id="form-add" action="<?= admin_url() ?>mapel/process_add" method="POST">
                     <div class="form-example-int form-horizental">
@@ -109,7 +109,7 @@
     <div class="modal-dialog modals-default">
         <div class="modal-content">
             <div class="modal-body">
-                <h2>Ubah Mata Pelajaran</h2>
+                <h2>Ubah <?= $halaman ?></h2>
 
                 <!-- begin:: form ubah -->
                 <div id="get-form-upd"></div>

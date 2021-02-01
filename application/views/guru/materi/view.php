@@ -41,8 +41,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Guru</th>
-                                        <th>Kelas</th>
+                                        <th>Mata Pelajaran</th>
+                                        <th>Judul</th>
+                                        <th>Tipe</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -52,12 +53,13 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->guru ?></td>
-                                            <td><?= $value->kelas ?></td>
+                                            <td><?= $value->id_mapel ?></td>
+                                            <td><?= $value->judul ?></td>
+                                            <td><?= $value->tipe ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_wali_kelas ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id_wali_kelas ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_materi ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
+                                                    <button type="button" id="btn-del" data-id="<?= $value->id_materi ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -80,19 +82,19 @@
             <div class="modal-body">
                 <h2>Tambah <?= $halaman ?></h2>
 
-                <form id="form-add" action="<?= admin_url() ?>wakel/process_add" method="POST">
-                    <div class="form-example-int form-horizental mg-t-15">
+                <form id="form-add" action="<?= guru_url() ?>materi/process_add" method="POST" enctype="multipart/form-data">
+                    <div class="form-example-int form-horizental">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Guru</label>
+                                    <label class="hrzn-fm">Mata Pelajaran</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <select class="selectpicker" id="inpguru" name="inpguru">
+                                        <select class="selectpicker" id="inpmapel" name="inpmapel">
                                             <option value="">- Pilih -</option>
-                                            <?php foreach ($guru as $key => $value) { ?>
-                                                <option value="<?= $value->id_guru ?>"><?= $value->nama ?></option>
+                                            <?php foreach ($mapel as $key => $value) { ?>
+                                                <option value="<?= $value->id_mapel ?>"><?= $value->nama ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -100,20 +102,48 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-example-int form-horizental mg-t-15">
+                    <div class="form-example-int form-horizental">
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Kelas</label>
+                                    <label class="hrzn-fm">Judul</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <select class="selectpicker" id="inpkelas" name="inpkelas">
+                                        <input type="text" class="form-control input-sm" name="inpjudul" id="inpjudul" placeholder="Masukkan Judul" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Tipe File</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <select class="selectpicker" name="inptipe" id="inptipe">
                                             <option value="">- Pilih -</option>
-                                            <?php foreach ($kelas as $key => $value) { ?>
-                                                <option value="<?= $value->id_kelas ?>"><?= $value->nama ?></option>
-                                            <?php } ?>
+                                            <option value="pdf">Pdf</option>
+                                            <option value="mp4">Mp4</option>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Upload File</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="file" class="form-control input-sm" name="inpfile" id="inpfile" />
+                                        <p>File dengan tipe (*.pdf,*.mp4)</p>
                                     </div>
                                 </div>
                             </div>

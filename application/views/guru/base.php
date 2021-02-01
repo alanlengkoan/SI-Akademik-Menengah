@@ -100,7 +100,7 @@
                                 <i class="fa fa-home"></i> Dashboard
                             </a>
                         </li>
-                        <li class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' ? 'active' : '') ?>">
+                        <li class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' || $this->uri->segment(2) == 'materi' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#pustaka">
                                 <i class="fa fa-archive"></i> Pustaka
                             </a>
@@ -115,7 +115,7 @@
                                 <li><a href="<?= guru_url() ?>dashboard">Dashboard</a></li>
                             </ul>
                         </div>
-                        <div id="pustaka" class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="pustaka" class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' || $this->uri->segment(2) == 'materi' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= guru_url() ?>siswa_pengajar">Siswa Pengajar</a></li>
                                 <li><a href="<?= guru_url() ?>siswa_wali">Siswa Wali</a></li>
