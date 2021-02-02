@@ -95,12 +95,12 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li class="">
+                        <li class="<?= ($this->uri->segment(2) == 'dashboard' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#dashboard">
                                 <i class="fa fa-home"></i> Dashboard
                             </a>
                         </li>
-                        <li class="">
+                        <li class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'mapel' || $this->uri->segment(2) == 'materi' || $this->uri->segment(2) == 'tugas' || $this->uri->segment(2) == 'ujian' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#pustaka">
                                 <i class="fa fa-archive"></i> Pustaka
                             </a>
@@ -110,15 +110,15 @@
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
-                        <div id="dashboard" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="dashboard" class="<?= ($this->uri->segment(2) == 'dashboard' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= siswa_url() ?>dashboard">Dashboard</a></li>
                             </ul>
                         </div>
-                        <div id="pustaka" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="pustaka" class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'mapel' || $this->uri->segment(2) == 'materi' || $this->uri->segment(2) == 'tugas' || $this->uri->segment(2) == 'ujian' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="<?= siswa_url() ?>siswa_pengajar">Siswa Pengajar</a></li>
-                                <li><a href="<?= siswa_url() ?>siswa_wali">Siswa Wali</a></li>
+                                <li><a href="<?= siswa_url() ?>guru">Guru</a></li>
+                                <li><a href="<?= siswa_url() ?>mapel">Mata Pelajaran</a></li>
                                 <li><a href="<?= siswa_url() ?>materi">Materi</a></li>
                                 <li><a href="<?= siswa_url() ?>tugas">Tugas</a></li>
                                 <li><a href="<?= siswa_url() ?>ujian">Ujian</a></li>

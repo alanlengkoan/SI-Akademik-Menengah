@@ -8,6 +8,12 @@ class M_siswa extends CI_Model
         return $result;
     }
 
+    public function getDetailSiswa($id)
+    {
+        $result = $this->db->query("SELECT siswa.id_siswa, siswa.nis, siswa.nama AS siswa, siswa.tmp_lahir, siswa.tgl_lahir, siswa.ortu_wali, siswa.alamat, siswa.jen_kel, siswa.thn_masuk, siswa.id_kelas, kelas.nama AS kelas FROM siswa LEFT JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE siswa.id_siswa = '$id'")->row();
+        return $result;
+    }
+
     public function getWhereWali($kelas)
     {
         $result = $this->db->query("SELECT siswa.id_siswa, siswa.nis, siswa.nama AS siswa, siswa.tmp_lahir, siswa.tgl_lahir, siswa.ortu_wali, siswa.alamat, siswa.jen_kel, siswa.thn_masuk, kelas.nama AS kelas FROM siswa LEFT JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE siswa.id_kelas = '$kelas'")->result();
