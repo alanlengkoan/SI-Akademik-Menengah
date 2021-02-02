@@ -15,7 +15,7 @@
         });
     }();
 
-    // untu users
+    // untuk users
     var untukUsers = function() {
         $(document).on('change', '#inprole', function() {
             var ini = $(this);
