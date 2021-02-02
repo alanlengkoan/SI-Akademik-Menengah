@@ -40,6 +40,16 @@ if ( ! function_exists('guru_url'))
     }
 }
 
+// untuk siswa url
+if ( ! function_exists('siswa_url'))
+{
+    function siswa_url($url = NULL)
+    {
+        $link = ($url)? '/'.$url : '';
+        return site_url('siswa/').$link;
+    }
+}
+
 // untuk home url
 if ( ! function_exists('home_url'))
 {
