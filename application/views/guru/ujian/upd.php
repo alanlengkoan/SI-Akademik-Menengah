@@ -1,0 +1,48 @@
+<form id="form-upd" action="<?= guru_url() ?>ujian/process_upd" method="POST">
+    <input type="hidden" name="inpid" value="<?= $id_ujian ?>">
+
+    <div class="form-example-int form-horizental">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label class="hrzn-fm">Mata Pelajaran</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="nk-int-st">
+                        <select class="selectpicker" id="inpmapel" name="inpmapel">
+                            <option value="">- Pilih -</option>
+                            <?php foreach ($mapel as $key => $value) { ?>
+                                <option value="<?= $value->id_mapel ?>" <?= $id_mapel === $value->id_mapel ? 'selected' : '' ?>><?= $value->nama ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-example-int form-horizental">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label class="hrzn-fm">Jenis Soal</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="nk-int-st">
+                        <select class="selectpicker" id="inpjenis" name="inpjenis">
+                            <option value="">- Pilih -</option>
+                            <option value="essay" <?= ($jenis === 'essay' ? 'selected' : '') ?>>Essay</option>
+                            <option value="pilihan_ganda" <?= ($jenis === 'pilihan_ganda' ? 'selected' : '') ?>>Pilihan Ganda</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- begin:: jenis ujian -->
+    <div id="jenis-ujian"></div>
+    <!-- end:: jenis ujian -->
+    <div class="text-center button-icon-btn button-icon-btn-cl">
+        <button type="submit" class="btn btn-success" name="upd" id="upd"><i class="fa fa-save"></i></button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
+    </div>
+</form>
