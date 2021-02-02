@@ -132,10 +132,10 @@ class Ujian extends MY_Controller
                     // tabel detail ujian essay
                     $ujian_detail = [
                         'id_ujian_essay' => acak_id('ujian_essay', 'id_ujian_essay '),
-                        'id_ujian'        => $ujian['id_ujian'],
-                        'soal'            => $post['inpsoal'],
-                        'gambar'          => $detailFile['file_name'],
-                        'jawaban_benar'   => $post['inpjawabanbenar'],
+                        'id_ujian'       => $ujian['id_ujian'],
+                        'soal'           => $post['inpsoal'],
+                        'gambar'         => $detailFile['file_name'],
+                        'jawaban_benar'  => $post['inpjawabanbenar'],
                     ];
                     $this->crud->i('ujian_essay', $ujian_detail);
                 } else if ($jenis === 'pilihan_ganda') {
