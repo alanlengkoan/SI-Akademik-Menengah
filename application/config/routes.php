@@ -4,3 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'auth/login';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+// admin
+$route['admin'] = 'admin/dashboard';
+// guru
+$route['guru'] = 'guru/dashboard';
+// siswa
+$route['siswa'] = 'siswa/dashboard';
