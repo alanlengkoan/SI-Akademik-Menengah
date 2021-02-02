@@ -53,7 +53,7 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->id_mapel ?></td>
+                                            <td><?= $value->nama ?></td>
                                             <td><?= $value->judul ?></td>
                                             <td><?= $value->tipe ?></td>
                                             <td>
