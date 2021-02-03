@@ -72,6 +72,7 @@
                                     <ul class="collapse dropdown-header-top">
                                         <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
                                         <li><a href="<?= admin_url() ?>mapel">Mata Pelajaran</a></li>
+                                        <li><a href="<?= admin_url() ?>jenis_ujian">Jenis Ujian</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -107,7 +108,7 @@
                                 <i class="fa fa-home"></i> Dashboard
                             </a>
                         </li>
-                        <li class="<?= ($this->uri->segment(2) == 'kelas' || $this->uri->segment(2) == 'mapel' ? 'active' : '') ?>">
+                        <li class="<?= ($this->uri->segment(2) == 'kelas' || $this->uri->segment(2) == 'mapel' || $this->uri->segment(2) == 'jenis_ujian' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#master">
                                 <i class="fa fa-archive"></i> Master
                             </a>
@@ -127,10 +128,11 @@
                                 <li><a href="<?= admin_url() ?>dashboard">Dashboard</a></li>
                             </ul>
                         </div>
-                        <div id="master" class="<?= ($this->uri->segment(2) == 'kelas' || $this->uri->segment(2) == 'mapel' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="master" class="<?= ($this->uri->segment(2) == 'kelas' || $this->uri->segment(2) == 'mapel' || $this->uri->segment(2) == 'jenis_ujian' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= admin_url() ?>kelas">Kelas</a></li>
                                 <li><a href="<?= admin_url() ?>mapel">Mata Pelajaran</a></li>
+                                <li><a href="<?= admin_url() ?>jenis_ujian">Jenis Ujian</a></li>
                             </ul>
                         </div>
                         <div id="pustaka" class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'siswa' || $this->uri->segment(2) == 'wakel' || $this->uri->segment(2) == 'penugasan_guru' || $this->uri->segment(2) == 'users' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">

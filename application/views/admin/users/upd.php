@@ -107,7 +107,7 @@
                         <div class="nk-int-st">
                             <select class="selectpicker" id="inpusers" name="inpusers">
                                 <?php foreach ($siswa as $key => $value) { ?>
-                                    <option value="<?= $value->id_siswa ?>" <?= ($id_users === $value->id_siswa ? 'selected' : '') ?>><?= $value->nama ?></option>
+                                    <option value="<?= $value->id_siswa ?>" <?= ($id_users === $value->id_siswa ? 'selected' : '') ?>><?= $value->siswa ?></option>
                                 <?php } ?>
                             </select>
                         </div>

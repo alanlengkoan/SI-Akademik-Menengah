@@ -121,30 +121,47 @@ class Users extends MY_Controller
         $user = $this->crud->gda('users', ['id' => $post['inpid']]);
         $check_pwd = password_verify($pwd_lama, $user['password']);
 
-        if ($check_pwd === true) {
-            if ($pwd_satu === $pwd_dua) {
-                $pwd_hash = password_hash($pwd_dua, PASSWORD_DEFAULT);
+        if ($pwd_lama) {
+            if ($check_pwd === true) {
+                if ($pwd_satu === $pwd_dua) {
+                    $pwd_hash = password_hash($pwd_dua, PASSWORD_DEFAULT);
 
-                $data = [
-                    'id_users' => $post['inpusers'],
-                    'username' => $post['inpusername'],
-                    'password' => $pwd_hash,
-                    'role'     => $post['inprole'],
-                ];
+                    $data = [
+                        'id_users' => $post['inpusers'],
+                        'username' => $post['inpusername'],
+                        'password' => $pwd_hash,
+                        'role'     => $post['inprole'],
+                    ];
 
-                $this->db->trans_start();
-                $this->crud->u('users', $data, ['id' => $post['inpid']]);
-                $this->db->trans_complete();
-                if ($this->db->trans_status() === FALSE) {
-                    $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+                    $this->db->trans_start();
+                    $this->crud->u('users', $data, ['id' => $post['inpid']]);
+                    $this->db->trans_complete();
+                    if ($this->db->trans_status() === FALSE) {
+                        $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+                    } else {
+                        $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+                    }
                 } else {
-                    $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+                    $response = ['title' => 'Peringatan!', 'text' => 'Password yang Anda masukkan tidak sama!!', 'type' => 'warning', 'button' => 'Ok!'];
                 }
             } else {
-                $response = ['title' => 'Peringatan!', 'text' => 'Password yang Anda masukkan tidak sama!!', 'type' => 'warning', 'button' => 'Ok!'];
+                $response = ['title' => 'Peringatan!', 'text' => 'Password lama yang Anda masukkan tidak sama!!', 'type' => 'warning', 'button' => 'Ok!'];
             }
         } else {
-            $response = ['title' => 'Peringatan!', 'text' => 'Password lama yang Anda masukkan tidak sama!!', 'type' => 'warning', 'button' => 'Ok!'];
+            $data = [
+                'id_users' => $post['inpusers'],
+                'username' => $post['inpusername'],
+                'role'     => $post['inprole'],
+            ];
+
+            $this->db->trans_start();
+            $this->crud->u('users', $data, ['id' => $post['inpid']]);
+            $this->db->trans_complete();
+            if ($this->db->trans_status() === FALSE) {
+                $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+            } else {
+                $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+            }
         }
         // untuk response json
         $this->_response($response);
