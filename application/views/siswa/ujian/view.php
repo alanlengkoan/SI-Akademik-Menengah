@@ -41,20 +41,37 @@
                                         <th>No</th>
                                         <th>Guru</th>
                                         <th>Mata Pelajaran</th>
+                                        <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <?php
                                     $no = 1;
-                                    foreach ($data as $key => $value) { ?>
+                                    foreach ($data as $key => $value) {
+                                        $status = [
+                                            'alert' => [
+                                                'warning',
+                                                'info',
+                                            ],
+                                            'label' => [
+                                                'Belum dikerjakan',
+                                                'Telah dikerjakan',
+                                            ],
+                                        ];
+                                    ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->guru ?></td>
                                             <td><?= $value->mapel ?></td>
+                                            <td><a href="#" class="btn btn-<?= $status['alert'][$value->status] ?> info-icon-notika"><?= $status['label'][$value->status] ?></a></td>
                                             <td>
-                                                <div class="button-icon-btn button-icon-btn-cl">
-                                                    <a href="<?= siswa_url() ?>ujian/soal?id_guru=<?= $value->id_guru ?>&id_mapel=<?= $value->id_mapel ?>" class="btn btn-info info-icon-notika"><i class="fa fa-tasks"></i></a>
+                                                <div class="button-icon-btn">
+                                                    <?php if ($value->status == 1) { ?>
+                                                        <a href="<?= siswa_url() ?>ujian/hasil" class="btn btn-primary info-icon-notika">Hasil Ujian</a>
+                                                    <?php } else { ?>
+                                                        <a href="<?= siswa_url() ?>ujian/soal/<?= $value->id_soal ?>" class="btn btn-info info-icon-notika">Kerjakan Ujian</a>
+                                                    <?php } ?>
                                                 </div>
                                             </td>
                                         </tr>

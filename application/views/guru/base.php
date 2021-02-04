@@ -105,6 +105,11 @@
                                 <i class="fa fa-archive"></i> Pustaka
                             </a>
                         </li>
+                        <li class="">
+                            <a data-toggle="tab" href="#hasil">
+                                <i class="fa fa-file"></i> Hasil
+                            </a>
+                        </li>
                         <li>
                             <a href="<?= logout_url() ?>"><i class="fa fa-sign-out"></i> Logout </a>
                         </li>
@@ -113,6 +118,12 @@
                         <div id="dashboard" class="<?= ($this->uri->segment(2) == 'dashboard' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= guru_url() ?>dashboard">Dashboard</a></li>
+                            </ul>
+                        </div>
+                        <div id="hasil" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="<?= guru_url() ?>tugas">Tugas</a></li>
+                                <li><a href="<?= guru_url() ?>ujian">Ujian</a></li>
                             </ul>
                         </div>
                         <div id="pustaka" class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' || $this->uri->segment(2) == 'materi' || $this->uri->segment(2) == 'tugas' || $this->uri->segment(2) == 'ujian' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
