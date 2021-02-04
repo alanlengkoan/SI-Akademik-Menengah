@@ -10,13 +10,19 @@ class M_tugas extends CI_Model
 
     public function getTugasKelas($kelas)
     {
-        $result = $this->db->query("SELECT penugasan_guru.id_guru, tugas.id_tugas, tugas.id_mapel, guru.nama AS guru, mapel.nama AS mapel, tugas.judul, tugas.tipe FROM penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru RIGHT JOIN tugas ON penugasan_guru.id_guru = tugas.id_guru LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel WHERE penugasan_guru.id_kelas = '$kelas' GROUP BY penugasan_guru.id_guru, tugas.id_tugas, tugas.id_mapel, tugas.judul, tugas.tipe, mapel.nama")->result();
+        $result = $this->db->query("SELECT penugasan_guru.id_guru, tugas.id_tugas, tugas.id_mapel, guru.nama AS guru, mapel.nama AS mapel, tugas.judul, tugas.tipe, tugas.status FROM penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru RIGHT JOIN tugas ON penugasan_guru.id_guru = tugas.id_guru LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel WHERE penugasan_guru.id_kelas = '$kelas' GROUP BY penugasan_guru.id_guru, tugas.id_tugas, tugas.id_mapel, tugas.judul, tugas.tipe, mapel.nama")->result();
         return $result;
     }
 
     public function getDetailTugasKelas($id)
     {
-        $result = $this->db->query("SELECT tugas.id_tugas, tugas.id_guru, tugas.judul, tugas.tipe, tugas.file, mapel.nama FROM tugas LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel WHERE tugas.id_tugas = '$id'")->row();
+        $result = $this->db->query("SELECT tugas.id_tugas, tugas.id_guru, tugas.judul, tugas.tipe, tugas.file, tugas.status, mapel.nama FROM tugas LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel WHERE tugas.id_tugas = '$id'")->row();
+        return $result;
+    }
+
+    public function getHasilTugas($id)
+    {
+        $result = $this->db->query("SELECT * FROM hasil_tugas WHERE id_tugas = '$id'")->row();
         return $result;
     }
 }
