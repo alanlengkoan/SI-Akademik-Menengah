@@ -18,6 +18,7 @@ class Ujian extends MY_Controller
         // untuk load model
         $this->load->model('crud');
         $this->load->model('m_siswa');
+        $this->load->model('m_soal');
         $this->load->model('m_ujian');
     }
 
@@ -30,31 +31,71 @@ class Ujian extends MY_Controller
             'content' => 'siswa/ujian/view',
             'data'    => $this->m_ujian->getUjianKelas($siswaKelas->id_kelas),
             'css'     => '',
-            'js'      => 'siswa/ujian/js/view'
+            'js'      => ''
         ];
         // untuk load view
         $this->load->view('siswa/base', $data);
     }
 
     // untuk soal
-    public function soal()
+    public function soal($id_soal)
     {
-        $siswaKelas  = $this->m_siswa->getDetailSiswa($this->users->id_users);
-        $id_kelas    = $siswaKelas->id_kelas;
-        $id_guru     = $this->input->get('id_guru');
-        $id_mapel    = $this->input->get('id_mapel');
-        $mapelDetail = $this->crud->gda('mapel', ['id_mapel' => $id_mapel]);
+        $soalDetail  = $this->crud->gda('soal', ['id_soal' => $id_soal]);
+        $mapelDetail = $this->crud->gda('mapel', ['id_mapel' => $soalDetail['id_mapel']]);
 
         $data = [
             'halaman'       => 'Detail Ujian',
             'content'       => 'siswa/ujian/soal',
-            'judul'         => 'Ujian Mata Pelajaran ' . $mapelDetail['nama'],
-            'pilihan_ganda' => $this->m_ujian->getDetailUjianKelasPilihanGanda($id_guru, $id_mapel, $id_kelas),
-            'essay'         => $this->m_ujian->getDetailUjianKelasEssay($id_guru, $id_mapel, $id_kelas),
+            'detail'        => $this->m_soal->getDetailSoal($id_soal),
+            'pilihan_ganda' => $this->m_ujian->getDetailUjianKelasPilihanGanda($id_soal),
+            'essay'         => $this->m_ujian->getDetailUjianKelasEssay($id_soal),
             'css'           => '',
-            'js'            => ''
+            'js'            => 'siswa/ujian/js/soal'
         ];
         // untuk load view
         $this->load->view('siswa/base', $data);
+    }
+
+    // untuk jawab
+    public function jawab()
+    {
+        $post = $this->input->post(NULL, TRUE);
+        $count_pil_gan = count($post['inpidujian_pil_gan']);
+        $count_essay = count($post['inpidujian_esssay']);
+
+        // untuk pilihan ganda
+        for ($i = 0; $i < $count_pil_gan; $i++) { 
+            $data[] = [
+                'id_hasil_ujian' => acak_id('hasil_ujian', 'id_hasil_ujian'),
+                'id_ujian'       => $post["inpidujian_pil_gan"][$i],
+                'id_siswa'       => $this->users->id_users,
+                'jawaban'        => $post["{$i}_inpjawaban_pil_gan"]
+            ];
+        }
+        // untuk essay
+        for ($i = 0; $i < $count_essay; $i++) {
+            $data[] = [
+                'id_hasil_ujian' => acak_id('hasil_ujian', 'id_hasil_ujian'),
+                'id_ujian'       => $post["inpidujian_esssay"][$i],
+                'id_siswa'       => $this->users->id_users,
+                'jawaban'        => $post["{$i}_inpjawaban_essay"]
+            ];
+        }
+
+        $soal = [
+            'status' => '1',
+        ];
+        
+        $this->db->trans_start();
+        $this->crud->u('soal', $soal, ['id_soal' => $post['id_soal']]);
+        $this->db->insert_batch('hasil_ujian', $data); 
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk response json
+        $this->_response($response);
     }
 }
