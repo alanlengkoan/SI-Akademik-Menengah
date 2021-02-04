@@ -42,7 +42,8 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
-                                        <th>Tipe Soal</th>
+                                        <th>Jenis Ujian</th>
+                                        <th>Soal</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -53,11 +54,16 @@
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->nama ?></td>
-                                            <td><?= ucfirst(str_replace('_', ' ', $value->jenis)) ?></td>
+                                            <td><?= $value->jenis_ujian ?></td>
+                                            <td>
+                                                <div class="button-icon-btn">
+                                                    <a href="<?= guru_url() ?>soal/add/<?= $value->id_soal ?>" class="btn btn-success info-icon-notika">Tambahkan Soal</a>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_ujian ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id_ujian ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_soal ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
+                                                    <button type="button" id="btn-del" data-id="<?= $value->id_soal ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
                                                 </div>
                                             </td>
                                         </tr>
@@ -104,23 +110,21 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Jenis Soal</label>
+                                    <label class="hrzn-fm">Jenis Ujian</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <select class="selectpicker" id="inpjenis" name="inpjenis">
+                                        <select class="selectpicker" id="inpjenisujian" name="inpjenisujian">
                                             <option value="">- Pilih -</option>
-                                            <option value="essay">Essay</option>
-                                            <option value="pilihan_ganda">Pilihan Ganda</option>
+                                            <?php foreach ($jen_ujian as $key => $value) { ?>
+                                                <option value="<?= $value->id_ujian_jenis ?>"><?= $value->jenis ?></option>
+                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- begin:: jenis ujian -->
-                    <div id="jenis-ujian"></div>
-                    <!-- end:: jenis ujian -->
                     <div class="text-center button-icon-btn button-icon-btn-cl">
                         <button type="submit" class="btn btn-success" name="add" id="add"><i class="fa fa-save"></i></button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
