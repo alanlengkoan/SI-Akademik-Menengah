@@ -55,8 +55,8 @@
                                             <td><?= $value->judul ?></td>
                                             <td><?= $value->tipe ?></td>
                                             <td>
-                                                <div class="button-icon-btn button-icon-btn-cl">
-                                                    <a href="<?= siswa_url() ?>tugas/detail/<?= $value->id_tugas ?>" class="btn btn-info info-icon-notika"><i class="fa fa-info-circle"></i></a>
+                                                <div class="button-icon-btn">
+                                                    <a href="<?= siswa_url() ?>tugas/detail/<?= $value->id_tugas ?>" class="btn btn-info info-icon-notika"><?= ($value->status === '1' ? 'Hasil Tugas' : 'Kerjakan Tugas') ?></a>
                                                 </div>
                                             </td>
                                         </tr>

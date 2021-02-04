@@ -46,6 +46,33 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="mybox mg-t-30">
+                    <div class="bsc-tbl">
+                        <?php if ($data->status === '1') { ?>
+                            <h2>File Tugas</h2>
+                            <hr>
+                            <embed style="height: 500px;" src="<?= upload_url('pdf') ?><?= $hasil_tugas->jawaban ?>" type="application/pdf" frameBorder="0" scrolling="auto" height="100%" width="100%"></embed>
+                        <?php } else { ?>
+                            <h2>Upload Tugas</h2>
+                            <hr>
+                            <form action="<?= siswa_url() ?>tugas/upload" class="dropzone dropzone-nk" id="formAdd">
+                                <div id="dropzone1" class="multi-uploader-cs">
+                                    <div class="dz-message needsclick download-custom">
+                                        <i class="notika-icon notika-cloud"></i>
+                                        <h2>Silahkan upload!</h2>
+                                        <p>Silahkan upload file tugas Anda disini.</p>
+                                    </div>
+                                </div>
+                            </form>
+
+                            <div style="padding-top: 10px;">
+                                <p>File dengan tipe (*.pdf)</p>
+                            </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
