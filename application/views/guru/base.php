@@ -105,7 +105,7 @@
                                 <i class="fa fa-archive"></i> Pustaka
                             </a>
                         </li>
-                        <li class="">
+                        <li class="<?= ($this->uri->segment(2) == 'h_tugas' || $this->uri->segment(2) == 'h_ujian' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#hasil">
                                 <i class="fa fa-file"></i> Hasil
                             </a>
@@ -120,10 +120,10 @@
                                 <li><a href="<?= guru_url() ?>dashboard">Dashboard</a></li>
                             </ul>
                         </div>
-                        <div id="hasil" class="tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="hasil" class="<?= ($this->uri->segment(2) == 'h_tugas' || $this->uri->segment(2) == 'h_ujian' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
-                                <li><a href="<?= guru_url() ?>tugas">Tugas</a></li>
-                                <li><a href="<?= guru_url() ?>ujian">Ujian</a></li>
+                                <li><a href="<?= guru_url() ?>h_tugas">Tugas</a></li>
+                                <li><a href="<?= guru_url() ?>h_ujian">Ujian</a></li>
                             </ul>
                         </div>
                         <div id="pustaka" class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' || $this->uri->segment(2) == 'materi' || $this->uri->segment(2) == 'tugas' || $this->uri->segment(2) == 'ujian' || $this->uri->segment(2) == 'soal' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
