@@ -16,7 +16,6 @@ class Ujian extends MY_Controller
         $this->users = get_users_detail($this->session->userdata('id'));
 
         // untuk load model
-        $this->load->model('crud');
         $this->load->model('m_siswa');
         $this->load->model('m_soal');
         $this->load->model('m_ujian');
@@ -26,10 +25,19 @@ class Ujian extends MY_Controller
     public function index()
     {
         $siswaKelas = $this->m_siswa->getDetailSiswa($this->users->id_users);
+        $siswaUjian =  $this->m_ujian->getHasilUjianSiswa($this->users->id_users);
+
+        $get_id_ujian = [];
+        foreach ($siswaUjian as $key => $value) {
+            $get_id_ujian[] = $value->id_ujian;
+        }
+
+        $id_ujian = implode("' , '", $get_id_ujian);
+
         $data = [
             'halaman' => 'Ujian Siswa ' . $siswaKelas->kelas,
             'content' => 'siswa/ujian/view',
-            'data'    => $this->m_ujian->getUjianKelas($siswaKelas->id_kelas),
+            'data'    => $this->m_ujian->getUjianKelas($siswaKelas->id_kelas, $id_ujian,  $this->users->id_users),
             'css'     => '',
             'js'      => ''
         ];
@@ -40,9 +48,6 @@ class Ujian extends MY_Controller
     // untuk soal
     public function soal($id_soal)
     {
-        $soalDetail  = $this->crud->gda('soal', ['id_soal' => $id_soal]);
-        $mapelDetail = $this->crud->gda('mapel', ['id_mapel' => $soalDetail['id_mapel']]);
-
         $data = [
             'halaman'       => 'Detail Ujian',
             'content'       => 'siswa/ujian/soal',
@@ -54,6 +59,12 @@ class Ujian extends MY_Controller
         ];
         // untuk load view
         $this->load->view('siswa/base', $data);
+    }
+
+    // untuk hasil
+    public function hasil()
+    {
+       debug('hasil');
     }
 
     // untuk jawab
@@ -81,13 +92,7 @@ class Ujian extends MY_Controller
                 'jawaban'        => $post["{$i}_inpjawaban_essay"]
             ];
         }
-
-        $soal = [
-            'status' => '1',
-        ];
-        
         $this->db->trans_start();
-        $this->crud->u('soal', $soal, ['id_soal' => $post['id_soal']]);
         $this->db->insert_batch('hasil_ujian', $data); 
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {

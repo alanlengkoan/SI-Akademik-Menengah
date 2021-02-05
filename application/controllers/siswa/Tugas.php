@@ -18,7 +18,6 @@ class Tugas extends MY_Controller
         // untuk load model
         $this->load->model('crud');
         $this->load->model('m_siswa');
-        $this->load->model('m_mapel');
         $this->load->model('m_tugas');
     }
 
@@ -29,7 +28,7 @@ class Tugas extends MY_Controller
         $data = [
             'halaman' => 'Tugas ' . $siswaKelas->kelas,
             'content' => 'siswa/tugas/view',
-            'data'    => $this->m_tugas->getTugasKelas($siswaKelas->id_kelas),
+            'data'    => $this->m_tugas->getTugasKelas($siswaKelas->id_kelas, $this->users->id_users),
             'css'     => '',
             'js'      => ''
         ];
@@ -43,13 +42,19 @@ class Tugas extends MY_Controller
         $data = [
             'halaman'     => 'Detail Tugas',
             'content'     => 'siswa/tugas/detail',
-            'data'        => $this->m_tugas->getDetailTugasKelas($id),
+            'data'        => $this->m_tugas->getDetailTugasKelas($id, $this->users->id_users),
             'hasil_tugas' => $this->m_tugas->getHasilTugas($id),
             'css'         => 'siswa/tugas/css/detail',
             'js'          => 'siswa/tugas/js/detail'
         ];
         // untuk load view
         $this->load->view('siswa/base', $data);
+    }
+
+    // untuk hasil
+    public function hasil()
+    {
+        debug('hasil');
     }
 
     // untuk upload
@@ -74,11 +79,6 @@ class Tugas extends MY_Controller
             $detailFile = $this->upload->data();
 
             $this->db->trans_start();
-            $tugas = [
-                'status' => '1',
-            ];
-            $this->crud->u('tugas', $tugas, ['id_tugas' => $post['id_tugas']]);
-
             $hasil_tugas = [
                 'id_hasil_tugas' => acak_id('hasil_tugas', 'id_hasil_tugas'),
                 'id_tugas'       => $post['id_tugas'],

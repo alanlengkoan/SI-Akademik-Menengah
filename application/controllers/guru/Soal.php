@@ -125,9 +125,9 @@ class Soal extends MY_Controller
                 $this->db->trans_start();
                 // tabel ujian
                 $ujian = [
-                    'id_ujian'       => acak_id('ujian', 'id_ujian'),
-                    'id_soal'        => $post['inpidsoal'],
-                    'jenis'          => $post['inpjenis'],
+                    'id_ujian' => acak_id('ujian', 'id_ujian'),
+                    'id_soal'  => $post['inpidsoal'],
+                    'jenis'    => $post['inpjenis'],
                 ];
                 $this->crud->i('ujian', $ujian);
 
