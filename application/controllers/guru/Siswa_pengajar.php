@@ -25,14 +25,19 @@ class Siswa_pengajar extends MY_Controller
     public function index()
     {
         $guruPengajar = $this->m_guru->getDetailGuruPengajar($this->users->id_users);
-        foreach ($guruPengajar as $key => $value) {
-            $id_kelas[] = $value->id_kelas;
+        $sum = count($guruPengajar); 
+        $kelas = [];
+        if ($sum !== 0) {
+            foreach ($guruPengajar as $key => $value) {
+                $kelas[] = $value->id_kelas;
+            }
         }
-        $kelas = implode("' , '", $id_kelas);
+        $id_kelas = implode("' , '", $kelas);
+      
         $data = [
             'halaman' => 'Pengajar Siswa',
             'content' => 'guru/siswa_pengajar/view',
-            'data'    => $this->m_siswa->getWherePenugasan($kelas),
+            'data'    => $this->m_siswa->getWherePenugasan($id_kelas),
             'css'     => '',
             'js'      => ''
         ];

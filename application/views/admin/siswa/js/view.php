@@ -19,15 +19,16 @@
     var untukTambahData = function() {
         $(document).on('submit', '#form-add', function(e) {
             e.preventDefault();
-            $('#inpnis').attr('required', 'required')
-            $('#inpnama').attr('required', 'required')
-            $('#inptmplahir').attr('required', 'required')
-            $('#inptgllahir').attr('required', 'required')
-            $('#inportuwali').attr('required', 'required')
-            $('#inpalamat').attr('required', 'required')
-            $('#inpkelas').attr('required', 'required')
-            $('#inpjenkel').attr('required', 'required')
-            $('#inptahunmasuk').attr('required', 'required')
+            $('#inpnis').attr('required', 'required');
+            $('#inpnama').attr('required', 'required');
+            $('#inptmplahir').attr('required', 'required');
+            $('#inptgllahir').attr('required', 'required');
+            $('#inportuwali').attr('required', 'required');
+            $('#inpagama').attr('required', 'required');
+            $('#inpalamat').attr('required', 'required');
+            $('#inpkelas').attr('required', 'required');
+            $('#inpjenkel').attr('required', 'required');
+            $('#inptahunmasuk').attr('required', 'required');
 
             if ($('#form-add').parsley().isValid() == true) {
                 $.ajax({
@@ -95,15 +96,16 @@
     var untukUbahData = function() {
         $(document).on('submit', '#form-upd', function(e) {
             e.preventDefault();
-            $('#inpnis').attr('required', 'required')
-            $('#inpnama').attr('required', 'required')
-            $('#inptmplahir').attr('required', 'required')
-            $('#inptgllahir').attr('required', 'required')
-            $('#inportuwali').attr('required', 'required')
-            $('#inpalamat').attr('required', 'required')
-            $('#inpkelas').attr('required', 'required')
-            $('#inpjenkel').attr('required', 'required')
-            $('#inptahunmasuk').attr('required', 'required')
+            $('#inpnis').attr('required', 'required');
+            $('#inpnama').attr('required', 'required');
+            $('#inptmplahir').attr('required', 'required');
+            $('#inptgllahir').attr('required', 'required');
+            $('#inportuwali').attr('required', 'required');
+            $('#inpagama').attr('required', 'required');
+            $('#inpalamat').attr('required', 'required');
+            $('#inpkelas').attr('required', 'required');
+            $('#inpjenkel').attr('required', 'required');
+            $('#inptahunmasuk').attr('required', 'required');
 
             if ($('#form-upd').parsley().isValid() == true) {
                 $.ajax({

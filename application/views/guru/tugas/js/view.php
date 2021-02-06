@@ -8,6 +8,7 @@
             $('#inpmapel').attr('required', 'required');
             $('#inpjudul').attr('required', 'required');
             $('#inptipe').attr('required', 'required');
+            $('#inpfile').attr('required', 'required');
 
             if ($('#form-add').parsley().isValid() == true) {
                 $.ajax({
@@ -70,6 +71,7 @@
             $('#inpmapel').attr('required', 'required');
             $('#inpjudul').attr('required', 'required');
             $('#inptipe').attr('required', 'required');
+            $('#inpfile').attr('required', 'required');
 
             if ($('#form-upd').parsley().isValid() == true) {
                 $.ajax({

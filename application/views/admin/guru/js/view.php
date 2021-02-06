@@ -5,8 +5,11 @@
     var untukTambahData = function() {
         $(document).on('submit', '#form-add', function(e) {
             e.preventDefault();
-            $('#inpnama').attr('required', 'required');
             $('#inpnip').attr('required', 'required');
+            $('#inpnama').attr('required', 'required');
+            $('#inpagama').attr('required', 'required');
+            $('#inpjenkel').attr('required', 'required');
+            $('#inpalamat').attr('required', 'required');
             $('#inppendidikan').attr('required', 'required');
 
             if ($('#form-add').parsley().isValid() == true) {
@@ -67,8 +70,11 @@
     var untukUbahData = function() {
         $(document).on('submit', '#form-upd', function(e) {
             e.preventDefault();
-            $('#inpnama').attr('required', 'required');
             $('#inpnip').attr('required', 'required');
+            $('#inpnama').attr('required', 'required');
+            $('#inpagama').attr('required', 'required');
+            $('#inpjenkel').attr('required', 'required');
+            $('#inpalamat').attr('required', 'required');
             $('#inppendidikan').attr('required', 'required');
 
             if ($('#form-upd').parsley().isValid() == true) {

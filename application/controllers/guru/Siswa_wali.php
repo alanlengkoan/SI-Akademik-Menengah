@@ -25,10 +25,11 @@ class Siswa_wali extends MY_Controller
     public function index()
     {
         $guruWali = $this->m_guru->getDetailGuruWali($this->users->id_users);
+        $id_kelas = ($guruWali !== null ? $guruWali->id_kelas : '');
         $data = [
             'halaman' => 'Wali Siswa',
             'content' => 'guru/siswa_wali/view',
-            'data'    => $this->m_siswa->getWhereWali($guruWali->id_kelas),
+            'data'    => $this->m_siswa->getWhereWali($id_kelas),
             'css'     => '',
             'js'      => ''
         ];

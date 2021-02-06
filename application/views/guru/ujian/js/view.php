@@ -6,7 +6,7 @@
         $(document).on('submit', '#form-add', function(e) {
             e.preventDefault();
             $('#inpmapel').attr('required', 'required');
-            $('#inpjenis').attr('required', 'required');
+            $('#inpjenisujian').attr('required', 'required');
 
             if ($('#form-add').parsley().isValid() == true) {
                 $.ajax({
@@ -67,7 +67,7 @@
         $(document).on('submit', '#form-upd', function(e) {
             e.preventDefault();
             $('#inpmapel').attr('required', 'required');
-            $('#inpjenis').attr('required', 'required');
+            $('#inpjenisujian').attr('required', 'required');
 
             if ($('#form-upd').parsley().isValid() == true) {
                 $.ajax({
