@@ -16,6 +16,7 @@ class Ujian extends MY_Controller
         $this->users = get_users_detail($this->session->userdata('id'));
 
         // untuk load model
+        $this->load->model('crud');
         $this->load->model('m_siswa');
         $this->load->model('m_soal');
         $this->load->model('m_ujian');
