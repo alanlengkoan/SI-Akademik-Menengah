@@ -46,14 +46,29 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="mybox mg-t-30">
-                    <div class="bsc-tbl">
-                        <?php if ($data->status === '1') { ?>
+            <?php if ($data->status === '1') { ?>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mybox mg-t-30">
+                        <div class="bsc-tbl">
                             <h2>File Tugas</h2>
                             <hr>
                             <embed style="height: 500px;" src="<?= upload_url('pdf') ?><?= $hasil_tugas->jawaban ?>" type="application/pdf" frameBorder="0" scrolling="auto" height="100%" width="100%"></embed>
-                        <?php } else { ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mybox mg-t-30">
+                        <div class="bsc-tbl">
+                            <h2>Nilai</h2>
+                            <hr>
+                            <?= $hasil_tugas->nilai ?>
+                        </div>
+                    </div>
+                </div>
+            <?php } else { ?>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="mybox mg-t-30">
+                        <div class="bsc-tbl">
                             <h2>Upload Tugas</h2>
                             <hr>
                             <form action="<?= siswa_url() ?>tugas/upload" class="dropzone dropzone-nk" id="formAdd">
@@ -69,10 +84,10 @@
                             <div style="padding-top: 10px;">
                                 <p>File dengan tipe (*.pdf)</p>
                             </div>
-                        <?php } ?>
+                        </div>
                     </div>
                 </div>
-            </div>
+            <?php } ?>
         </div>
     </div>
 </div>

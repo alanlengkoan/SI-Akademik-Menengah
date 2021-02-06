@@ -62,9 +62,20 @@ class Ujian extends MY_Controller
     }
 
     // untuk hasil
-    public function hasil()
+    public function hasil($id_soal)
     {
-       debug('hasil');
+        $data = [
+            'halaman'       => 'Hasil Ujian',
+            'content'       => 'siswa/ujian/hasil',
+            'siswa'         => $this->m_siswa->getDetailSiswa($this->users->id_users),
+            'detail'        => $this->m_soal->getDetailSoal($id_soal),
+            'essay'         => $this->m_ujian->getDetailHasilUjianKelasEssay($id_soal, $this->users->id_users),
+            'pilihan_ganda' => $this->m_ujian->getDetailHasilUjianKelasPilihanGanda($id_soal, $this->users->id_users),
+            'css'           => '',
+            'js'            => ''
+        ];
+        // untuk load view
+        $this->load->view('siswa/base', $data);
     }
 
     // untuk jawab
