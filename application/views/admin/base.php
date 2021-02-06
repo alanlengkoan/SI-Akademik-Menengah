@@ -86,7 +86,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="<?= logout_url() ?>"><i class="fa fa-close"></i> Logout </a>
+                                    <a href="<?= logout_url() ?>"><i class="fa fa-sign-out"></i> Logout </a>
                                 </li>
                             </ul>
                         </nav>
@@ -118,6 +118,11 @@
                                 <i class="fa fa-briefcase"></i> Pustaka
                             </a>
                         </li>
+                        <li class="<?= ($this->uri->segment(2) == 'laporan' ? 'active' : '') ?>">
+                            <a data-toggle="tab" href="#laporan">
+                                <i class="fa fa-print"></i> Laporan
+                            </a>
+                        </li>
                         <li>
                             <a href="<?= logout_url() ?>"><i class="fa fa-sign-out"></i> Logout </a>
                         </li>
@@ -142,6 +147,12 @@
                                 <li><a href="<?= admin_url() ?>wakel">Wali Kelas</a></li>
                                 <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
                                 <li><a href="<?= admin_url() ?>users">Users</a></li>
+                            </ul>
+                        </div>
+                        <div id="laporan" class="<?= ($this->uri->segment(2) == 'laporan' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li><a href="<?= admin_url() ?>laporan/guru">Guru</a></li>
+                                <li><a href="<?= admin_url() ?>laporan/siswa">Siswa</a></li>
                             </ul>
                         </div>
                     </div>
