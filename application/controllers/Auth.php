@@ -72,10 +72,10 @@ class Auth extends CI_Controller
                     exit(json_encode(array('status' => true, 'link' => siswa_url() . 'dashboard')));
                 }
             } else {
-                exit(json_encode(['title' => 'Gagal!', 'text' => 'username atau password Anda salah!', 'type' => 'error', 'button' => 'Ok!']));
+                exit(json_encode(['title' => 'Gagal!', 'text' => 'Username atau Password Anda salah!', 'type' => 'error', 'button' => 'Ok!']));
             }
         } else {
-            exit(json_encode(['title' => 'Gagal!', 'text' => 'username atau password Anda salah!', 'type' => 'error', 'button' => 'Ok!']));
+            exit(json_encode(['title' => 'Gagal!', 'text' => 'Username atau Password Anda salah!', 'type' => 'error', 'button' => 'Ok!']));
         }
     }
 
