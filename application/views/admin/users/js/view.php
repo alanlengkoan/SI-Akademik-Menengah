@@ -118,6 +118,7 @@
                     id: ini.data('id')
                 },
                 beforeSend: function() {
+                    $('#get-form-upd').html(`<div class="center"><div class="loader"></div></div>`);
                     ini.attr('disabled', 'disabled');
                     ini.html('<i class="fa fa-spinner"></i>');
                 },

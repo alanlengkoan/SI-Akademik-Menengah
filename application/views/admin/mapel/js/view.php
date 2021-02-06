@@ -48,6 +48,7 @@
                     id: ini.data('id')
                 },
                 beforeSend: function() {
+                    $('#get-form-upd').html(`<div class="center"><div class="loader"></div></div>`);
                     ini.attr('disabled', 'disabled');
                     ini.html('<i class="fa fa-spinner"></i>');
                 },
@@ -99,41 +100,41 @@
         $(document).on('click', '#btn-del', function() {
             var ini = $(this);
             swal({
-                title: "Apakah Anda yakin ingin menghapusnya?",
-                text: "Data yang telah dihapus tidak dapat dikembalikan!",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            })
-            .then((del) => {
-                if (del) {
-                    $.ajax({
-                        type: "post",
-                        url: "<?= admin_url() ?>mapel/process_del",
-                        dataType: 'json',
-                        data: {
-                            id: ini.data('id')
-                        },
-                        beforeSend: function() {
-                            ini.attr('disabled', 'disabled');
-                            ini.html('<i class="fa fa-spinner"></i>');
-                        },
-                        success: function(data) {
-                            swal({
-                                    title: data.title,
-                                    text: data.text,
-                                    icon: data.type,
-                                    button: data.button,
-                                })
-                                .then((value) => {
-                                    location.reload();
-                                });
-                        }
-                    });
-                } else {
-                    return false;
-                }
-            });
+                    title: "Apakah Anda yakin ingin menghapusnya?",
+                    text: "Data yang telah dihapus tidak dapat dikembalikan!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then((del) => {
+                    if (del) {
+                        $.ajax({
+                            type: "post",
+                            url: "<?= admin_url() ?>mapel/process_del",
+                            dataType: 'json',
+                            data: {
+                                id: ini.data('id')
+                            },
+                            beforeSend: function() {
+                                ini.attr('disabled', 'disabled');
+                                ini.html('<i class="fa fa-spinner"></i>');
+                            },
+                            success: function(data) {
+                                swal({
+                                        title: data.title,
+                                        text: data.text,
+                                        icon: data.type,
+                                        button: data.button,
+                                    })
+                                    .then((value) => {
+                                        location.reload();
+                                    });
+                            }
+                        });
+                    } else {
+                        return false;
+                    }
+                });
         });
     }();
 </script>

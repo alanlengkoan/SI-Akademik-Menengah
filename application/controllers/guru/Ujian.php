@@ -101,7 +101,7 @@ class Ujian extends MY_Controller
     // untuk proses hapus data
     public function process_del()
     {
-        $post   = $this->input->post(NULL, TRUE);
+        $post = $this->input->post(NULL, TRUE);
         $this->db->trans_start();
         $this->crud->d('soal', $post['id'], 'id_soal');
         $this->db->trans_complete();
