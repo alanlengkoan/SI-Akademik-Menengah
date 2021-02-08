@@ -19,6 +19,7 @@ class Materi extends MY_Controller
         $this->load->model('m_siswa');
         $this->load->model('m_mapel');
         $this->load->model('m_materi');
+        $this->load->model('m_chat');
     }
 
     // untuk default
@@ -44,9 +45,41 @@ class Materi extends MY_Controller
             'content' => 'siswa/materi/detail',
             'data'    => $this->m_materi->getDetailMateriKelas($id),
             'css'     => '',
-            'js'      => ''
+            'js'      => 'siswa/materi/js/detail'
         ];
         // untuk load view
         $this->load->view('siswa/base', $data);
+    }
+
+    // untuk load chat room
+    public function load_chat($id)
+    {
+        $data = [
+            'id_users' => $this->users->id_users,
+            'chat'     => $this->m_chat->getDetailChat($id)
+        ];
+        // untuk load view
+        $this->load->view('siswa/materi/chat', $data);
+    }
+
+    // untuk sent chat room
+    public function sent_chat()
+    {
+        $post = $this->input->post(NULL, TRUE);
+        $data = [
+            'id_forum'  => acak_id('forum', 'id_forum'),
+            'id_materi' => $post['id_materi'],
+            'id_users'  => $this->users->id_users,
+            'level'     => $this->users->role,
+            'pesan'     => $post['pesan'],
+        ];
+        $this->db->trans_start();
+        $this->crud->i('forum', $data);
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            echo 'gagal';
+        } else {
+            $this->load_chat($data['id_materi']);
+        }
     }
 }

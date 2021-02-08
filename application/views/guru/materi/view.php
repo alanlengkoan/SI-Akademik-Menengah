@@ -58,6 +58,7 @@
                                             <td><?= $value->tipe ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
+                                                    <a href="<?= guru_url() ?>materi/detail/<?= $value->id_materi ?>" class="btn btn-success success-icon-notika"><i class="fa fa-comments-o"></i></a>
                                                     <button type="button" id="btn-upd" data-id="<?= $value->id_materi ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
                                                     <button type="button" id="btn-del" data-id="<?= $value->id_materi ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
                                                 </div>
