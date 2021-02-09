@@ -41,6 +41,8 @@
                                         <th>No</th>
                                         <th>Guru</th>
                                         <th>Mata Pelajaran</th>
+                                        <th>Jenis Ujian</th>
+                                        <th>Waktu Pengerjaan</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -64,6 +66,8 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->guru ?></td>
                                             <td><?= $value->mapel ?></td>
+                                            <td><?= $value->jenis_ujian ?></td>
+                                            <td><?= $value->time ?></td>
                                             <td><a href="#" class="btn btn-<?= $status['alert'][$value->status] ?> info-icon-notika"><?= $status['label'][$value->status] ?></a></td>
                                             <td>
                                                 <div class="button-icon-btn">
