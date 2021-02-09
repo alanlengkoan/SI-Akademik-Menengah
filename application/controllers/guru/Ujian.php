@@ -48,6 +48,8 @@ class Ujian extends MY_Controller
             'id_guru'        => $result['id_guru'],
             'id_mapel'       => $result['id_mapel'],
             'id_ujian_jenis' => $result['id_ujian_jenis'],
+            'time'           => $result['time'],
+            'nilai'          => $result['nilai'],
             'mapel'          => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
             'jen_ujian'      => $this->m_jenis_ujian->getAll(),
         ];
@@ -64,6 +66,8 @@ class Ujian extends MY_Controller
             'id_guru'        => $this->users->id_users,
             'id_mapel'       => $post['inpmapel'],
             'id_ujian_jenis' => $post['inpjenisujian'],
+            'time'           => $post['inptime'],
+            'nilai'          => $post['inpnilai'],
         ];
         $this->db->trans_start();
         $this->crud->i('soal', $data);
@@ -85,6 +89,8 @@ class Ujian extends MY_Controller
             'id_guru'        => $this->users->id_users,
             'id_mapel'       => $post['inpmapel'],
             'id_ujian_jenis' => $post['inpjenisujian'],
+            'time'           => $post['inptime'],
+            'nilai'          => $post['inpnilai'],
         ];
         $this->db->trans_start();
         $this->crud->u('soal', $data, ['id_soal' => $post['inpid']]);

@@ -29,7 +29,7 @@ class Soal extends MY_Controller
         $data = [
             'halaman'   => 'Soal',
             'content'   => 'guru/soal/view',
-            'data'      => $this->m_ujian->getAll(),
+            'data'      => $this->m_ujian->getAll($id),
             'detail'    => $this->m_soal->getDetailSoal($id),
             'mapel'     => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
             'jen_ujian' => $this->m_jenis_ujian->getAll(),
