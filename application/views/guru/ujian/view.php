@@ -43,6 +43,8 @@
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Jenis Ujian</th>
+                                        <th>Waktu Pengerjaan</th>
+                                        <th>Nilai Minimum</th>
                                         <th>Soal</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -55,6 +57,8 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->nama ?></td>
                                             <td><?= $value->jenis_ujian ?></td>
+                                            <td><?= $value->time ?></td>
+                                            <td><?= $value->nilai ?></td>
                                             <td>
                                                 <div class="button-icon-btn">
                                                     <a href="<?= guru_url() ?>soal/add/<?= $value->id_soal ?>" class="btn btn-success info-icon-notika">Tambahkan Soal</a>
@@ -120,6 +124,34 @@
                                                 <option value="<?= $value->id_ujian_jenis ?>"><?= $value->jenis ?></option>
                                             <?php } ?>
                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Waktu</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control input-sm" name="inptime" id="inptime" placeholder="Masukkan Waktu Pengerjaan" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Nilai</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control input-sm" name="inpnilai" id="inpnilai" placeholder="Masukkan Nilai Minimum" />
                                     </div>
                                 </div>
                             </div>
