@@ -10,7 +10,7 @@
                  </div>
                  <div class="conversation-text">
                      <div class="ctext-wrap chat-widgets-cn">
-                         <i><?= $value->nama ?></i>
+                         <i><?= $value->nama ?> (<?= ucfirst($value->level) ?>)</i>
                          <p>
                              <?= $value->pesan ?>
                          </p>
@@ -25,7 +25,7 @@
                  </div>
                  <div class="conversation-text">
                      <div class="ctext-wrap">
-                         <i><?= $value->nama ?></i>
+                         <i><?= $value->nama ?> (<?= ucfirst($value->level) ?>)</i>
                          <p>
                              <?= $value->pesan ?>
                          </p>
