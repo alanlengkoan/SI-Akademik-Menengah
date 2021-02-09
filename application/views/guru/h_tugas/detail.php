@@ -52,7 +52,11 @@
                         <?php if ($data->status === '1') { ?>
                             <h2>File Tugas</h2>
                             <hr>
-                            <embed style="height: 500px;" src="<?= upload_url('pdf') ?><?= $hasil_tugas->jawaban ?>" type="application/pdf" frameBorder="0" scrolling="auto" height="100%" width="100%"></embed>
+                            <?php if (getExtension($hasil_tugas->jawaban) === 'pdf') { ?>
+                                <embed style="height: 500px;" src="<?= upload_url('pdf') ?><?= $hasil_tugas->jawaban ?>" type="application/pdf" frameBorder="0" scrolling="auto" height="100%" width="100%"></embed>
+                            <?php } else { ?>
+                                <iframe style=" width: 100%; height: 500px;" src="https://docs.google.com/gview?url=<?= upload_url('pdf') ?><?= $hasil_tugas->jawaban ?>&embedded=true" frameborder="0"></iframe>
+                            <?php } ?>
                         <?php } else { ?>
                             <h2>Upload Tugas</h2>
                             <hr>
@@ -79,7 +83,7 @@
                         <form id="form-add" action="<?= guru_url() ?>h_tugas/add_nilai" method="POST">
                             <input type="hidden" name="id_tugas" value="<?= $data->id_tugas ?>">
                             <input type="hidden" name="id_siswa" value="<?= $siswa->id_siswa ?>">
-                            
+
                             <div class="form-example-int form-horizental">
                                 <div class="form-group">
                                     <div class="nk-int-st">

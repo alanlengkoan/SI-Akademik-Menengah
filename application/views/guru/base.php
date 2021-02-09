@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="<?= assets_url() ?>admin/css/wave/waves.min.css">
     <link rel="stylesheet" href="<?= assets_url() ?>admin/css/dialog/sweetalert2.min.css">
     <link rel="stylesheet" href="<?= assets_url() ?>admin/css/dialog/dialog.css">
+    <link rel="stylesheet" href="<?= assets_url() ?>admin/css/datapicker/datepicker3.css">
     <link rel="stylesheet" href="<?= assets_url() ?>admin/css/main.css">
     <link rel="stylesheet" href="<?= assets_url() ?>admin/style.css">
     <link rel="stylesheet" href="<?= assets_url() ?>admin/css/bootstrap-select/bootstrap-select.css">
@@ -184,6 +185,8 @@
     <script src="<?= assets_url() ?>admin/js/data-table/data-table-act.js"></script>
     <script src="<?= assets_url() ?>admin/js/bootstrap-select/bootstrap-select.js"></script>
     <script src="<?= assets_url() ?>admin/js/main.js"></script>
+    <script src="<?= assets_url() ?>admin/js/datapicker/bootstrap-datepicker.js"></script>
+    <script src="<?= assets_url() ?>admin/js/datapicker/datepicker-active.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- begin:: js local -->

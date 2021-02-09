@@ -1,5 +1,3 @@
-<script src="<?= assets_url() ?>admin/js/datapicker/bootstrap-datepicker.js"></script>
-<script src="<?= assets_url() ?>admin/js/datapicker/datepicker-active.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 
 <script>

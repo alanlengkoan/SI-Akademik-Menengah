@@ -48,6 +48,8 @@ class Tugas extends MY_Controller
             'judul'    => $result['judul'],
             'tipe'     => $result['tipe'],
             'file'     => $result['file'],
+            'start'    => date("d-m-Y", strtotime($result['start'])),
+            'finish'   => date("d-m-Y", strtotime($result['finish'])),
             'mapel'    => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
         ];
         // untuk load view
@@ -82,13 +84,18 @@ class Tugas extends MY_Controller
             // apa bila berhasil
             $detailFile = $this->upload->data();
 
+            $start = date("Y-m-d", strtotime($post['inpstart']));  
+            $finish = date("Y-m-d", strtotime($post['inpfinish']));  
+
             $data = [
                 'id_tugas' => acak_id('tugas', 'id_tugas'),
-                'id_guru'   => $this->users->id_users,
-                'id_mapel'  => $post['inpmapel'],
-                'judul'     => $post['inpjudul'],
-                'tipe'      => $post['inptipe'],
-                'file'      => $detailFile['file_name'],
+                'id_guru'  => $this->users->id_users,
+                'id_mapel' => $post['inpmapel'],
+                'judul'    => $post['inpjudul'],
+                'tipe'     => $post['inptipe'],
+                'file'     => $detailFile['file_name'],
+                'start'    => $start,
+                'finish'   => $finish,
             ];
             $this->db->trans_start();
             $this->crud->i('tugas', $data);
@@ -110,6 +117,9 @@ class Tugas extends MY_Controller
         $file = $_FILES['inpfile']['name'];
         
         $result = $this->crud->gda('tugas', ['id_tugas' => $post['inpid']]);
+
+        $start  = date("Y-m-d", strtotime($post['inpstart']));
+        $finish = date("Y-m-d", strtotime($post['inpfinish']));
 
         if ($file) {
             if ($post['inptipe'] === 'pdf') {
@@ -148,6 +158,8 @@ class Tugas extends MY_Controller
                     'judul'    => $post['inpjudul'],
                     'tipe'     => $post['inptipe'],
                     'file'     => $detailFile['file_name'],
+                    'start'    => $start,
+                    'finish'   => $finish,
                 ];
                 $this->db->trans_start();
                 $this->crud->u('tugas', $data, ['id_tugas' => $post['inpid']]);
@@ -164,6 +176,8 @@ class Tugas extends MY_Controller
                 'id_mapel' => $post['inpmapel'],
                 'judul'    => $post['inpjudul'],
                 'tipe'     => $post['inptipe'],
+                'start'    => $start,
+                'finish'   => $finish,
             ];
             $this->db->trans_start();
             $this->crud->u('tugas', $data, ['id_tugas' => $post['inpid']]);

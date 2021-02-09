@@ -40,24 +40,26 @@
                                 <div id="dom_chat"></div>
                                 <!-- end:: chat -->
                             </div>
-                            <div class="chat-widget-input">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12 col-sm-12 col-xs-12 chat-inputbar">
-                                        <form id="form-add" action="<?= guru_url() ?>materi/sent_chat" method="POST">
-                                            <input type="hidden" name="id_materi" value="<?= $data->id_materi ?>" />
+                            <?php if ($data->status === '1') { ?>
+                                <div class="chat-widget-input">
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-12 col-sm-12 col-xs-12 chat-inputbar">
+                                            <form id="form-add" action="<?= guru_url() ?>materi/sent_chat" method="POST">
+                                                <input type="hidden" name="id_materi" value="<?= $data->id_materi ?>" />
 
-                                            <div class="form-group todo-flex">
-                                                <div class="nk-int-st">
-                                                    <input type="text" name="pesan" id="pesan" class="form-control chat-input" placeholder="Masukkan Pesan Anda">
+                                                <div class="form-group todo-flex">
+                                                    <div class="nk-int-st">
+                                                        <input type="text" name="pesan" id="pesan" class="form-control chat-input" placeholder="Masukkan Pesan Anda">
+                                                    </div>
+                                                    <div class="chat-send">
+                                                        <button type="submit" id="kirim" class="btn btn-md btn-primary btn-block notika-chat-btn">Kirim</button>
+                                                    </div>
                                                 </div>
-                                                <div class="chat-send">
-                                                    <button type="submit" id="kirim" class="btn btn-md btn-primary btn-block notika-chat-btn">Kirim</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>

@@ -65,6 +65,31 @@
         });
     }();
 
+    // untuk get id
+    var untukChat = function() {
+        $(document).on('click', '#btn-chat', function() {
+            var ini = $(this);
+
+            $.ajax({
+                type: "post",
+                url: "<?= guru_url() ?>materi/upd_chat",
+                dataType: 'json',
+                data: {
+                    id: ini.data('id'),
+                    value: ini.data('value')
+                },
+                success: function(response) {
+                    swal({
+                        title: response.title,
+                        text: response.text,
+                        icon: response.type,
+                        button: response.button,
+                    });
+                }
+            });
+        });
+    }();
+
     // untuk ubah data
     var untukUbahData = function() {
         $(document).on('submit', '#form-upd', function(e) {

@@ -4,13 +4,13 @@ class M_tugas extends CI_Model
 {
     public function getAll()
     {
-        $result = $this->db->query("SELECT tugas.id_tugas, tugas.id_guru, tugas.judul, tugas.tipe, mapel.nama FROM tugas LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel")->result();
+        $result = $this->db->query("SELECT tugas.id_tugas, tugas.id_guru, tugas.judul, tugas.tipe, DATEDIFF(tugas.finish, tugas.`start`) AS waktu, mapel.nama FROM tugas LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel")->result();
         return $result;
     }
 
     public function getTugasKelas($id_kelas, $id_siswa)
     {
-        $result = $this->db->query("SELECT penugasan_guru.id_guru, tugas.id_tugas, tugas.id_mapel, guru.nama AS guru, mapel.nama AS mapel, tugas.judul, tugas.tipe, CASE WHEN ( SELECT id_tugas FROM hasil_tugas WHERE id_tugas = tugas.id_tugas AND id_siswa = '$id_siswa' ) IS NOT NULL THEN 1 ELSE 0 END AS status FROM penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru RIGHT JOIN tugas ON penugasan_guru.id_guru = tugas.id_guru LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel WHERE penugasan_guru.id_kelas = '$id_kelas' GROUP BY penugasan_guru.id_guru, tugas.id_tugas, tugas.id_mapel, tugas.judul, tugas.tipe, mapel.nama")->result();
+        $result = $this->db->query("SELECT penugasan_guru.id_guru, tugas.id_tugas, tugas.id_mapel, guru.nama AS guru, mapel.nama AS mapel, tugas.judul, tugas.tipe, DATEDIFF(tugas.finish, tugas.`start`) AS waktu, DATEDIFF(tugas.finish, CURRENT_DATE()) AS sisah, CASE WHEN ( SELECT id_tugas FROM hasil_tugas WHERE id_tugas = tugas.id_tugas AND id_siswa = '$id_siswa' ) IS NOT NULL THEN 1 ELSE 0 END AS status FROM penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru RIGHT JOIN tugas ON penugasan_guru.id_guru = tugas.id_guru LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel WHERE penugasan_guru.id_kelas = '$id_kelas' GROUP BY penugasan_guru.id_guru, tugas.id_tugas, tugas.id_mapel, tugas.judul, tugas.tipe, mapel.nama")->result();
         return $result;
     }
 

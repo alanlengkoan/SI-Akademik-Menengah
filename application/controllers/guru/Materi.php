@@ -100,6 +100,26 @@ class Materi extends MY_Controller
         }
     }
 
+    // untuk proses update chat
+    public function upd_chat()
+    {
+        $post   = $this->input->post(NULL, TRUE);
+        $status = ($post['value'] === '1' ? '0' : '1');
+        $data = [
+            'status' => $status,
+        ];
+        $this->db->trans_start();
+        $this->crud->u('materi', $data, ['id_materi' => $post['id']]);
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk response json
+        $this->_response($response);
+    }
+
     // untuk proses tambah data
     public function process_add()
     {

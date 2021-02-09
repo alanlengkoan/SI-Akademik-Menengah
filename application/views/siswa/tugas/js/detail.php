@@ -3,7 +3,7 @@
 <script>
     Dropzone.options.formAdd = {
         maxFiles: 1,
-        acceptedFiles: ".pdf",
+        acceptedFiles: ".pdf, .doc, .docx",
         accept: function(file, done) {
             done();
         },

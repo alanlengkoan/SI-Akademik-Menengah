@@ -44,6 +44,7 @@
                                         <th>Mata Pelajaran</th>
                                         <th>Judul</th>
                                         <th>Tipe</th>
+                                        <th>Chat</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -56,6 +57,12 @@
                                             <td><?= $value->nama ?></td>
                                             <td><?= $value->judul ?></td>
                                             <td><?= $value->tipe ?></td>
+                                            <td>
+                                                <div id="btn-chat" data-id="<?= $value->id_materi ?>" data-value="<?= $value->status ?>" class="nk-toggle-switch">
+                                                    <input id="ts<?= $value->id_materi ?>" type="checkbox" hidden="hidden" <?= ($value->status === '1' ? 'checked' : '') ?>>
+                                                    <label for="ts<?= $value->id_materi ?>" class="ts-helper"></label>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
                                                     <a href="<?= guru_url() ?>materi/detail/<?= $value->id_materi ?>" class="btn btn-success success-icon-notika"><i class="fa fa-comments-o"></i></a>

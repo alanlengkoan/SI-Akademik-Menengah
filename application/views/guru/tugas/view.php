@@ -44,6 +44,7 @@
                                         <th>Mata Pelajaran</th>
                                         <th>Judul</th>
                                         <th>Tipe</th>
+                                        <th>Waktu</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -56,6 +57,7 @@
                                             <td><?= $value->nama ?></td>
                                             <td><?= $value->judul ?></td>
                                             <td><?= $value->tipe ?></td>
+                                            <td><?= $value->waktu ?> Hari</td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
                                                     <button type="button" id="btn-upd" data-id="<?= $value->id_tugas ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
@@ -144,6 +146,34 @@
                                     <div class="nk-int-st">
                                         <input type="file" class="form-control input-sm" name="inpfile" id="inpfile" />
                                         <p>File dengan tipe (*.pdf,*.mp4)</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Start</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="text" class="mydate form-control" name="inpstart" id="inpstart" placeholder="Masukkan Tanggal Mulai">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Finish</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="text" class="mydate form-control" name="inpfinish" id="inpfinish" placeholder="Masukkan Tanggal Selesai">
                                     </div>
                                 </div>
                             </div>

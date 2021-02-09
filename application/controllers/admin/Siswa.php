@@ -24,7 +24,7 @@ class Siswa extends MY_Controller
             'content' => 'admin/siswa/view',
             'data'    => $this->m_siswa->getAll(),
             'kelas'   => $this->m_kelas->getAll(),
-            'css'     => 'admin/siswa/css/view',
+            'css'     => '',
             'js'      => 'admin/siswa/js/view'
         ];
         // untuk load view

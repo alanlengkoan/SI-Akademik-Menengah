@@ -423,3 +423,12 @@ if (!function_exists('base64url_decode')) {
         return base64_decode( str_pad( strtr( $data, '-_', '+/' ), strlen($data) % 4, '=', STR_PAD_RIGHT ) );
     }
 }
+
+if (!function_exists('getExtension')) {
+    function getExtension($file)
+    {
+        $tmp = explode(".", $file);
+        $extension = end($tmp);
+        return $extension ? $extension : false;
+    }
+}

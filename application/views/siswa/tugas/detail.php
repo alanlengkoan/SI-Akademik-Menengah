@@ -52,7 +52,11 @@
                         <div class="bsc-tbl">
                             <h2>File Tugas</h2>
                             <hr>
-                            <embed style="height: 500px;" src="<?= upload_url('pdf') ?><?= $hasil_tugas->jawaban ?>" type="application/pdf" frameBorder="0" scrolling="auto" height="100%" width="100%"></embed>
+                            <?php if (getExtension($hasil_tugas->jawaban) === 'pdf') { ?>
+                                <embed style="height: 500px;" src="<?= upload_url('pdf') ?><?= $hasil_tugas->jawaban ?>" type="application/pdf" frameBorder="0" scrolling="auto" height="100%" width="100%"></embed>
+                            <?php } else { ?>
+                                <iframe style=" width: 100%; height: 500px;" src="https://docs.google.com/gview?url=<?= upload_url('pdf') ?><?= $hasil_tugas->jawaban ?>&embedded=true" frameborder="0"></iframe>
+                            <?php } ?>
                         </div>
                     </div>
                 </div>
@@ -61,7 +65,7 @@
                         <div class="bsc-tbl">
                             <h2>Nilai</h2>
                             <hr>
-                            <?= $hasil_tugas->nilai ?>
+                            <?= ($hasil_tugas->nilai === null ? 'Belum ada nilai' : $hasil_tugas->nilai) ?>
                         </div>
                     </div>
                 </div>
@@ -82,7 +86,7 @@
                             </form>
 
                             <div style="padding-top: 10px;">
-                                <p>File dengan tipe (*.pdf)</p>
+                                <p>File dengan tipe (*.pdf, *.doc, *.docx)</p>
                             </div>
                         </div>
                     </div>

@@ -51,19 +51,13 @@ class Tugas extends MY_Controller
         $this->load->view('siswa/base', $data);
     }
 
-    // untuk hasil
-    public function hasil()
-    {
-        debug('hasil');
-    }
-
     // untuk upload
     public function upload()
     {
         $post = $this->input->post(NULL, TRUE);
 
         $config['upload_path']   = './' . upload_path('pdf');
-        $config['allowed_types'] = 'pdf';
+        $config['allowed_types'] = 'pdf|doc|docx';
         $config['encrypt_name']  = TRUE;
         $config['overwrite']     = TRUE;
 
