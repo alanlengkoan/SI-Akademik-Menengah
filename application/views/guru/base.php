@@ -187,6 +187,7 @@
     <script src="<?= assets_url() ?>admin/js/main.js"></script>
     <script src="<?= assets_url() ?>admin/js/datapicker/bootstrap-datepicker.js"></script>
     <script src="<?= assets_url() ?>admin/js/datapicker/datepicker-active.js"></script>
+    <script src="<?= assets_url() ?>admin/js/notify/notify.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <!-- begin:: js local -->

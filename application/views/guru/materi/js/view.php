@@ -67,7 +67,7 @@
 
     // untuk get id
     var untukChat = function() {
-        $(document).on('click', '#btn-chat', function() {
+        $(document).on('click', '.btn-chat', function() {
             var ini = $(this);
 
             $.ajax({
@@ -79,12 +79,7 @@
                     value: ini.data('value')
                 },
                 success: function(response) {
-                    swal({
-                        title: response.title,
-                        text: response.text,
-                        icon: response.type,
-                        button: response.button,
-                    });
+                    $.notify(response.title, response.type);
                 }
             });
         });

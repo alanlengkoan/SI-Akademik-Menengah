@@ -58,8 +58,8 @@
                                             <td><?= $value->judul ?></td>
                                             <td><?= $value->tipe ?></td>
                                             <td>
-                                                <div id="btn-chat" data-id="<?= $value->id_materi ?>" data-value="<?= $value->status ?>" class="nk-toggle-switch">
-                                                    <input id="ts<?= $value->id_materi ?>" type="checkbox" hidden="hidden" <?= ($value->status === '1' ? 'checked' : '') ?>>
+                                                <div class="nk-toggle-switch">
+                                                    <input class="btn-chat" data-id="<?= $value->id_materi ?>" data-value="<?= $value->status ?>" id="ts<?= $value->id_materi ?>" type="checkbox" hidden="hidden" <?= ($value->status === '1' ? 'checked' : '') ?>>
                                                     <label for="ts<?= $value->id_materi ?>" class="ts-helper"></label>
                                                 </div>
                                             </td>
