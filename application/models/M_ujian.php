@@ -2,15 +2,15 @@
 
 class M_ujian extends CI_Model
 {
-    public function getAll()
+    public function getAll($id)
     {
-        $result = $this->db->query("SELECT soal.id_soal, ujian.id_ujian, ujian.jenis, mapel.nama, ujian_jenis.jenis AS jenis_ujian, CASE WHEN ( SELECT soal FROM ujian_essay WHERE id_ujian = ujian.id_ujian ) IS NOT NULL THEN ( SELECT soal FROM ujian_essay WHERE id_ujian = ujian.id_ujian ) ELSE ( SELECT soal FROM ujian_pilihan_ganda WHERE id_ujian = ujian.id_ujian ) END AS soal FROM ujian LEFT JOIN soal ON ujian.id_soal = soal.id_soal LEFT JOIN mapel ON soal.id_mapel = mapel.id_mapel LEFT JOIN ujian_jenis ON soal.id_ujian_jenis = ujian_jenis.id_ujian_jenis")->result();
+        $result = $this->db->query("SELECT soal.id_soal, ujian.id_ujian, ujian.jenis, mapel.nama, ujian_jenis.jenis AS jenis_ujian, CASE WHEN ( SELECT soal FROM ujian_essay WHERE id_ujian = ujian.id_ujian ) IS NOT NULL THEN ( SELECT soal FROM ujian_essay WHERE id_ujian = ujian.id_ujian ) ELSE ( SELECT soal FROM ujian_pilihan_ganda WHERE id_ujian = ujian.id_ujian ) END AS soal FROM ujian LEFT JOIN soal ON ujian.id_soal = soal.id_soal LEFT JOIN mapel ON soal.id_mapel = mapel.id_mapel LEFT JOIN ujian_jenis ON soal.id_ujian_jenis = ujian_jenis.id_ujian_jenis WHERE ujian.id_soal = '$id'")->result();
         return $result;
     }
 
     public function getUjianKelas($id_kelas, $id_ujian, $id_siswa)
     {
-        $result = $this->db->query("SELECT penugasan_guru.id_guru, soal.id_soal, soal.id_mapel, CASE WHEN ( SELECT SUM(id_ujian) FROM hasil_ujian WHERE id_ujian IN ('$id_ujian') AND id_siswa = '$id_siswa' ) IS NOT NULL THEN 1 ELSE 0 END AS status, guru.nama AS guru, mapel.nama AS mapel FROM penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru RIGHT JOIN soal ON penugasan_guru.id_guru = soal.id_guru LEFT JOIN mapel ON soal.id_mapel = mapel.id_mapel WHERE penugasan_guru.id_kelas = '$id_kelas' GROUP BY penugasan_guru.id_guru, soal.id_soal, soal.id_mapel, mapel.nama")->result();
+        $result = $this->db->query("SELECT penugasan_guru.id_guru, s.id_soal, s.id_mapel, s.time, ujian_jenis.jenis AS jenis_ujian, guru.nama AS guru, CASE WHEN (SELECT SUM( hasil_ujian.id_ujian ) FROM hasil_ujian LEFT JOIN ujian ON hasil_ujian.id_ujian = ujian.id_ujian LEFT JOIN soal ON ujian.id_soal = soal.id_soal WHERE hasil_ujian.id_ujian IN ('$id_ujian') AND hasil_ujian.id_siswa = '$id_siswa' AND soal.id_soal = s.id_soal ) IS NOT NULL THEN 1 ELSE 0 END AS status, mapel.nama AS mapel FROM penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru RIGHT JOIN soal AS s ON penugasan_guru.id_guru = s.id_guru LEFT JOIN mapel ON s.id_mapel = mapel.id_mapel LEFT JOIN ujian_jenis ON s.id_ujian_jenis = ujian_jenis.id_ujian_jenis WHERE penugasan_guru.id_kelas = '$id_kelas' GROUP BY penugasan_guru.id_guru, s.id_soal, s.id_mapel, mapel.nama")->result();
         return $result;
     }
 
