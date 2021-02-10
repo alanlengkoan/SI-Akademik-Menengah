@@ -98,44 +98,48 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="mybox mg-t-30">
                     <div class="bsc-tbl">
-                        <h4>Pilihan Ganda</h4>
-                        <hr>
-                        <?php foreach ($pilihan_ganda as $key => $value) {
-                            $jawaban = ['', 'A', 'B', 'C', 'D', 'E'];
-                        ?>
-                            <div class="row" style="padding: 10px;">
-                                <div class="col-lg-6">
-                                    <h4>Soal</h4>
-                                    <p style="text-align: justify;"><?= $value->soal ?></p>
-                                    <h4>Jawaban Benar</h4>
-                                    <p style="text-align: justify;"><?= $jawaban[$value->jawaban_benar] ?></p>
-                                    <h4>Jawaban Anda</h4>
-                                    <p style="text-align: justify;"><?= $jawaban[$value->jawaban] ?></p>
+                        <?php if (count($pilihan_ganda) !== 0) { ?>
+                            <h4>Pilihan Ganda</h4>
+                            <hr>
+                            <?php foreach ($pilihan_ganda as $key => $value) {
+                                $jawaban = ['', 'A', 'B', 'C', 'D', 'E'];
+                            ?>
+                                <div class="row" style="padding: 10px;">
+                                    <div class="col-lg-6">
+                                        <h4>Soal</h4>
+                                        <p style="text-align: justify;"><?= $value->soal ?></p>
+                                        <h4>Jawaban Benar</h4>
+                                        <p style="text-align: justify;"><?= $jawaban[$value->jawaban_benar] ?></p>
+                                        <h4>Jawaban Anda</h4>
+                                        <p style="text-align: justify;"><?= $jawaban[$value->jawaban] ?></p>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <img src="<?= $value->gambar !== '' ? upload_url('gambar') . '' . $value->gambar : '//placehold.it/150'  ?>" width="300" height="300" alt="soal pilihan ganda">
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <img src="<?= $value->gambar !== '' ? upload_url('gambar') . '' . $value->gambar : '//placehold.it/150'  ?>" width="300" height="300" alt="soal pilihan ganda">
-                                </div>
-                            </div>
+                            <?php } ?>
                         <?php } ?>
-                        <h4>Essay</h4>
-                        <hr>
-                        <?php foreach ($essay as $key => $value) { ?>
-                            <input type="hidden" name="inp_id_ujian_essay[]" value="<?= $value->id_ujian ?>">
-                            <div class="row" style="padding: 10px;">
-                                <div class="col-lg-6">
-                                    <h4>Soal</h4>
-                                    <p style="text-align: justify;"><?= $value->soal ?></p>
-                                    <h4>Jawaban Benar</h4>
-                                    <p style="text-align: justify;"><?= $value->jawaban_benar ?></p>
-                                    <h4>Jawaban Anda</h4>
-                                    <p style="text-align: justify;"><?= $value->jawaban ?></p>
-                                    <h4>Nilai</h4>
-                                    <?= $value->nilai ?>
+                        <?php if (count($essay) !== 0) { ?>
+                            <h4>Essay</h4>
+                            <hr>
+                            <?php foreach ($essay as $key => $value) { ?>
+                                <input type="hidden" name="inp_id_ujian_essay[]" value="<?= $value->id_ujian ?>">
+                                <div class="row" style="padding: 10px;">
+                                    <div class="col-lg-6">
+                                        <h4>Soal</h4>
+                                        <p style="text-align: justify;"><?= $value->soal ?></p>
+                                        <h4>Jawaban Benar</h4>
+                                        <p style="text-align: justify;"><?= $value->jawaban_benar ?></p>
+                                        <h4>Jawaban Anda</h4>
+                                        <p style="text-align: justify;"><?= $value->jawaban ?></p>
+                                        <h4>Nilai</h4>
+                                        <?= $value->nilai ?>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <img src="<?= $value->gambar !== '' ? upload_url('gambar') . '' . $value->gambar : '//placehold.it/150'  ?>" width="300" height="300" alt="soal essay">
+                                    </div>
                                 </div>
-                                <div class="col-lg-6">
-                                    <img src="<?= $value->gambar !== '' ? upload_url('gambar') . '' . $value->gambar : '//placehold.it/150'  ?>" width="300" height="300" alt="soal essay">
-                                </div>
-                            </div>
+                            <?php } ?>
                         <?php } ?>
                     </div>
                 </div>
