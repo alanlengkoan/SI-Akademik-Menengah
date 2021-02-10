@@ -74,7 +74,7 @@
                                                     <?php if ($value->status == 1) { ?>
                                                         <a href="<?= siswa_url() ?>ujian/hasil/<?= $value->id_soal ?>" class="btn btn-primary info-icon-notika">Hasil Ujian</a>
                                                     <?php } else { ?>
-                                                        <a href="<?= siswa_url() ?>ujian/soal/<?= $value->id_soal ?>" class="btn btn-info info-icon-notika">Kerjakan Ujian</a>
+                                                        <a target="_blank" href="<?= siswa_url() ?>ujian/soal/<?= $value->id_soal ?>" class="btn btn-info info-icon-notika">Kerjakan Ujian</a>
                                                     <?php } ?>
                                                 </div>
                                             </td>
