@@ -55,7 +55,7 @@ class Ujian extends MY_Controller
             'detail'        => $this->m_soal->getDetailSoal($id_soal),
             'pilihan_ganda' => $this->m_ujian->getDetailUjianKelasPilihanGanda($id_soal),
             'essay'         => $this->m_ujian->getDetailUjianKelasEssay($id_soal),
-            'css'           => '',
+            'css'           => 'siswa/ujian/css/soal',
             'js'            => 'siswa/ujian/js/soal'
         ];
         // untuk load view
@@ -83,26 +83,32 @@ class Ujian extends MY_Controller
     public function jawab()
     {
         $post = $this->input->post(NULL, TRUE);
-        $count_pil_gan = count($post['inpidujian_pil_gan']);
-        $count_essay = count($post['inpidujian_esssay']);
 
         // untuk pilihan ganda
-        for ($i = 0; $i < $count_pil_gan; $i++) { 
-            $data[] = [
-                'id_hasil_ujian' => acak_id('hasil_ujian', 'id_hasil_ujian'),
-                'id_ujian'       => $post["inpidujian_pil_gan"][$i],
-                'id_siswa'       => $this->users->id_users,
-                'jawaban'        => $post["{$i}_inpjawaban_pil_gan"]
-            ];
+        if (isset($post['inpidujian_pil_gan'])) {
+            $count_pil_gan = count($post['inpidujian_pil_gan']);
+
+            for ($i = 0; $i < $count_pil_gan; $i++) {
+                $data[] = [
+                    'id_hasil_ujian' => acak_id('hasil_ujian', 'id_hasil_ujian'),
+                    'id_ujian'       => $post["inpidujian_pil_gan"][$i],
+                    'id_siswa'       => $this->users->id_users,
+                    'jawaban'        => (empty($post["{$i}_inpjawaban_pil_gan"]) ? '0' : $post["{$i}_inpjawaban_pil_gan"])
+                ];
+            }
         }
         // untuk essay
-        for ($i = 0; $i < $count_essay; $i++) {
-            $data[] = [
-                'id_hasil_ujian' => acak_id('hasil_ujian', 'id_hasil_ujian'),
-                'id_ujian'       => $post["inpidujian_esssay"][$i],
-                'id_siswa'       => $this->users->id_users,
-                'jawaban'        => $post["{$i}_inpjawaban_essay"]
-            ];
+        if (isset($post['inpidujian_esssay'])) {
+            $count_essay = count($post['inpidujian_esssay']);
+
+            for ($i = 0; $i < $count_essay; $i++) {
+                $data[] = [
+                    'id_hasil_ujian' => acak_id('hasil_ujian', 'id_hasil_ujian'),
+                    'id_ujian'       => $post["inpidujian_esssay"][$i],
+                    'id_siswa'       => $this->users->id_users,
+                    'jawaban'        => (empty($post["{$i}_inpjawaban_essay"]) ? '' : $post["{$i}_inpjawaban_essay"])
+                ];
+            }
         }
         $this->db->trans_start();
         $this->db->insert_batch('hasil_ujian', $data); 
