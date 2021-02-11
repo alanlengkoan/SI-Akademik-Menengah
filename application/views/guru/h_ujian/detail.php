@@ -41,6 +41,7 @@
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Siswa</th>
+                                        <th>Nilai Minimum</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -52,6 +53,7 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $value->siswa ?></td>
+                                            <td><?= $value->nilai ?></td>
                                             <td>
                                                 <div class="button-icon-btn">
                                                     <a href="<?= guru_url() ?>h_ujian/detail_jawaban?id_soal=<?= $value->id_soal ?>&id_siswa=<?= $value->id_siswa ?>" class="btn btn-success info-icon-notika">Lihat hasil</a>

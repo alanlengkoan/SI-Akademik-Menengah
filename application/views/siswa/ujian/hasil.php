@@ -81,11 +81,39 @@
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
-                                            <label class="hrzn-fm">Jenis Ujian</label>
+                                            <label class="hrzn-fm">Kelas</label>
                                         </div>
                                         <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                             <div class="nk-int-st">
                                                 <?= $siswa->kelas ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-example-int form-horizental mg-t-15">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm">Nilai Minimum</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <?= $detail->nilai ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-example-int form-horizental mg-t-15">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm">Nilai Anda</label>
+                                        </div>
+                                        <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <?= $nilai ?>
                                             </div>
                                         </div>
                                     </div>
@@ -133,7 +161,7 @@
                                         <h4>Jawaban Anda</h4>
                                         <p style="text-align: justify;"><?= $value->jawaban ?></p>
                                         <h4>Nilai</h4>
-                                        <?= $value->nilai ?>
+                                        <?= ($value->nilai === null ? 'Belum diberi nilai.' : $value->nilai) ?>
                                     </div>
                                     <div class="col-lg-6">
                                         <img src="<?= $value->gambar !== '' ? upload_url('gambar') . '' . $value->gambar : '//placehold.it/150'  ?>" width="300" height="300" alt="soal essay">
