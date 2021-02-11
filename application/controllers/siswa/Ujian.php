@@ -65,13 +65,32 @@ class Ujian extends MY_Controller
     // untuk hasil
     public function hasil($id_soal)
     {
+        $detail        = $this->m_soal->getDetailSoal($id_soal);
+        $essay         = $this->m_ujian->getDetailHasilUjianKelasEssay($id_soal, $this->users->id_users);
+        $pilihan_ganda = $this->m_ujian->getDetailHasilUjianKelasPilihanGanda($id_soal, $this->users->id_users);
+
+        $nilai_essay = [];
+        $nilai_pg = [];
+        foreach ($pilihan_ganda as $key => $value) {
+            if ($value->jawaban_benar === $value->jawaban) {
+                $nilai_pg[] = 1;
+            }
+        }
+        foreach ($essay as $key => $value) {
+            $nilai_essay[] = $value->nilai;
+        }
+        // untuk ambil nilai
+        $nilai = (array_sum($nilai_pg) + array_sum($nilai_essay)) / (int) $detail->nilai;
+        $nilaiAkhir = ($nilai * 100);
+
         $data = [
             'halaman'       => 'Hasil Ujian',
             'content'       => 'siswa/ujian/hasil',
             'siswa'         => $this->m_siswa->getDetailSiswa($this->users->id_users),
-            'detail'        => $this->m_soal->getDetailSoal($id_soal),
-            'essay'         => $this->m_ujian->getDetailHasilUjianKelasEssay($id_soal, $this->users->id_users),
-            'pilihan_ganda' => $this->m_ujian->getDetailHasilUjianKelasPilihanGanda($id_soal, $this->users->id_users),
+            'nilai'         => round($nilaiAkhir),
+            'detail'        => $detail,
+            'essay'         => $essay,
+            'pilihan_ganda' => $pilihan_ganda,
             'css'           => '',
             'js'            => ''
         ];

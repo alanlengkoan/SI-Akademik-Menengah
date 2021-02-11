@@ -56,13 +56,32 @@ class H_ujian extends MY_Controller
         $id_soal  = $this->input->get('id_soal');
         $id_siswa = $this->input->get('id_siswa');
 
+        $detail        = $this->m_soal->getDetailSoal($id_soal);
+        $essay         = $this->m_ujian->getDetailHasilUjianKelasEssay($id_soal, $id_siswa);
+        $pilihan_ganda = $this->m_ujian->getDetailHasilUjianKelasPilihanGanda($id_soal, $id_siswa);
+
+        $nilai_essay = [];
+        $nilai_pg = [];
+        foreach ($pilihan_ganda as $key => $value) {
+            if ($value->jawaban_benar === $value->jawaban) {
+                $nilai_pg[] = 1;
+            }
+        }
+        foreach ($essay as $key => $value) {
+            $nilai_essay[] = $value->nilai;
+        }
+        // untuk ambil nilai
+        $nilai = (array_sum($nilai_pg) + array_sum($nilai_essay)) / (int) $detail->nilai;
+        $nilaiAkhir = ($nilai * 100);
+
         $data = [
             'halaman'       => 'Detail Ujian',
             'content'       => 'guru/h_ujian/detail_ujian',
             'siswa'         => $this->m_siswa->getDetailSiswa($id_siswa),
-            'detail'        => $this->m_soal->getDetailSoal($id_soal),
-            'essay'         => $this->m_ujian->getDetailHasilUjianKelasEssay($id_soal, $id_siswa),
-            'pilihan_ganda' => $this->m_ujian->getDetailHasilUjianKelasPilihanGanda($id_soal, $id_siswa),
+            'nilai'         => round($nilaiAkhir),
+            'detail'        => $detail,
+            'essay'         => $essay,
+            'pilihan_ganda' => $pilihan_ganda,
             'css'           => '',
             'js'            => 'guru/h_ujian/js/detail_ujian'
         ];
