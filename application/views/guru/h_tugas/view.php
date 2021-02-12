@@ -41,6 +41,7 @@
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Siswa</th>
+                                        <th>Kelas</th>
                                         <th>Judul</th>
                                         <th>Tipe</th>
                                         <th>Aksi</th>
@@ -54,6 +55,7 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $value->siswa ?></td>
+                                            <td><?= $value->kelas ?></td>
                                             <td><?= $value->judul ?></td>
                                             <td><?= $value->tipe ?></td>
                                             <td>

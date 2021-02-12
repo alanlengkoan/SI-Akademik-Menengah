@@ -41,6 +41,7 @@
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Siswa</th>
+                                        <th>Kelas</th>
                                         <th>Nilai Minimum</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -53,6 +54,7 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $value->siswa ?></td>
+                                            <td><?= $value->kelas ?></td>
                                             <td><?= $value->nilai ?></td>
                                             <td>
                                                 <div class="button-icon-btn">
