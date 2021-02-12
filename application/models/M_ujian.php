@@ -28,7 +28,7 @@ class M_ujian extends CI_Model
 
     public function getAllHasilUjian($id_soal)
     {
-        $result = $this->db->query("SELECT soal.id_soal, soal.nilai, hasil_ujian.id_siswa, mapel.nama AS mapel, siswa.nama AS siswa FROM hasil_ujian LEFT JOIN ujian ON hasil_ujian.id_ujian = ujian.id_ujian LEFT JOIN soal ON ujian.id_soal = soal.id_soal LEFT JOIN siswa ON hasil_ujian.id_siswa = siswa.id_siswa LEFT JOIN mapel ON soal.id_mapel = mapel.id_mapel WHERE soal.id_soal = '$id_soal' GROUP BY soal.id_soal, hasil_ujian.id_siswa, mapel.nama")->result();
+        $result = $this->db->query("SELECT soal.id_soal, soal.nilai, hasil_ujian.id_siswa, mapel.nama AS mapel, siswa.nama AS siswa, kelas.nama AS kelas FROM hasil_ujian LEFT JOIN ujian ON hasil_ujian.id_ujian = ujian.id_ujian LEFT JOIN soal ON ujian.id_soal = soal.id_soal LEFT JOIN siswa ON hasil_ujian.id_siswa = siswa.id_siswa LEFT JOIN mapel ON soal.id_mapel = mapel.id_mapel LEFT JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE soal.id_soal = '$id_soal' GROUP BY soal.id_soal, hasil_ujian.id_siswa, mapel.nama")->result();
         return $result;
     }
 
