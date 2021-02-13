@@ -2,10 +2,10 @@
 <html lang="en">
 
 <head>
-    <title>Akademik OL Login</title>
+    <title>E-learning - AKADEMIK - SMTK Mamasa</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/png" href="<?= assets_url() ?>home/images/favicon.ico" />
+    <link rel="icon" type="image/png" href="<?= assets_url() ?>logo.png" />
     <link rel="stylesheet" type="text/css" href="<?= assets_url() ?>home/vendor/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="<?= assets_url() ?>home/fonts/iconic/css/material-design-iconic-font.min.css">
     <link rel="stylesheet" type="text/css" href="<?= assets_url() ?>home/css/util.css">
@@ -13,13 +13,11 @@
 </head>
 
 <body>
-
-
-    <div class="container-login100" style="background-image: url('<?= assets_url() ?>home/images/bg-01.jpg');">
+    <div class="container-login100" style="background-image: url('<?= assets_url() ?>bg-01.jpg');">
         <div class="wrap-login100 p-l-55 p-r-55 p-t-50 p-b-30">
             <?= form_open('auth/check_validation', array('id' => 'form-login', 'class' => 'md-float-material form-material', 'method' => 'post')) ?>
             <span class="login100-form-title p-b-37">
-                <img src="<?= assets_url() ?>home/images/logo.png" />
+                <img src="<?= assets_url() ?>/nama_logo.png" />
                 <br>
                 <br>
                 Login Form
@@ -47,7 +45,7 @@
     <script src="<?= assets_url() ?>home/vendor/bootstrap/js/popper.js"></script>
     <script src="<?= assets_url() ?>home/vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="<?= assets_url() ?>home/js/main.js"></script>
-    
+
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 
