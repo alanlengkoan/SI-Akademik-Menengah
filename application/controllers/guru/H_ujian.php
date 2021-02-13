@@ -39,10 +39,43 @@ class H_ujian extends MY_Controller
     // untuk detail ujian
     public function detail($id)
     {
+        $hasil_ujian = $this->m_ujian->getAllHasilUjian($id);
+        $result = [];
+
+        foreach ($hasil_ujian as $key => $value) {
+            $detail        = $this->m_soal->getDetailSoal($value->id_soal);
+            $essay         = $this->m_ujian->getDetailHasilUjianKelasEssay($value->id_soal, $value->id_siswa);
+            $pilihan_ganda = $this->m_ujian->getDetailHasilUjianKelasPilihanGanda($value->id_soal, $value->id_siswa);
+
+            $nilai_essay = [];
+            $nilai_pg = [];
+            foreach ($pilihan_ganda as $key => $value1) {
+                if ($value1->jawaban_benar === $value1->jawaban) {
+                    $nilai_pg[] = 1;
+                }
+            }
+            foreach ($essay as $key => $value2) {
+                $nilai_essay[] = $value2->nilai;
+            }
+            // untuk ambil nilai
+            $nilai = (array_sum($nilai_pg) + array_sum($nilai_essay)) / (int) $detail->nilai;
+            $nilaiAkhir = ($nilai * 100);
+
+            $result[] = [
+                'id_soal'     => $value->id_soal,
+                'id_siswa'    => $value->id_siswa,
+                'mapel'       => $value->mapel,
+                'siswa'       => $value->siswa,
+                'kelas'       => $value->kelas,
+                'nilai'       => $value->nilai,
+                'nilai_siswa' => round($nilaiAkhir),
+            ];
+        }
+
         $data = [
             'halaman' => 'Hasil Ujian',
             'content' => 'guru/h_ujian/detail',
-            'data'    => $this->m_ujian->getAllHasilUjian($id),
+            'data'    => $result,
             'css'     => '',
             'js'      => ''
         ];
