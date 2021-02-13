@@ -43,6 +43,7 @@
                                         <th>Siswa</th>
                                         <th>Kelas</th>
                                         <th>Nilai Minimum</th>
+                                        <th>Nilai Siswa</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -52,13 +53,14 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->mapel ?></td>
-                                            <td><?= $value->siswa ?></td>
-                                            <td><?= $value->kelas ?></td>
-                                            <td><?= $value->nilai ?></td>
+                                            <td><?= $value['mapel'] ?></td>
+                                            <td><?= $value['siswa'] ?></td>
+                                            <td><?= $value['kelas'] ?></td>
+                                            <td><?= $value['nilai'] ?></td>
+                                            <td><?= $value['nilai_siswa'] ?></td>
                                             <td>
                                                 <div class="button-icon-btn">
-                                                    <a href="<?= guru_url() ?>h_ujian/detail_jawaban?id_soal=<?= $value->id_soal ?>&id_siswa=<?= $value->id_siswa ?>" class="btn btn-success info-icon-notika">Lihat hasil</a>
+                                                    <a href="<?= guru_url() ?>h_ujian/detail_jawaban?id_soal=<?= $value['id_soal'] ?>&id_siswa=<?= $value['id_siswa'] ?>" class="btn btn-success info-icon-notika">Lihat hasil</a>
                                                 </div>
                                             </td>
                                         </tr>
