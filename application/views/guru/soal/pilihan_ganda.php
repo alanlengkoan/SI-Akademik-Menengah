@@ -105,7 +105,7 @@
             </div>
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                 <div class="nk-int-st">
-                    <select class="selectpicker" id="inpjawabanbenar" name="inpjawabanbenar">
+                    <select class="selectpicker" id="inpjawabanbenar" name="inpjawabanbenar" data-dropup-auto="false" data-size="5">
                         <option value="">- Pilih -</option>
                         <option value="1">A</option>
                         <option value="2">B</option>
