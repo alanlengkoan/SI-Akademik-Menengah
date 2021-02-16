@@ -28,7 +28,7 @@ class Materi extends MY_Controller
         $data = [
             'halaman' => 'Materi',
             'content' => 'guru/materi/view',
-            'data'    => $this->m_materi->getAll(),
+            'data'    => $this->m_materi->getAll($this->users->id_users),
             'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
             'css'     => '',
             'js'      => 'guru/materi/js/view'

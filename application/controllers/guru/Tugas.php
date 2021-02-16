@@ -28,7 +28,7 @@ class Tugas extends MY_Controller
         $data = [
             'halaman' => 'Tugas',
             'content' => 'guru/tugas/view',
-            'data'    => $this->m_tugas->getAll(),
+            'data'    => $this->m_tugas->getAll($this->users->id_users),
             'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
             'css'     => '',
             'js'      => 'guru/tugas/js/view'

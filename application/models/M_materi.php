@@ -2,9 +2,9 @@
 
 class M_materi extends CI_Model
 {
-    public function getAll()
+    public function getAll($id)
     {
-        $result = $this->db->query("SELECT materi.id_materi, materi.id_guru, materi.judul, materi.tipe, materi.status, mapel.nama FROM materi LEFT JOIN mapel ON materi.id_mapel = mapel.id_mapel")->result();
+        $result = $this->db->query("SELECT materi.id_materi, materi.id_guru, materi.judul, materi.tipe, materi.status, mapel.nama FROM materi LEFT JOIN mapel ON materi.id_mapel = mapel.id_mapel WHERE materi.id_guru = '$id'")->result();
         return $result;
     }
 
