@@ -39,6 +39,7 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>NIP</th>
                                         <th>Nama</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Jenis Kelamin</th>
@@ -50,6 +51,7 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
+                                            <td><?= $value->nip ?></td>
                                             <td><?= $value->guru ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= ($value->jen_kel === 'L' ? 'Laki - laki' : 'Perempuan') ?></td>
