@@ -9,6 +9,9 @@ class Dashboard extends MY_Controller
 
         // untuk mengecek status login
         checking_session($this->session->userdata('username'));
+
+        // untuk load model
+        $this->load->model('m_pengumuman');
 	}
 
     public function index()
@@ -16,6 +19,7 @@ class Dashboard extends MY_Controller
         $data = [
             'halaman' => 'Dashboard Siswa',
             'content' => 'siswa/dashboard/view',
+            'data'    => $this->m_pengumuman->getWhereRole('siswa'),
             'css'     => '',
             'js'      => ''
         ];

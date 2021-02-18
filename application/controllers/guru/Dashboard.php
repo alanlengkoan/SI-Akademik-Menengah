@@ -9,14 +9,18 @@ class Dashboard extends MY_Controller
 
         // untuk mengecek status login
         checking_session($this->session->userdata('username'));
+
+        // untuk load model
+        $this->load->model('m_pengumuman');
 	}
 
     public function index()
     {
         $data = [
             'halaman' => 'Dashboard Guru',
-            'css'     => '',
             'content' => 'guru/dashboard/view',
+            'data'    => $this->m_pengumuman->getWhereRole('guru'),
+            'css'     => '',
             'js'      => ''
         ];
         // untuk load view
