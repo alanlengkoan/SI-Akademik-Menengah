@@ -34,9 +34,28 @@
                     <div class="bsc-tbl">
                         <?= $halaman ?>
                         <hr>
+                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id necessitatibus exercitationem fugiat maiores nam sapiente eaque nostrum rerum repellat neque, laboriosam sit magnam veniam, dignissimos quis animi totam? Assumenda, asperiores.
                     </div>
                 </div>
             </div>
+        </div>
+        <div class="row">
+            <?php foreach ($data as $key => $value) { ?>
+                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+                    <div class="blog-inner-list notika-shadow mg-t-30 tb-res-ds-n dk-res-ds">
+                        <div class="blog-img">
+                            <img src="<?= $value->gambar !== null ? upload_url('gambar') . '' . $value->gambar : '//placehold.it/790'  ?>" alt="<?= $value->judul ?>">
+                        </div>
+                        <div class="blog-ctn">
+                            <div class="blog-hd-sw">
+                                <h2><?= $value->judul ?></h2>
+                                By Admin on <?= $value->tgl_post ?>
+                            </div>
+                            <p><?= $value->isi ?></p>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>
