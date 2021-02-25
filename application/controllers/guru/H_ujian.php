@@ -28,7 +28,7 @@ class H_ujian extends MY_Controller
         $data = [
             'halaman' => 'Hasil Ujian',
             'content' => 'guru/h_ujian/view',
-            'data'    => $this->m_soal->getAll(),
+            'data'    => $this->m_soal->getAll($this->users->id_users),
             'css'     => '',
             'js'      => ''
         ];

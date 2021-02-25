@@ -22,9 +22,9 @@ class M_tugas extends CI_Model
 
     // untuk hasil tugas
 
-    public function getAllHasilTugas()
+    public function getAllHasilTugas($id)
     {
-        $result = $this->db->query("SELECT hasil_tugas.id_hasil_tugas, hasil_tugas.id_tugas, siswa.id_siswa, mapel.nama AS mapel, siswa.nama AS siswa, tugas.judul, tugas.tipe, kelas.nama AS kelas FROM hasil_tugas LEFT JOIN tugas ON hasil_tugas.id_tugas = tugas.id_tugas LEFT JOIN siswa ON hasil_tugas.id_siswa = siswa.id_siswa LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel LEFT JOIN kelas ON siswa.id_kelas = kelas.id_kelas")->result();
+        $result = $this->db->query("SELECT hasil_tugas.id_hasil_tugas, hasil_tugas.id_tugas, siswa.id_siswa, mapel.nama AS mapel, siswa.nama AS siswa, tugas.judul, tugas.tipe, kelas.nama AS kelas FROM hasil_tugas LEFT JOIN tugas ON hasil_tugas.id_tugas = tugas.id_tugas LEFT JOIN siswa ON hasil_tugas.id_siswa = siswa.id_siswa LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel LEFT JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE tugas.id_guru = '$id'")->result();
         return $result;
     }
 
