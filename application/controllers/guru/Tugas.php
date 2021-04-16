@@ -43,14 +43,14 @@ class Tugas extends MY_Controller
         $post   = $this->input->post(NULL, TRUE);
         $result = $this->crud->gda('tugas', ['id_tugas' => $post['id']]);
         $data = [
-            'id_tugas' => $result['id_tugas'],
-            'id_mapel' => $result['id_mapel'],
-            'judul'    => $result['judul'],
-            'tipe'     => $result['tipe'],
-            'file'     => $result['file'],
-            'start'    => date("d-m-Y", strtotime($result['start'])),
-            'finish'   => date("d-m-Y", strtotime($result['finish'])),
-            'mapel'    => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
+            'id_tugas'          => $result['id_tugas'],
+            'id_penugasan_guru' => $result['id_penugasan_guru'],
+            'judul'             => $result['judul'],
+            'tipe'              => $result['tipe'],
+            'file'              => $result['file'],
+            'start'             => date("d-m-Y", strtotime($result['start'])),
+            'finish'            => date("d-m-Y", strtotime($result['finish'])),
+            'mapel'             => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
         ];
         // untuk load view
         $this->load->view('guru/tugas/upd', $data);
@@ -88,14 +88,13 @@ class Tugas extends MY_Controller
             $finish = date("Y-m-d", strtotime($post['inpfinish']));  
 
             $data = [
-                'id_tugas' => acak_id('tugas', 'id_tugas'),
-                'id_guru'  => $this->users->id_users,
-                'id_mapel' => $post['inpmapel'],
-                'judul'    => $post['inpjudul'],
-                'tipe'     => $post['inptipe'],
-                'file'     => $detailFile['file_name'],
-                'start'    => $start,
-                'finish'   => $finish,
+                'id_tugas'          => acak_id('tugas', 'id_tugas'),
+                'id_penugasan_guru' => $post['inppenugasan'],
+                'judul'             => $post['inpjudul'],
+                'tipe'              => $post['inptipe'],
+                'file'              => $detailFile['file_name'],
+                'start'             => $start,
+                'finish'            => $finish,
             ];
             $this->db->trans_start();
             $this->crud->i('tugas', $data);
@@ -153,13 +152,12 @@ class Tugas extends MY_Controller
                 }
 
                 $data = [
-                    'id_guru'  => $this->users->id_users,
-                    'id_mapel' => $post['inpmapel'],
-                    'judul'    => $post['inpjudul'],
-                    'tipe'     => $post['inptipe'],
-                    'file'     => $detailFile['file_name'],
-                    'start'    => $start,
-                    'finish'   => $finish,
+                    'id_penugasan_guru' => $post['inppenugasan'],
+                    'judul'             => $post['inpjudul'],
+                    'tipe'              => $post['inptipe'],
+                    'file'              => $detailFile['file_name'],
+                    'start'             => $start,
+                    'finish'            => $finish,
                 ];
                 $this->db->trans_start();
                 $this->crud->u('tugas', $data, ['id_tugas' => $post['inpid']]);
@@ -172,12 +170,11 @@ class Tugas extends MY_Controller
             }
         } else {
             $data = [
-                'id_guru'  => $this->users->id_users,
-                'id_mapel' => $post['inpmapel'],
-                'judul'    => $post['inpjudul'],
-                'tipe'     => $post['inptipe'],
-                'start'    => $start,
-                'finish'   => $finish,
+                'id_penugasan_guru' => $post['inppenugasan'],
+                'judul'             => $post['inpjudul'],
+                'tipe'              => $post['inptipe'],
+                'start'             => $start,
+                'finish'            => $finish,
             ];
             $this->db->trans_start();
             $this->crud->u('tugas', $data, ['id_tugas' => $post['inpid']]);

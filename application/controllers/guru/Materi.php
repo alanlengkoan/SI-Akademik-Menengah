@@ -68,12 +68,12 @@ class Materi extends MY_Controller
         $post   = $this->input->post(NULL, TRUE);
         $result = $this->crud->gda('materi', ['id_materi' => $post['id']]);
         $data = [
-            'id_materi' => $result['id_materi'],
-            'id_mapel'  => $result['id_mapel'],
-            'judul'     => $result['judul'],
-            'tipe'      => $result['tipe'],
-            'file'      => $result['file'],
-            'mapel'     => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
+            'id_materi'         => $result['id_materi'],
+            'id_penugasan_guru' => $result['id_penugasan_guru'],
+            'judul'             => $result['judul'],
+            'tipe'              => $result['tipe'],
+            'file'              => $result['file'],
+            'mapel'             => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
         ];
         // untuk load view
         $this->load->view('guru/materi/upd', $data);
@@ -149,12 +149,11 @@ class Materi extends MY_Controller
             $detailFile = $this->upload->data();
 
             $data = [
-                'id_materi' => acak_id('materi', 'id_materi'),
-                'id_guru'   => $this->users->id_users,
-                'id_mapel'  => $post['inpmapel'],
-                'judul'     => $post['inpjudul'],
-                'tipe'      => $post['inptipe'],
-                'file'      => $detailFile['file_name'],
+                'id_materi'         => acak_id('materi', 'id_materi'),
+                'id_penugasan_guru' => $post['inppenugasan'],
+                'judul'             => $post['inpjudul'],
+                'tipe'              => $post['inptipe'],
+                'file'              => $detailFile['file_name'],
             ];
             $this->db->trans_start();
             $this->crud->i('materi', $data);
@@ -209,11 +208,10 @@ class Materi extends MY_Controller
                 }
 
                 $data = [
-                    'id_guru'   => $this->users->id_users,
-                    'id_mapel'  => $post['inpmapel'],
-                    'judul'     => $post['inpjudul'],
-                    'tipe'      => $post['inptipe'],
-                    'file'      => $detailFile['file_name'],
+                    'id_penugasan_guru' => $post['inppenugasan'],
+                    'judul'             => $post['inpjudul'],
+                    'tipe'              => $post['inptipe'],
+                    'file'              => $detailFile['file_name'],
                 ];
                 $this->db->trans_start();
                 $this->crud->u('materi', $data, ['id_materi' => $post['inpid']]);
@@ -226,10 +224,9 @@ class Materi extends MY_Controller
             }
         } else {
             $data = [
-                'id_guru'   => $this->users->id_users,
-                'id_mapel'  => $post['inpmapel'],
-                'judul'     => $post['inpjudul'],
-                'tipe'      => $post['inptipe'],
+                'id_penugasan_guru' => $post['inppenugasan'],
+                'judul'             => $post['inpjudul'],
+                'tipe'              => $post['inptipe'],
             ];
             $this->db->trans_start();
             $this->crud->u('materi', $data, ['id_materi' => $post['inpid']]);
