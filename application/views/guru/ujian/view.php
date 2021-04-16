@@ -42,6 +42,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
+                                        <th>Kelas</th>
                                         <th>Jenis Ujian</th>
                                         <th>Waktu Pengerjaan</th>
                                         <th>Nilai Minimum</th>
@@ -55,7 +56,8 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->nama ?></td>
+                                            <td><?= $value->mapel ?></td>
+                                            <td><?= $value->kelas ?></td>
                                             <td><?= $value->jenis_ujian ?></td>
                                             <td><?= $value->time ?></td>
                                             <td><?= $value->nilai ?></td>
@@ -99,10 +101,10 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <select class="selectpicker" id="inpmapel" name="inpmapel">
+                                        <select class="selectpicker" id="inppenugasan" name="inppenugasan">
                                             <option value="">- Pilih -</option>
                                             <?php foreach ($mapel as $key => $value) { ?>
-                                                <option value="<?= $value->id_mapel ?>"><?= $value->nama ?></option>
+                                                <option value="<?= $value->id_penugasan_guru ?>">(<?= $value->kelas ?>) <?= $value->mapel ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
