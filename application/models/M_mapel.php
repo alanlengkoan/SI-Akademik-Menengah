@@ -10,7 +10,7 @@ class M_mapel extends CI_Model
 
     public function getWhereMapelGuru($id)
     {
-        $result = $this->db->query("SELECT penugasan_guru.id_mapel, mapel.nama FROM penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel WHERE id_guru = '$id' GROUP BY id_mapel")->result();
+        $result = $this->db->query("SELECT penugasan_guru.id_penugasan_guru, penugasan_guru.id_mapel, mapel.nama AS mapel, kelas.nama AS kelas FROM penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE penugasan_guru.id_guru = '$id'")->result();
         return $result;
     }
 }

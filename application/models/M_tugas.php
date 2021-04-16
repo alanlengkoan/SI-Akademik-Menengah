@@ -4,7 +4,7 @@ class M_tugas extends CI_Model
 {
     public function getAll($id)
     {
-        $result = $this->db->query("SELECT tugas.id_tugas, tugas.id_guru, tugas.judul, tugas.tipe, DATEDIFF(tugas.finish, tugas.`start`) AS waktu, mapel.nama FROM tugas LEFT JOIN mapel ON tugas.id_mapel = mapel.id_mapel WHERE tugas.id_guru = '$id'")->result();
+        $result = $this->db->query("SELECT tugas.id_tugas, tugas.judul, tugas.tipe, DATEDIFF( tugas.finish, tugas.`start` ) AS waktu, mapel.nama AS mapel, kelas.nama AS kelas FROM tugas LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = tugas.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE penugasan_guru.id_guru = '$id'")->result();
         return $result;
     }
 

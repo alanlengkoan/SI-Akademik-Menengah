@@ -4,7 +4,7 @@ class M_ujian extends CI_Model
 {
     public function getAll($id)
     {
-        $result = $this->db->query("SELECT soal.id_soal, ujian.id_ujian, ujian.jenis, mapel.nama, ujian_jenis.jenis AS jenis_ujian, CASE WHEN ( SELECT soal FROM ujian_essay WHERE id_ujian = ujian.id_ujian ) IS NOT NULL THEN ( SELECT soal FROM ujian_essay WHERE id_ujian = ujian.id_ujian ) ELSE ( SELECT soal FROM ujian_pilihan_ganda WHERE id_ujian = ujian.id_ujian ) END AS soal FROM ujian LEFT JOIN soal ON ujian.id_soal = soal.id_soal LEFT JOIN mapel ON soal.id_mapel = mapel.id_mapel LEFT JOIN ujian_jenis ON soal.id_ujian_jenis = ujian_jenis.id_ujian_jenis WHERE ujian.id_soal = '$id'")->result();
+        $result = $this->db->query("SELECT soal.id_soal, ujian.id_ujian, ujian.jenis, mapel.nama, ujian_jenis.jenis AS jenis_ujian, CASE WHEN ( SELECT soal FROM ujian_essay WHERE id_ujian = ujian.id_ujian ) IS NOT NULL THEN ( SELECT soal FROM ujian_essay WHERE id_ujian = ujian.id_ujian ) ELSE ( SELECT soal FROM ujian_pilihan_ganda WHERE id_ujian = ujian.id_ujian ) END AS soal FROM ujian LEFT JOIN soal ON ujian.id_soal = soal.id_soal LEFT JOIN ujian_jenis ON soal.id_ujian_jenis = ujian_jenis.id_ujian_jenis LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = soal.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE ujian.id_soal = '$id'")->result();
         return $result;
     }
 
