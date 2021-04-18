@@ -40,7 +40,7 @@
                                     </div>
                                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                         <div class="nk-int-st">
-                                            <select class="selectpicker" id="inpusers" name="inpusers">
+                                            <select class="selectpicker" id="inpusers" name="inpusers" data-dropup-auto="false">
                                                 <option value="">- Pilih -</option>
                                             </select>
                                         </div>
