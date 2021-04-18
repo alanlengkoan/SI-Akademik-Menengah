@@ -40,6 +40,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
+                                        <th>Kelas</th>
                                         <th>Jenis Ujian</th>
                                         <th>Aksi</th>
                                     </tr>
@@ -50,7 +51,8 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
-                                            <td><?= $value->nama ?></td>
+                                            <td><?= $value->mapel ?></td>
+                                            <td><?= $value->kelas ?></td>
                                             <td><?= $value->jenis_ujian ?></td>
                                             <td>
                                                 <div class="button-icon-btn">

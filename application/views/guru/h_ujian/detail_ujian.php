@@ -43,7 +43,7 @@
                                         </div>
                                         <div class="col-lg-8 col-md-7 col-sm-7 col-xs-12">
                                             <div class="nk-int-st">
-                                                <?= $detail->nama ?>
+                                                <?= $detail->mapel ?>
                                             </div>
                                         </div>
                                     </div>

@@ -205,7 +205,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <select class="selectpicker" id="inpkelas" name="inpkelas">
+                                        <select class="selectpicker" id="inpkelas" name="inpkelas" data-dropup-auto="false" data-size="<?= count($kelas) ?>">
                                             <option value="">- Pilih -</option>
                                             <?php foreach ($kelas as $key => $value) { ?>
                                                 <option value="<?= $value->id_kelas ?>"><?= $value->nama ?></option>
