@@ -115,7 +115,7 @@
                                 <i class="fa fa-archive"></i> Master
                             </a>
                         </li>
-                        <li class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'siswa' || $this->uri->segment(2) == 'wakel' || $this->uri->segment(2) == 'penugasan_guru' || $this->uri->segment(2) == 'pengumuman' || $this->uri->segment(2) == 'users' ? 'active' : '') ?>">
+                        <li class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'siswa' || $this->uri->segment(2) == 'wakel' || $this->uri->segment(2) == 'penugasan_guru' || $this->uri->segment(2) == 'jadwal' || $this->uri->segment(2) == 'pengumuman' || $this->uri->segment(2) == 'users' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#pustaka">
                                 <i class="fa fa-briefcase"></i> Pustaka
                             </a>
@@ -142,12 +142,13 @@
                                 <li><a href="<?= admin_url() ?>jenis_ujian">Jenis Ujian</a></li>
                             </ul>
                         </div>
-                        <div id="pustaka" class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'siswa' || $this->uri->segment(2) == 'wakel' || $this->uri->segment(2) == 'penugasan_guru' || $this->uri->segment(2) == 'pengumuman' || $this->uri->segment(2) == 'users' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="pustaka" class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'siswa' || $this->uri->segment(2) == 'wakel' || $this->uri->segment(2) == 'penugasan_guru' || $this->uri->segment(2) == 'jadwal' || $this->uri->segment(2) == 'pengumuman' || $this->uri->segment(2) == 'users' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= admin_url() ?>guru">Guru</a></li>
                                 <li><a href="<?= admin_url() ?>siswa">Siswa</a></li>
                                 <li><a href="<?= admin_url() ?>wakel">Wali Kelas</a></li>
                                 <li><a href="<?= admin_url() ?>penugasan_guru">Penugasan Guru</a></li>
+                                <li><a href="<?= admin_url() ?>jadwal">Jadwal</a></li>
                                 <li><a href="<?= admin_url() ?>pengumuman">Pengumuman</a></li>
                                 <li><a href="<?= admin_url() ?>users">Users</a></li>
                             </ul>
