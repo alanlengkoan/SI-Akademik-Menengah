@@ -432,3 +432,29 @@ if (!function_exists('getExtension')) {
         return $extension ? $extension : false;
     }
 }
+
+if (!function_exists('getAllDaysInAMonth')) {
+    function getAllDaysInAMonth($year, $month, $day = 'Monday', $daysError = 3)
+    {
+        $dateString = 'first ' . $day . ' of ' . $year . '-' . $month;
+
+        if (!strtotime($dateString)) {
+            throw new \Exception('"' . $dateString . '" is not a valid strtotime');
+        }
+
+        $startDay = new \DateTime($dateString);
+
+        if ($startDay->format('j') > $daysError) {
+            $startDay->modify('- 7 days');
+        }
+
+        $days = array();
+
+        while ($startDay->format('Y-m') <= $year . '-' . str_pad($month, 2, 0, STR_PAD_LEFT)) {
+            $days[] = clone ($startDay);
+            $startDay->modify('+ 7 days');
+        }
+
+        return $days;
+    }
+}
