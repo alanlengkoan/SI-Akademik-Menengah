@@ -10,13 +10,20 @@
                 success: function(response) {
                     var calendarEl = document.getElementById('calendar');
                     var calendar = new FullCalendar.Calendar(calendarEl, {
-                        titleFormat: {
-                            month: 'long',
-                            year: 'numeric',
-                            day: 'numeric',
-                            weekday: 'long'
+                        headerToolbar: {
+                            left: 'dayGridMonth,timeGridWeek,timeGridDay',
+                            center: 'title',
+                            right: 'today,prevYear,prev,next,nextYear'
+                        },
+                        footerToolbar: {
+                            left: '',
+                            center: '',
+                            right: 'prev,next'
                         },
                         eventSources: [response],
+                        eventClick: function(info) {
+                            swal('Info!', info.event.title, 'info');
+                        }
                     });
                     calendar.render();
                 },

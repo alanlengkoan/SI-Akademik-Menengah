@@ -47,9 +47,8 @@ class Dashboard extends MY_Controller
         foreach ($data as $key => $value) {
             foreach ($value as $day) {
                 $calender[] = [
-                    'title'     => "{$get[$key]->mapel} - {$get[$key]->kelas} Jam {$get[$key]->jam}",
-                    'start'     => $day->format('Y-m-d'),
-                    'className' => "scheduler_basic_event"
+                    'title' => "Mata Pelajaran: {$get[$key]->mapel} Kelas: {$get[$key]->kelas} Jam: {$get[$key]->jam}",
+                    'start' => $day->format('Y-m-d'),
                 ];
             }
         }
