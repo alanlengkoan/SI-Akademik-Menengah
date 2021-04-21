@@ -40,10 +40,12 @@ class Dashboard extends MY_Controller
         $bulan = date('m');
         $get   = $this->m_jadwal->getJadwalGuru($this->users->id_users);
 
+        $data = [];
         foreach ($get as $row) {
             $data[] = getAllDaysInAMonth($tahun, $bulan, $hari[$row->hari]);
         }
 
+        $calender = [];
         foreach ($data as $key => $value) {
             foreach ($value as $day) {
                 $calender[] = [
