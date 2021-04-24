@@ -13,7 +13,7 @@
                         headerToolbar: {
                             left: 'dayGridMonth,timeGridWeek,timeGridDay',
                             center: 'title',
-                            right: 'today,prevYear,prev,next,nextYear'
+                            right: 'today,prevYear,prev,next,nextYear,'
                         },
                         footerToolbar: {
                             left: '',
@@ -23,7 +23,7 @@
                         eventSources: [response],
                         eventClick: function(info) {
                             swal('Info!', info.event.title, 'info');
-                        }
+                        },
                     });
                     calendar.render();
                 },

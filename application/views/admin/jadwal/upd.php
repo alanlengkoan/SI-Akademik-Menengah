@@ -43,11 +43,25 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <label class="hrzn-fm">Jam</label>
+                    <label class="hrzn-fm">Jam Mulai</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                     <div class="nk-int-st">
-                        <input type="time" class="form-control input-sm" name="inpjam" id="inpjam" value="<?= $jam ?>" />
+                        <input type="time" class="form-control input-sm" name="inpjammulai" id="inpjammulai" value="<?= $jam_mulai ?>" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-example-int form-horizental">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label class="hrzn-fm">Jam Selesai</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="nk-int-st">
+                        <input type="time" class="form-control input-sm" name="inpjamselesai" id="inpjamselesai" value="<?= $jam_selesai ?>" />
                     </div>
                 </div>
             </div>

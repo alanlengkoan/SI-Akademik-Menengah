@@ -42,7 +42,8 @@ class Jadwal extends MY_Controller
             'id'                => $result['id_jadwal'],
             'id_penugasan_guru' => $result['id_penugasan_guru'],
             'id_hari'           => $result['hari'],
-            'jam'               => date("H:i", strtotime($result['jam'])),
+            'jam_mulai'         => date("H:i", strtotime($result['jam_mulai'])),
+            'jam_selesai'       => date("H:i", strtotime($result['jam_selesai'])),
             'penugasan_guru'    => $this->m_penugasan_guru->getAll(),
             'hari'              => [2 => 'Senin', 3 => 'Selasa', 4 => 'Rabu', 5 => 'Kamis', 6 => 'Jumat', 7 => 'Sabtu'],
         ];
@@ -59,7 +60,8 @@ class Jadwal extends MY_Controller
             'id_jadwal'         => acak_id('jadwal', 'id_jadwal'),
             'id_penugasan_guru' => $post['inppenugasanguru'],
             'hari'              => $post['inphari'],
-            'jam'               => $post['inpjam'],
+            'jam_mulai'         => $post['inpjammulai'],
+            'jam_selesai'       => $post['inpjamselesai'],
         ];
         $this->db->trans_start();
         $this->crud->i('jadwal', $data);
@@ -81,7 +83,8 @@ class Jadwal extends MY_Controller
         $data = [
             'id_penugasan_guru' => $post['inppenugasanguru'],
             'hari'              => $post['inphari'],
-            'jam'               => $post['inpjam'],
+            'jam_mulai'         => $post['inpjammulai'],
+            'jam_selesai'       => $post['inpjamselesai'],
         ];
         $this->db->trans_start();
         $this->crud->u('jadwal', $data, ['id_jadwal' => $post['inpid']]);

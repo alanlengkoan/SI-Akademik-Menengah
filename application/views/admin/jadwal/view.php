@@ -45,7 +45,8 @@
                                         <th>Kelas</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Hari</th>
-                                        <th>Jam</th>
+                                        <th>Jam Mulai</th>
+                                        <th>Jam Selesai</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -60,7 +61,8 @@
                                             <td><?= $value->kelas ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $hari[$value->hari] ?></td>
-                                            <td><?= $value->jam ?></td>
+                                            <td><?= $value->jam_mulai ?></td>
+                                            <td><?= $value->jam_selesai ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
                                                     <button type="button" id="btn-upd" data-id="<?= $value->id_jadwal ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
@@ -130,11 +132,25 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Jam</label>
+                                    <label class="hrzn-fm">Jam Mulai</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="time" class="form-control input-sm" name="inpjam" id="inpjam" />
+                                        <input type="time" class="form-control input-sm" name="inpjammulai" id="inpjammulai" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Jam Selesai</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="time" class="form-control input-sm" name="inpjamselesai" id="inpjamselesai" />
                                     </div>
                                 </div>
                             </div>

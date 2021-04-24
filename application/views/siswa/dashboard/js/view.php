@@ -22,7 +22,7 @@
                         },
                         eventSources: [response],
                         eventClick: function(info) {
-                            swal(info.event.title);
+                            swal('Info!', info.event.title, 'info');
                         }
                     });
                     calendar.render();
