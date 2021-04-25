@@ -24,7 +24,7 @@ class M_tugas extends CI_Model
 
     public function getKelasSiswa($id)
     {
-        $result = $this->db->query("SELECT penugasan_guru.id_penugasan_guru, penugasan_guru.id_guru, penugasan_guru.id_kelas, kelas.nama AS kelas, mapel.nama AS mapel, (SELECT COUNT(*) FROM hasil_tugas WHERE id_tugas = tugas.id_tugas) AS jumlah_siswa FROM penugasan_guru LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN tugas ON penugasan_guru.id_penugasan_guru = tugas.id_penugasan_guru WHERE penugasan_guru.id_guru = '$id'")->result();
+        $result = $this->db->query("SELECT penugasan_guru.id_guru, penugasan_guru.id_kelas, kelas.nama AS kelas, mapel.nama AS mapel, SUM((SELECT COUNT(*) FROM hasil_tugas WHERE id_tugas = tugas.id_tugas )) AS jumlah_siswa FROM penugasan_guru LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN tugas ON penugasan_guru.id_penugasan_guru = tugas.id_penugasan_guru WHERE penugasan_guru.id_guru = '$id' GROUP BY penugasan_guru.id_guru, penugasan_guru.id_kelas, kelas.nama, mapel.nama")->result();
         return $result;
     }
 
