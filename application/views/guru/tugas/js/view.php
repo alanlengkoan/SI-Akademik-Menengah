@@ -82,9 +82,29 @@
                         $('#get-form-upd #pekerjaan_sekolah').removeAttr('style');
                         $('#get-form-upd #pekerjaan_rumah').attr('style', 'display: none;');
                     }
-                    
+
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>');
+                }
+            });
+        });
+    }();
+
+    // untuk status tugas
+    var untukTugas = function() {
+        $(document).on('click', '.btn-tugas', function() {
+            var ini = $(this);
+
+            $.ajax({
+                type: "post",
+                url: "<?= guru_url() ?>tugas/upd_tugas",
+                dataType: 'json',
+                data: {
+                    id: ini.data('id'),
+                    value: ini.data('value')
+                },
+                success: function(response) {
+                    $.notify(response.title, response.type);
                 }
             });
         });

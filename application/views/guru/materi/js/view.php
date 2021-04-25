@@ -85,6 +85,26 @@
         });
     }();
 
+    // untuk status materi
+    var untukMateri = function() {
+        $(document).on('click', '.btn-materi', function() {
+            var ini = $(this);
+
+            $.ajax({
+                type: "post",
+                url: "<?= guru_url() ?>materi/upd_materi",
+                dataType: 'json',
+                data: {
+                    id: ini.data('id'),
+                    value: ini.data('value')
+                },
+                success: function(response) {
+                    $.notify(response.title, response.type);
+                }
+            });
+        });
+    }();
+
     // untuk ubah data
     var untukUbahData = function() {
         $(document).on('submit', '#form-upd', function(e) {

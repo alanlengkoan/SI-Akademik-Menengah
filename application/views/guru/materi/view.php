@@ -46,6 +46,7 @@
                                         <th>Judul</th>
                                         <th>Tipe</th>
                                         <th>Chat</th>
+                                        <th>Status Materi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -63,6 +64,12 @@
                                                 <div class="nk-toggle-switch">
                                                     <input class="btn-chat" data-id="<?= $value->id_materi ?>" data-value="<?= $value->status ?>" id="ts<?= $value->id_materi ?>" type="checkbox" hidden="hidden" <?= ($value->status === '1' ? 'checked' : '') ?>>
                                                     <label for="ts<?= $value->id_materi ?>" class="ts-helper"></label>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="nk-toggle-switch">
+                                                    <input class="btn-materi" data-id="<?= $value->id_materi ?>" data-value="<?= $value->status_materi ?>" id="tss<?= $value->id_materi ?>" type="checkbox" hidden="hidden" <?= ($value->status_materi === '1' ? 'checked' : '') ?>>
+                                                    <label for="tss<?= $value->id_materi ?>" class="ts-helper"></label>
                                                 </div>
                                             </td>
                                             <td>

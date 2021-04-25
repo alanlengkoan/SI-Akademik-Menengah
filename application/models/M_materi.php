@@ -4,13 +4,13 @@ class M_materi extends CI_Model
 {
     public function getAll($id)
     {
-        $result = $this->db->query("SELECT materi.id_materi, materi.id_penugasan_guru, materi.judul, materi.tipe, materi.status, mapel.nama AS mapel, kelas.nama AS kelas FROM materi LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE penugasan_guru.id_guru = '$id'")->result();
+        $result = $this->db->query("SELECT materi.id_materi, materi.id_penugasan_guru, materi.judul, materi.tipe, materi.status, materi.status_materi, mapel.nama AS mapel, kelas.nama AS kelas FROM materi LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE penugasan_guru.id_guru = '$id'")->result();
         return $result;
     }
 
     public function getMateriKelas($kelas)
     {
-        $result = $this->db->query("SELECT penugasan_guru.id_penugasan_guru, penugasan_guru.id_guru, penugasan_guru.id_mapel, penugasan_guru.id_kelas, guru.nama AS guru, mapel.nama AS mapel, materi.id_materi, materi.judul, materi.tipe FROM penugasan_guru RIGHT JOIN materi ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel WHERE penugasan_guru.id_kelas = '$kelas' GROUP BY penugasan_guru.id_guru, penugasan_guru.id_mapel, materi.id_materi, materi.judul, materi.tipe, mapel.nama")->result();
+        $result = $this->db->query("SELECT penugasan_guru.id_penugasan_guru, penugasan_guru.id_guru, penugasan_guru.id_mapel, penugasan_guru.id_kelas, guru.nama AS guru, mapel.nama AS mapel, materi.id_materi, materi.judul, materi.tipe FROM penugasan_guru RIGHT JOIN materi ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel WHERE penugasan_guru.id_kelas = '$kelas' AND materi.status_materi = '1' GROUP BY penugasan_guru.id_guru, penugasan_guru.id_mapel, materi.id_materi, materi.judul, materi.tipe, mapel.nama")->result();
         return $result;
     }
 

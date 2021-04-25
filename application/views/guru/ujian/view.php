@@ -48,6 +48,7 @@
                                         <th>Waktu Pengerjaan</th>
                                         <th>Nilai Minimum</th>
                                         <th>Soal</th>
+                                        <th>Status Soal</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -66,6 +67,12 @@
                                             <td>
                                                 <div class="button-icon-btn">
                                                     <a href="<?= guru_url() ?>soal/add/<?= $value->id_soal ?>" class="btn btn-success info-icon-notika">Tambahkan Soal</a>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="nk-toggle-switch">
+                                                    <input class="btn-soal" data-id="<?= $value->id_soal ?>" data-value="<?= $value->status_soal ?>" id="tss<?= $value->id_soal ?>" type="checkbox" hidden="hidden" <?= ($value->status_soal === '1' ? 'checked' : '') ?>>
+                                                    <label for="tss<?= $value->id_soal ?>" class="ts-helper"></label>
                                                 </div>
                                             </td>
                                             <td>

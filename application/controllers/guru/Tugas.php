@@ -61,6 +61,26 @@ class Tugas extends MY_Controller
         $this->load->view('guru/tugas/upd', $data);
     }
 
+    // untuk proses update tugas
+    public function upd_tugas()
+    {
+        $post   = $this->input->post(NULL, TRUE);
+        $status = ($post['value'] === '1' ? '0' : '1');
+        $data = [
+            'status_tugas' => $status,
+        ];
+        $this->db->trans_start();
+        $this->crud->u('tugas', $data, ['id_tugas' => $post['id']]);
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk response json
+        $this->_response($response);
+    }
+
     // untuk proses tambah data
     public function process_add()
     {

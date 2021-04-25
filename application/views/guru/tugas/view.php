@@ -46,6 +46,7 @@
                                         <th>Judul</th>
                                         <th>Tipe</th>
                                         <th>Jenis Tugas</th>
+                                        <th>Status Tugas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -60,6 +61,12 @@
                                             <td><?= $value->judul ?></td>
                                             <td><?= $value->tipe ?></td>
                                             <td><?= ucfirst(str_replace('_', ' ', $value->jenis_tugas)) ?></td>
+                                            <td>
+                                                <div class="nk-toggle-switch">
+                                                    <input class="btn-tugas" data-id="<?= $value->id_tugas ?>" data-value="<?= $value->status_tugas ?>" id="tss<?= $value->id_tugas ?>" type="checkbox" hidden="hidden" <?= ($value->status_tugas === '1' ? 'checked' : '') ?>>
+                                                    <label for="tss<?= $value->id_tugas ?>" class="ts-helper"></label>
+                                                </div>
+                                            </td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
                                                     <button type="button" id="btn-upd" data-id="<?= $value->id_tugas ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
@@ -214,7 +221,7 @@
                                             <select class="selectpicker" name="inpmateri" id="inpmateri">
                                                 <option value="">- Pilih -</option>
                                                 <?php foreach ($materi as $key => $value) { ?>
-                                                    <option value="<?= $value->id_materi ?>">(<?= $value->kelas ?>) <?= $value->mapel ?> <?= $value->judul ?></option>
+                                                    <option value="<?= $value->id_tugas ?>">(<?= $value->kelas ?>) <?= $value->mapel ?> <?= $value->judul ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>

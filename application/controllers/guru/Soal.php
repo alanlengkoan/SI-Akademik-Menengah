@@ -56,6 +56,26 @@ class Soal extends MY_Controller
         $this->load->view('guru/soal/upd', $data);
     }
 
+    // untuk proses update soal
+    public function upd_soal()
+    {
+        $post   = $this->input->post(NULL, TRUE);
+        $status = ($post['value'] === '1' ? '0' : '1');
+        $data = [
+            'status_soal' => $status,
+        ];
+        $this->db->trans_start();
+        $this->crud->u('soal', $data, ['id_soal' => $post['id']]);
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk response json
+        $this->_response($response);
+    }
+
     // untuk ambil jenis ujian
     public function get_jenis_ujian()
     {

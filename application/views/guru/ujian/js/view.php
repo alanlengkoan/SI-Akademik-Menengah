@@ -83,6 +83,27 @@
         });
     }();
 
+    // untuk status soal
+    var untukSoal = function() {
+        $(document).on('click', '.btn-soal', function() {
+            var ini = $(this);
+
+            $.ajax({
+                type: "post",
+                url: "<?= guru_url() ?>soal/upd_soal",
+                dataType: 'json',
+                data: {
+                    id: ini.data('id'),
+                    value: ini.data('value')
+                },
+                success: function(response) {
+                    $.notify(response.title, response.type);
+                }
+            });
+        });
+    }();
+
+
     // untuk ubah data
     var untukUbahData = function() {
         $(document).on('submit', '#form-upd', function(e) {
