@@ -43,6 +43,20 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label class="hrzn-fm">Tanggal Ujian</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="nk-int-st">
+                        <input type="text" class="form-control mydate" name="inptanggalujian" id="inptanggalujian" value="<?= $tgl_ujian ?>" readonly="readonly" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-example-int form-horizental">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <label class="hrzn-fm">Waktu</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">

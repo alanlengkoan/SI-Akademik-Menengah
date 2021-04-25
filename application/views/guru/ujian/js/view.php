@@ -1,6 +1,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
 
 <script>
+    // untuk tanggal
+    var untukTanggal = function() {
+        $('#modalAdd').on('shown.bs.modal', function() {
+            $('.mydate').datepicker({
+                format: "dd-mm-yyyy",
+                autoclose: true,
+                todayHighlight: true,
+                container: '#modalAdd modal-body'
+            });
+        });
+    }();
+
     // untuk tambah data
     var untukTambahData = function() {
         $(document).on('submit', '#form-add', function(e) {
@@ -56,6 +68,14 @@
                 success: function(response) {
                     $('#get-form-upd').html(response);
                     $('.selectpicker').selectpicker();
+                    $('#modalUpd').on('shown.bs.modal', function() {
+                        $('.mydate').datepicker({
+                            format: "dd-mm-yyyy",
+                            autoclose: true,
+                            todayHighlight: true,
+                            container: '#modalUpd modal-body'
+                        });
+                    });
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>');
                 }

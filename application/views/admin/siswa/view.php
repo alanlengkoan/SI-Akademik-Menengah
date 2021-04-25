@@ -137,7 +137,7 @@
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="text" class="mydate form-control" name="inptgllahir" id="inptgllahir" placeholder="Tanggal Lahir">
+                                        <input type="text" class="mydate form-control" name="inptgllahir" id="inptgllahir" placeholder="Tanggal Lahir" readonly="readonly" />
                                     </div>
                                 </div>
                             </div>

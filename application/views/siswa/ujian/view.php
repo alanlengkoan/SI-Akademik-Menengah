@@ -42,6 +42,7 @@
                                         <th>Guru</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Jenis Ujian</th>
+                                        <th>Tanggal Ujian</th>
                                         <th>Waktu Pengerjaan</th>
                                         <th>Status</th>
                                         <th>Aksi</th>
@@ -67,6 +68,7 @@
                                             <td><?= $value->guru ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $value->jenis_ujian ?></td>
+                                            <td><?= tgl_indo($value->tgl_ujian) ?></td>
                                             <td><?= $value->time ?></td>
                                             <td><a href="#" class="btn btn-<?= $status['alert'][$value->status] ?> info-icon-notika"><?= $status['label'][$value->status] ?></a></td>
                                             <td>
@@ -74,7 +76,7 @@
                                                     <?php if ($value->status == 1) { ?>
                                                         <a href="<?= siswa_url() ?>ujian/hasil/<?= $value->id_soal ?>" class="btn btn-primary info-icon-notika">Hasil Ujian</a>
                                                     <?php } else { ?>
-                                                        <a target="_blank" href="<?= siswa_url() ?>ujian/soal/<?= $value->id_soal ?>" class="btn btn-info info-icon-notika">Kerjakan Ujian</a>
+                                                        <a <?= ($value->tgl_ujian != date('Y-m-d') ? 'disabled' : 'href="' . siswa_url() . '/ujian/soal/' . $value->id_soal . '"') ?> target="_blank" class="btn btn-info info-icon-notika">Kerjakan Ujian</a>
                                                     <?php } ?>
                                                 </div>
                                             </td>

@@ -47,6 +47,7 @@ class Ujian extends MY_Controller
             'id_soal'           => $result['id_soal'],
             'id_penugasan_guru' => $result['id_penugasan_guru'],
             'id_ujian_jenis'    => $result['id_ujian_jenis'],
+            'tgl_ujian'         => date("d-m-Y", strtotime($result['tgl_ujian'])),
             'time'              => $result['time'],
             'nilai'             => $result['nilai'],
             'mapel'             => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
@@ -64,6 +65,7 @@ class Ujian extends MY_Controller
             'id_soal'           => acak_id('soal', 'id_soal '),
             'id_penugasan_guru' => $post['inppenugasan'],
             'id_ujian_jenis'    => $post['inpjenisujian'],
+            'tgl_ujian'         => date("Y-m-d", strtotime($post['inptanggalujian'])),
             'time'              => $post['inptime'],
             'nilai'             => $post['inpnilai'],
         ];
@@ -86,6 +88,7 @@ class Ujian extends MY_Controller
         $data = [
             'id_penugasan_guru' => $post['inppenugasan'],
             'id_ujian_jenis'    => $post['inpjenisujian'],
+            'tgl_ujian'         => date("Y-m-d", strtotime($post['inptanggalujian'])),
             'time'              => $post['inptime'],
             'nilai'             => $post['inpnilai'],
         ];
