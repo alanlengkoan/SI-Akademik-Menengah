@@ -40,8 +40,10 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
+                                        <th>Siswa</th>
                                         <th>Kelas</th>
-                                        <th>Jumlah Siswa</th>
+                                        <th>Judul</th>
+                                        <th>Tipe</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -52,11 +54,13 @@
                                         <tr>
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->mapel ?></td>
+                                            <td><?= $value->siswa ?></td>
                                             <td><?= $value->kelas ?></td>
-                                            <td><?= $value->jumlah_siswa ?></td>
+                                            <td><?= $value->judul ?></td>
+                                            <td><?= $value->tipe ?></td>
                                             <td>
                                                 <div class="button-icon-btn">
-                                                    <a href="<?= guru_url() ?>h_tugas/siswa?id_guru=<?= $value->id_guru ?>&id_kelas=<?= $value->id_kelas ?>" class="btn btn-success info-icon-notika">Lihat siswa</a>
+                                                    <a href="<?= guru_url() ?>h_tugas/detail?id_tugas=<?= $value->id_tugas ?>&id_siswa=<?= $value->id_siswa ?>" class="btn btn-success info-icon-notika">Lihat hasil</a>
                                                 </div>
                                             </td>
                                         </tr>

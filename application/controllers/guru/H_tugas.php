@@ -27,9 +27,26 @@ class H_tugas extends MY_Controller
         $data = [
             'halaman' => 'Hasil Tugas',
             'content' => 'guru/h_tugas/view',
-            'data'    => $this->m_tugas->getAllHasilTugas($this->users->id_users),
+            'data'    => $this->m_tugas->getKelasSiswa($this->users->id_users),
             'css'     => '',
             'js'      => ''
+        ];
+        // untuk load view
+        $this->load->view('guru/base', $data);
+    }
+
+    // untuk detail siswa
+    public function siswa()
+    {
+        $id_guru  = $this->input->get('id_guru');
+        $id_kelas = $this->input->get('id_kelas');
+
+        $data = [
+            'halaman'     => 'Tugas Siswa',
+            'content'     => 'guru/h_tugas/siswa',
+            'data'        => $this->m_tugas->getAllHasilTugasSiswa($id_guru, $id_kelas),
+            'css'         => '',
+            'js'          => ''
         ];
         // untuk load view
         $this->load->view('guru/base', $data);
