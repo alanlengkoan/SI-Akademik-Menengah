@@ -70,7 +70,10 @@
                         <h2><?= $halaman ?></h2>
                         <hr>
                         <p><?= $data->judul ?></p>
-
+                        <?php if ($data->jenis_tugas == 'pekerjaan_sekolah') { ?>
+                            <a <?= ($data->jam_mulai >= date('H:i:s') || $data->jam_selesai <= date('H:i:s') ? 'disabled' : 'href="' . siswa_url() . '/tugas/detail/' . $data->id_tugas . '"') ?> class="btn btn-info btn-block">Tugas Latihan</a>
+                        <?php } ?>
+                        <hr>
                         <?php if ($data->tipe === 'pdf') { ?>
                             <embed style="height: 500px;" src="<?= upload_url('pdf') ?><?= $data->file ?>" type="application/pdf" frameBorder="0" scrolling="auto" height="100%" width="100%"></embed>
                         <?php } else if ($data->tipe === 'mp4') { ?>

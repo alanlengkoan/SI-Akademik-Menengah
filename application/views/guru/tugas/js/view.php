@@ -17,8 +17,6 @@
             $('#inpjudul').attr('required', 'required');
             $('#inptipe').attr('required', 'required');
             $('#inpfile').attr('required', 'required');
-            $('#inpstart').attr('required', 'required');
-            $('#inpfinish').attr('required', 'required');
 
             if ($('#form-add').parsley().isValid() == true) {
                 $.ajax({
@@ -76,6 +74,15 @@
                             container: '#modalUpd modal-body'
                         });
                     });
+
+                    if ($('#inpjenistugasubah').val() === 'pekerjaan_rumah') {
+                        $('#get-form-upd #pekerjaan_rumah').removeAttr('style');
+                        $('#get-form-upd #pekerjaan_sekolah').attr('style', 'display: none;');
+                    } else {
+                        $('#get-form-upd #pekerjaan_sekolah').removeAttr('style');
+                        $('#get-form-upd #pekerjaan_rumah').attr('style', 'display: none;');
+                    }
+                    
                     ini.removeAttr('disabled');
                     ini.html('<i class="fa fa-pencil"></i>');
                 }
@@ -91,8 +98,6 @@
             $('#inpjudul').attr('required', 'required');
             $('#inptipe').attr('required', 'required');
             $('#inpfile').attr('required', 'required');
-            $('#inpstart').attr('required', 'required');
-            $('#inpfinish').attr('required', 'required');
 
             if ($('#form-upd').parsley().isValid() == true) {
                 $.ajax({
@@ -162,6 +167,32 @@
                         return false;
                     }
                 });
+        });
+    }();
+
+    // untuk pilih jenis ujian tambah data
+    var untukJenisTugasTambah = function() {
+        $(document).on('change', '#inpjenistugas', function() {
+            if (this.value === 'pekerjaan_rumah') {
+                $('#pekerjaan_rumah').removeAttr('style');
+                $('#pekerjaan_sekolah').attr('style', 'display: none;');
+            } else {
+                $('#pekerjaan_sekolah').removeAttr('style');
+                $('#pekerjaan_rumah').attr('style', 'display: none;');
+            }
+        });
+    }();
+
+    // untuk pilih jenis ujian ubah data
+    var untukJenisTugasTambah = function() {
+        $(document).on('change', '#inpjenistugasubah', function() {
+            if (this.value === 'pekerjaan_rumah') {
+                $('#get-form-upd #pekerjaan_rumah').removeAttr('style');
+                $('#get-form-upd #pekerjaan_sekolah').attr('style', 'display: none;');
+            } else {
+                $('#get-form-upd #pekerjaan_sekolah').removeAttr('style');
+                $('#get-form-upd #pekerjaan_rumah').attr('style', 'display: none;');
+            }
         });
     }();
 </script>

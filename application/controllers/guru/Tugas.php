@@ -20,6 +20,7 @@ class Tugas extends MY_Controller
         $this->load->model('m_guru');
         $this->load->model('m_mapel');
         $this->load->model('m_tugas');
+        $this->load->model('m_materi');
     }
 
     // untuk default
@@ -30,6 +31,7 @@ class Tugas extends MY_Controller
             'content' => 'guru/tugas/view',
             'data'    => $this->m_tugas->getAll($this->users->id_users),
             'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
+            'materi'  => $this->m_materi->getAll($this->users->id_users),
             'css'     => '',
             'js'      => 'guru/tugas/js/view'
         ];
@@ -48,8 +50,11 @@ class Tugas extends MY_Controller
             'judul'             => $result['judul'],
             'tipe'              => $result['tipe'],
             'file'              => $result['file'],
-            'start'             => date("d-m-Y", strtotime($result['start'])),
-            'finish'            => date("d-m-Y", strtotime($result['finish'])),
+            'jenis_tugas'       => $result['jenis_tugas'],
+            'id_materi'         => ($result['id_materi'] == "" ? null : $result['id_materi']),
+            'start'             => ($result['start'] == "" ? null : date("d-m-Y", strtotime($result['start']))),
+            'finish'            => ($result['finish'] == "" ? null : date("d-m-Y", strtotime($result['finish']))),
+            'materi'            => $this->m_materi->getAll($this->users->id_users),
             'mapel'             => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
         ];
         // untuk load view
@@ -84,8 +89,8 @@ class Tugas extends MY_Controller
             // apa bila berhasil
             $detailFile = $this->upload->data();
 
-            $start = date("Y-m-d", strtotime($post['inpstart']));  
-            $finish = date("Y-m-d", strtotime($post['inpfinish']));  
+            $start = date("Y-m-d", strtotime($post['inpstart']));
+            $finish = date("Y-m-d", strtotime($post['inpfinish']));
 
             $data = [
                 'id_tugas'          => acak_id('tugas', 'id_tugas'),
@@ -93,8 +98,10 @@ class Tugas extends MY_Controller
                 'judul'             => $post['inpjudul'],
                 'tipe'              => $post['inptipe'],
                 'file'              => $detailFile['file_name'],
-                'start'             => $start,
-                'finish'            => $finish,
+                'jenis_tugas'       => $post['inpjenistugas'],
+                'id_materi'         => ($post['inpmateri'] == "" ? null : $post['inpmateri']),
+                'start'             => ($post['inpstart'] == "" ? null : $start),
+                'finish'            => ($post['inpfinish'] == "" ? null : $finish),
             ];
             $this->db->trans_start();
             $this->crud->i('tugas', $data);
@@ -156,8 +163,10 @@ class Tugas extends MY_Controller
                     'judul'             => $post['inpjudul'],
                     'tipe'              => $post['inptipe'],
                     'file'              => $detailFile['file_name'],
-                    'start'             => $start,
-                    'finish'            => $finish,
+                    'jenis_tugas'       => $post['inpjenistugasubah'],
+                    'id_materi'         => ($post['inpjenistugasubah'] == "pekerjaan_sekolah" ? $post['inpmateri'] : null),
+                    'start'             => ($post['inpjenistugasubah'] == "pekerjaan_rumah" ? $start : null),
+                    'finish'            => ($post['inpjenistugasubah'] == "pekerjaan_rumah" ? $finish : null),
                 ];
                 $this->db->trans_start();
                 $this->crud->u('tugas', $data, ['id_tugas' => $post['inpid']]);
@@ -173,8 +182,10 @@ class Tugas extends MY_Controller
                 'id_penugasan_guru' => $post['inppenugasan'],
                 'judul'             => $post['inpjudul'],
                 'tipe'              => $post['inptipe'],
-                'start'             => $start,
-                'finish'            => $finish,
+                'jenis_tugas'       => $post['inpjenistugasubah'],
+                'id_materi'         => ($post['inpjenistugasubah'] == "pekerjaan_sekolah" ? $post['inpmateri'] : null),
+                'start'             => ($post['inpjenistugasubah'] == "pekerjaan_rumah" ? $start : null),
+                'finish'            => ($post['inpjenistugasubah'] == "pekerjaan_rumah" ? $finish : null),
             ];
             $this->db->trans_start();
             $this->crud->u('tugas', $data, ['id_tugas' => $post['inpid']]);

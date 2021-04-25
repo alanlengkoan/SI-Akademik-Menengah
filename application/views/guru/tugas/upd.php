@@ -56,6 +56,24 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label class="hrzn-fm">Jenis Tugas</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="nk-int-st">
+                        <select class="selectpicker" name="inpjenistugasubah" id="inpjenistugasubah">
+                            <option value="">- Pilih -</option>
+                            <option value="pekerjaan_rumah" <?= ($jenis_tugas == 'pekerjaan_rumah' ? 'selected' : '') ?>>Pekerjaan Rumah</option>
+                            <option value="pekerjaan_sekolah" <?= ($jenis_tugas == 'pekerjaan_sekolah' ? 'selected' : '') ?>>Pekerjaan Sekolah</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-example-int form-horizental">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <label class="hrzn-fm">Upload File</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
@@ -67,34 +85,59 @@
             </div>
         </div>
     </div>
-    <div class="form-example-int form-horizental">
-        <div class="form-group">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <label class="hrzn-fm">Start</label>
+    <!-- begin:: waktu -->
+    <div id="pekerjaan_rumah" style="display: none;">
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Start</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="mydate form-control" name="inpstart" id="inpstart" value="<?= $start ?>" readonly="readonly" placeholder="Masukkan Tanggal Mulai" />
+                        </div>
+                    </div>
                 </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                    <div class="nk-int-st">
-                        <input type="text" class="mydate form-control" name="inpstart" id="inpstart" value="<?= $start ?>">
+            </div>
+        </div>
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Finish</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                        <div class="nk-int-st">
+                            <input type="text" class="mydate form-control" name="inpfinish" id="inpfinish" value="<?= $finish ?>" readonly="readonly" placeholder="Masukkan Tanggal Selesai" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="form-example-int form-horizental">
-        <div class="form-group">
-            <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                    <label class="hrzn-fm">Finish</label>
-                </div>
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                    <div class="nk-int-st">
-                        <input type="text" class="mydate form-control" name="inpfinish" id="inpfinish" value="<?= $finish ?>">
+    <div id="pekerjaan_sekolah" style="display: none;">
+        <div class="form-example-int form-horizental">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                        <label class="hrzn-fm">Materi</label>
+                    </div>
+                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                        <div class="nk-int-st">
+                            <select class="selectpicker" name="inpmateri" id="inpmateri">
+                                <option value="">- Pilih -</option>
+                                <?php foreach ($materi as $key => $value) { ?>
+                                    <option value="<?= $value->id_materi ?>" <?= ($id_materi == $value->id_materi ? 'selected' : '') ?>>(<?= $value->kelas ?>) <?= $value->mapel ?> <?= $value->judul ?></option>
+                                <?php } ?>
+                            </select>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- end:: waktu -->
     <div class="text-center button-icon-btn button-icon-btn-cl">
         <button type="submit" class="btn btn-success" name="upd" id="upd"><i class="fa fa-save"></i></button>
         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
