@@ -29,11 +29,25 @@
 <div class="normal-table-area">
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="mybox mg-t-30">
-                    <div class="bsc-tbl">
-                        <?= $halaman ?>
-                        <hr>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                    <div class="website-traffic-ctn">
+                        <h2><span class="counter"><?= count($guru) ?></span> Orang</h2>
+                        <p>Guru</p>
+                    </div>
+                    <div class="sparkline-bar-stats2">
+                        <i class="fa fa-users" style="font-size: 50px;"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="wb-traffic-inner notika-shadow sm-res-mg-t-30 tb-res-mg-t-30">
+                    <div class="website-traffic-ctn">
+                        <h2><span class="counter"><?= count($siswa) ?></span> Orang</h2>
+                        <p>Siswa</p>
+                    </div>
+                    <div class="sparkline-bar-stats2">
+                        <i class="fa fa-users" style="font-size: 50px;"></i>
                     </div>
                 </div>
             </div>

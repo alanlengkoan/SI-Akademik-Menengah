@@ -32,8 +32,6 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="mybox mg-t-30">
                     <div class="bsc-tbl">
-                        <?= $halaman ?>
-                        <hr>
                         <!-- begin:: calender -->
                         <div id='calendar'></div>
                         <!-- end:: calender -->
