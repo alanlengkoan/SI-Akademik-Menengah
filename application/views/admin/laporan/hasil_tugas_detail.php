@@ -43,7 +43,6 @@
                                         <th>Siswa</th>
                                         <th>Kelas</th>
                                         <th>Judul</th>
-                                        <th>Tipe</th>
                                         <th>Hasil</th>
                                     </tr>
                                 </thead>
@@ -57,7 +56,6 @@
                                             <td><?= $value->siswa ?></td>
                                             <td><?= $value->kelas ?></td>
                                             <td><?= $value->judul ?></td>
-                                            <td><?= $value->tipe ?></td>
                                             <td><?= ($value->nilai === null ? '0' : $value->nilai) ?></td>
                                         </tr>
                                     <?php } ?>
