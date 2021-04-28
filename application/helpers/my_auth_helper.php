@@ -3,9 +3,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 // untuk mengecek session user
 if (!function_exists('checking_session')) {
-    function checking_session($user_data)
+    function checking_session($user_data, $user_level, array $level)
     {
-        if (empty($user_data)) {
+        $search = in_array($user_level, $level);
+        if (empty($user_data) || $search == 0) {
             redirect('auth/login');
         }
     }

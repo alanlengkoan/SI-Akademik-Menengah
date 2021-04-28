@@ -31,4 +31,10 @@ class M_siswa extends CI_Model
         $result = $this->db->query("SELECT siswa.id_siswa, siswa.nama FROM siswa LEFT JOIN users ON siswa.id_siswa = users.id_users WHERE users.id_users IS NULL")->result();
         return $result;
     }
+
+    public function getLaporanSiswaELearning()
+    {
+        $result = $this->db->query("SELECT siswa.nis, siswa.nama, kelas.nama AS kelas, mapel.nama AS mapel FROM siswa LEFT JOIN penugasan_guru ON siswa.id_kelas = penugasan_guru.id_kelas LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel ORDER BY siswa.nama")->result();
+        return $result;
+    }
 }

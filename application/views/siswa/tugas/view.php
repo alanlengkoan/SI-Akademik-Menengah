@@ -60,7 +60,7 @@
                                             <td><?= $value->sisah ?></td>
                                             <td>
                                                 <div class="button-icon-btn">
-                                                    <a <?= ($value->sisah <= 0 ? 'disabled' : 'href="' . siswa_url() . '/tugas/detail/' . $value->id_tugas . '"') ?> class="btn btn-info info-icon-notika"><?= ($value->status === '1' ? 'Hasil Tugas' : 'Kerjakan Tugas') ?></a>
+                                                    <a <?= ($value->sisah <= 0 ? 'disabled' : 'href="' . siswa_url() . 'tugas/detail/' . $value->id_tugas . '"') ?> class="btn btn-info info-icon-notika"><?= ($value->status === '1' ? 'Hasil Tugas' : 'Kerjakan Tugas') ?></a>
                                                 </div>
                                             </td>
                                         </tr>

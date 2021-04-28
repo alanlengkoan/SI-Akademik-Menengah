@@ -88,6 +88,17 @@
                                     </ul>
                                 </li>
                                 <li>
+                                    <a data-toggle="collapse" data-target="#laporan" href="#">Laporan</a>
+                                    <ul class="collapse dropdown-header-top">
+                                        <li><a href="<?= admin_url() ?>laporan/guru">Guru</a></li>
+                                        <li><a href="<?= admin_url() ?>laporan/siswa">Siswa</a></li>
+                                        <li><a href="<?= admin_url() ?>laporan/e_learning_guru">E-Learning Guru</a></li>
+                                        <li><a href="<?= admin_url() ?>laporan/e_learning_siswa">E-Learning Siswa</a></li>
+                                        <li><a href="<?= admin_url() ?>laporan/hasil_tugas">Hasil Tugas</a></li>
+                                        <li><a href="<?= admin_url() ?>laporan/hasil_ujian">Hasil Ujian</a></li>
+                                    </ul>
+                                </li>
+                                <li>
                                     <a href="<?= logout_url() ?>"><i class="fa fa-sign-out"></i> Logout </a>
                                 </li>
                             </ul>
@@ -157,6 +168,10 @@
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= admin_url() ?>laporan/guru">Guru</a></li>
                                 <li><a href="<?= admin_url() ?>laporan/siswa">Siswa</a></li>
+                                <li><a href="<?= admin_url() ?>laporan/e_learning_guru">E-Learning Guru</a></li>
+                                <li><a href="<?= admin_url() ?>laporan/e_learning_siswa">E-Learning Siswa</a></li>
+                                <li><a href="<?= admin_url() ?>laporan/hasil_tugas">Hasil Tugas</a></li>
+                                <li><a href="<?= admin_url() ?>laporan/hasil_ujian">Hasil Ujian</a></li>
                             </ul>
                         </div>
                     </div>
