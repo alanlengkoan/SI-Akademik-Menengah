@@ -34,7 +34,7 @@ class M_siswa extends CI_Model
 
     public function getLaporanSiswaELearning()
     {
-        $result = $this->db->query("SELECT siswa.nis, siswa.nama, kelas.nama AS kelas, mapel.nama AS mapel FROM siswa LEFT JOIN penugasan_guru ON siswa.id_kelas = penugasan_guru.id_kelas LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel ORDER BY siswa.nama")->result();
+        $result = $this->db->query("SELECT siswa.nis, siswa.nama, kelas.nama AS kelas, mapel.nama AS mapel, (SELECT COUNT(*) FROM jadwal LEFT JOIN penugasan_guru ON jadwal.id_penugasan_guru = penugasan_guru.id_penugasan_guru WHERE penugasan_guru.id_kelas = kelas.id_kelas AND penugasan_guru.id_mapel = mapel.id_mapel ) AS berapa_kali FROM siswa LEFT JOIN penugasan_guru ON siswa.id_kelas = penugasan_guru.id_kelas LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel ORDER BY siswa.nama")->result();
         return $result;
     }
 }

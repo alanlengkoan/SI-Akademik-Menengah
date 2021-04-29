@@ -43,6 +43,7 @@
                                         <th>Nama</th>
                                         <th>Kelas</th>
                                         <th>Mata Pelajaran</th>
+                                        <th>Jumlah Jam Mengajar</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -55,6 +56,7 @@
                                             <td><?= $value->nama ?></td>
                                             <td><?= $value->kelas ?></td>
                                             <td><?= $value->mapel ?></td>
+                                            <td><?= $value->jumlah_jam ?></td>
                                         </tr>
                                     <?php } ?>
                                 </tbody>

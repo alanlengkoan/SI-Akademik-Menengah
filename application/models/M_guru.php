@@ -34,7 +34,7 @@ class M_guru extends CI_Model
 
     public function getLaporanGuruELearning()
     {
-        $result = $this->db->query("SELECT guru.nip, guru.nama, kelas.nama AS kelas, mapel.nama AS mapel FROM guru LEFT JOIN penugasan_guru ON guru.id_guru = penugasan_guru.id_guru LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel WHERE kelas.nama IS NOT NULL AND mapel.nama IS NOT NULL ORDER BY guru.nama")->result();
+        $result = $this->db->query("SELECT guru.nip, guru.nama, kelas.nama AS kelas, mapel.nama AS mapel, TIMEDIFF(jadwal.jam_selesai, jadwal.jam_mulai) AS jumlah_jam FROM guru LEFT JOIN penugasan_guru ON guru.id_guru = penugasan_guru.id_guru LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN jadwal ON penugasan_guru.id_penugasan_guru = jadwal.id_penugasan_guru WHERE kelas.nama IS NOT NULL AND mapel.nama IS NOT NULL ORDER BY guru.nama")->result();
         return $result;
     }
 }
