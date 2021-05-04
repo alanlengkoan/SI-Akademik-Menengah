@@ -49,6 +49,17 @@
                         <a href="#"><img src="<?= assets_url() ?>admin/img/logo/logo.png" alt="" /></a>
                     </div>
                 </div>
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                    <div class="header-top-menu">
+                        <ul class="nav navbar-nav notika-top-nav">
+                            <li class="nav-item">
+                                <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                                    <?= ucfirst(get_users_detail($this->session->userdata('id'))->username) ?>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -76,6 +87,12 @@
                                         <li><a href="<?= guru_url() ?>materi">Materi</a></li>
                                         <li><a href="<?= guru_url() ?>tugas">Tugas</a></li>
                                         <li><a href="<?= guru_url() ?>ujian">Ujian</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a data-toggle="collapse" data-target="#profil" href="#">Profil</a>
+                                    <ul class="collapse dropdown-header-top">
+                                        <li><a href="<?= guru_url() ?>profil">Profil</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -111,6 +128,11 @@
                                 <i class="fa fa-file"></i> Hasil
                             </a>
                         </li>
+                        <li class="<?= ($this->uri->segment(2) == 'profil' ? 'active' : '') ?>">
+                            <a data-toggle="tab" href="#profil">
+                                <i class="fa fa-user"></i> Profil
+                            </a>
+                        </li>
                         <li>
                             <a href="<?= logout_url() ?>"><i class="fa fa-sign-out"></i> Logout </a>
                         </li>
@@ -134,6 +156,11 @@
                                 <li><a href="<?= guru_url() ?>materi">Materi</a></li>
                                 <li><a href="<?= guru_url() ?>tugas">Tugas</a></li>
                                 <li><a href="<?= guru_url() ?>ujian">Ujian</a></li>
+                            </ul>
+                        </div>
+                        <div id="profil" class="<?= ($this->uri->segment(2) == 'profil' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                            <ul class="notika-main-menu-dropdown">
+                                <li> <a href="<?= guru_url() ?>profil">Profil</a></li>
                             </ul>
                         </div>
                     </div>
