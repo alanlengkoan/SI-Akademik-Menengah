@@ -51,4 +51,16 @@ class M_tugas extends CI_Model
         $result = $this->db->query("SELECT * FROM hasil_tugas WHERE id_tugas = '$id_tugas' AND id_siswa = '$id_siswa'")->row();
         return $result;
     }
+
+    public function getDetailTugas($id_tugas)
+    {
+        $result = $this->db->query("SELECT * FROM tugas WHERE id_tugas = '$id_tugas'")->row();
+        return $result;
+    }
+
+    public function getDetailTugasGuru($id_guru, $id_kelas, $id_mapel)
+    {
+        $result = $this->db->query("SELECT tugas.id_tugas, tugas.judul, tugas.tipe, tugas.jenis_tugas, tugas.status_tugas, mapel.nama AS mapel, kelas.nama AS kelas FROM tugas LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = tugas.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE penugasan_guru.id_guru = '$id_guru' AND penugasan_guru.id_kelas = '$id_kelas' AND penugasan_guru.id_mapel = '$id_mapel' AND tugas.status_tugas = '1'")->result();
+        return $result;
+    }
 }

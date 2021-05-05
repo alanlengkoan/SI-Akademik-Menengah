@@ -29,7 +29,7 @@
 <div class="normal-table-area">
     <div class="container">
         <div class="row">
-            <?php foreach ($kelas as $key => $value) { ?>
+            <?php foreach ($materi as $key => $value) { ?>
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xs-12">
                     <div class="blog-inner-list notika-shadow mg-t-30 tb-res-ds-n dk-res-ds">
                         <div class="blog-img">
@@ -37,40 +37,49 @@
                         </div>
                         <div class="blog-ctn">
                             <div class="blog-hd-sw">
-                                <h3><?= $value->kelas ?></h3>
-                                <h2><i class="fa fa-book"></i> <?= $value->mapel ?></h2>
-                                <h2><i class="fa fa-users"></i> <?= $value->siswa ?></h2>
+                                <h3><?= $value->kelas ?> | Materi</h3>
+                                <h2><i class="fa fa-book"></i>&nbsp;<?= $value->mapel ?></h2>
+                                <h2><i class="fa fa-info-circle"></i>&nbsp;<?= $value->judul ?></h2>
                             </div>
-                            <a href="<?= guru_url() ?>dashboard/detail/<?= $value->id_penugasan_guru ?>" class="btn btn-success btn-block">Detail</a>
+                            <a href="<?= guru_url() ?>materi/detail/<?= $value->id_materi ?>" class="btn btn-success btn-block">Detail</a>
                         </div>
                     </div>
                 </div>
             <?php } ?>
         </div>
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <div class="mybox mg-t-30">
-                    <div class="bsc-tbl">
-                        <!-- begin:: calender -->
-                        <div id='calendar'></div>
-                        <!-- end:: calender -->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <?php foreach ($data as $key => $value) { ?>
+            <?php foreach ($tugas as $key => $value) { ?>
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xs-12">
                     <div class="blog-inner-list notika-shadow mg-t-30 tb-res-ds-n dk-res-ds">
                         <div class="blog-img">
-                            <img src="<?= $value->gambar !== null ? upload_url('gambar') . '' . $value->gambar : '//placehold.it/790'  ?>" alt="<?= $value->judul ?>">
+                            <img src="https://pekanbaru.imigrasi.go.id/home/wp-content/uploads/2015/11/bg-02.jpg" alt="background">
                         </div>
                         <div class="blog-ctn">
                             <div class="blog-hd-sw">
-                                <h2><?= $value->judul ?></h2>
-                                By Admin on <?= $value->tgl_post ?>
+                                <h3><?= $value->kelas ?> | Tugas</h3>
+                                <h2><i class="fa fa-book"></i>&nbsp;<?= $value->mapel ?></h2>
+                                <h2><i class="fa fa-info-circle"></i>&nbsp;<?= $value->judul ?></h2>
                             </div>
-                            <p><?= $value->isi ?></p>
+                            <a href="<?= guru_url() ?>tugas/detail/<?= $value->id_tugas ?>" class="btn btn-success btn-block">Detail</a>
+                        </div>
+                    </div>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="row">
+            <?php foreach ($soal as $key => $value) { ?>
+                <div class="col-sm-6 col-md-6 col-lg-4 col-xs-12">
+                    <div class="blog-inner-list notika-shadow mg-t-30 tb-res-ds-n dk-res-ds">
+                        <div class="blog-img">
+                            <img src="https://pekanbaru.imigrasi.go.id/home/wp-content/uploads/2015/11/bg-02.jpg" alt="background">
+                        </div>
+                        <div class="blog-ctn">
+                            <div class="blog-hd-sw">
+                                <h3><?= $value->kelas ?> | Soal</h3>
+                                <h2><i class="fa fa-book"></i>&nbsp;<?= $value->mapel ?></h2>
+                                <h2><i class="fa fa-info-circle"></i>&nbsp;<?= $value->jenis_ujian ?></h2>
+                            </div>
+                            <a href="<?= guru_url() ?>h_ujian/detail/<?= $value->id_soal ?>" class="btn btn-success btn-block">Detail</a>
                         </div>
                     </div>
                 </div>

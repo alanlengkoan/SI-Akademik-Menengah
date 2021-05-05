@@ -39,6 +39,21 @@ class Tugas extends MY_Controller
         $this->load->view('guru/base', $data);
     }
 
+    // untuk detail
+    public function detail($id)
+    {
+        $data = [
+            'halaman'     => 'Detail Tugas',
+            'content'     => 'guru/tugas/detail',
+            'data'        => $this->m_tugas->getDetailTugas($id, $this->users->id_users),
+            'hasil_tugas' => $this->m_tugas->getHasilTugas($id),
+            'css'         => '',
+            'js'          => ''
+        ];
+        // untuk load view
+        $this->load->view('guru/base', $data);
+    }
+
     // untuk get data by id
     public function get()
     {

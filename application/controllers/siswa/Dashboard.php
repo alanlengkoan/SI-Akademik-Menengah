@@ -17,16 +17,41 @@ class Dashboard extends MY_Controller
         $this->load->model('m_pengumuman');
         $this->load->model('m_jadwal');
         $this->load->model('m_siswa');
+        $this->load->model('m_materi');
+        $this->load->model('m_tugas');
+        $this->load->model('m_soal');
+        $this->load->model('m_penugasan_guru');
 	}
 
     public function index()
     {
+        $siswaKelas = $this->m_siswa->getDetailSiswa($this->users->id_users);
         $data = [
             'halaman' => 'Dashboard Siswa',
             'content' => 'siswa/dashboard/view',
             'data'    => $this->m_pengumuman->getWhereRole('siswa'),
+            'mapel'   => $this->m_penugasan_guru->getGuruMapel($siswaKelas->id_kelas),
             'css'     => 'siswa/dashboard/css/view',
             'js'      => 'siswa/dashboard/js/view'
+        ];
+        // untuk load view
+        $this->load->view('siswa/base', $data);
+    }
+
+    public function detail()
+    {
+        $id_guru  = $this->input->get('guru');
+        $id_kelas = $this->input->get('kelas');
+        $id_mapel = $this->input->get('mapel');
+
+        $data = [
+            'halaman' => 'Detail Siswa',
+            'content' => 'siswa/dashboard/detail',
+            'materi'  => $this->m_materi->getDetailMateriGuru($id_guru,  $id_kelas, $id_mapel),
+            'tugas'   => $this->m_tugas->getDetailTugasGuru($id_guru,  $id_kelas, $id_mapel),
+            'soal'    => $this->m_soal->getDetailSoalGuru($id_guru,  $id_kelas, $id_mapel),
+            'css'     => '',
+            'js'      => ''
         ];
         // untuk load view
         $this->load->view('siswa/base', $data);

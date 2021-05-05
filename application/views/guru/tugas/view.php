@@ -221,7 +221,7 @@
                                             <select class="selectpicker" name="inpmateri" id="inpmateri">
                                                 <option value="">- Pilih -</option>
                                                 <?php foreach ($materi as $key => $value) { ?>
-                                                    <option value="<?= $value->id_tugas ?>">(<?= $value->kelas ?>) <?= $value->mapel ?> <?= $value->judul ?></option>
+                                                    <option value="<?= $value->id_materi ?>">(<?= $value->kelas ?>) <?= $value->mapel ?> <?= $value->judul ?></option>
                                                 <?php } ?>
                                             </select>
                                         </div>
