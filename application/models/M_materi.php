@@ -22,7 +22,13 @@ class M_materi extends CI_Model
 
     public function getDetailMateriGuru($id_guru, $id_kelas, $id_mapel)
     {
-        $result = $this->db->query("SELECT materi.id_materi, materi.id_penugasan_guru, materi.judul, materi.tipe, materi.status, materi.status_materi, mapel.nama AS mapel, kelas.nama AS kelas FROM materi LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE penugasan_guru.id_guru = '$id_guru' AND penugasan_guru.id_kelas = '$id_kelas' AND penugasan_guru.id_mapel = '$id_mapel' AND materi.status_materi = '1'")->result();
+        $result = $this->db->query("SELECT materi.id_materi, materi.id_penugasan_guru, materi.judul, materi.tipe, materi.status, materi.status_materi, mapel.nama AS mapel, kelas.nama AS kelas, guru.nama AS guru FROM materi LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru WHERE penugasan_guru.id_guru = '$id_guru' AND penugasan_guru.id_kelas = '$id_kelas' AND penugasan_guru.id_mapel = '$id_mapel' AND materi.status_materi = '1'")->result();
+        return $result;
+    }
+
+    public function getDetailGuru($id)
+    {
+        $result = $this->db->query("SELECT materi.id_materi, materi.id_penugasan_guru, materi.judul, materi.tipe, materi.status, materi.status_materi, guru.nama AS guru FROM materi LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru WHERE id_materi = '$id'")->row();
         return $result;
     }
 }

@@ -22,7 +22,7 @@ class M_penugasan_guru extends CI_Model
 
     public function getGuruKelas($kelas)
     {
-        $result = $this->db->query("SELECT penugasan_guru.id_guru, guru.nip, guru.nama AS guru, guru.jen_kel, mapel.nama AS mapel FROM penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel WHERE penugasan_guru.id_kelas = '$kelas' ORDER BY guru.nama")->result();
+        $result = $this->db->query("SELECT penugasan_guru.id_guru, guru.nip, guru.nama AS guru, guru.jen_kel, mapel.nama AS mapel, (SELECT COUNT(*) FROM siswa WHERE siswa.id_kelas = penugasan_guru.id_kelas) AS siswa FROM penugasan_guru LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel WHERE penugasan_guru.id_kelas = '$kelas' ORDER BY guru.nama")->result();
         return $result;
     }
 

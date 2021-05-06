@@ -43,6 +43,7 @@ class Materi extends MY_Controller
         $data = [
             'halaman' => 'Detail Materi',
             'content' => 'siswa/materi/detail',
+            'guru'    => $this->m_materi->getDetailGuru($id),
             'data'    => $this->m_materi->getDetailMateriKelas($id),
             'css'     => '',
             'js'      => 'siswa/materi/js/detail'

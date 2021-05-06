@@ -38,6 +38,7 @@
                         <div class="blog-ctn">
                             <div class="blog-hd-sw">
                                 <h3><?= $value->kelas ?> | Materi</h3>
+                                <h2><i class="fa fa-user"></i>&nbsp;<?= $value->guru ?></h2>
                                 <h2><i class="fa fa-book"></i>&nbsp;<?= $value->mapel ?></h2>
                                 <h2><i class="fa fa-info-circle"></i>&nbsp;<?= $value->judul ?></h2>
                             </div>
@@ -56,7 +57,8 @@
                         </div>
                         <div class="blog-ctn">
                             <div class="blog-hd-sw">
-                                <h3><?= $value->kelas ?> | Tugas</h3>
+                                <h3><?= $value->kelas ?> | Tugas Rumah</h3>
+                                <h2><i class="fa fa-user"></i>&nbsp;<?= $value->guru ?></h2>
                                 <h2><i class="fa fa-book"></i>&nbsp;<?= $value->mapel ?></h2>
                                 <h2><i class="fa fa-info-circle"></i>&nbsp;<?= $value->judul ?></h2>
                             </div>

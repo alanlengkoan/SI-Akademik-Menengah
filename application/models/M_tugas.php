@@ -60,7 +60,7 @@ class M_tugas extends CI_Model
 
     public function getDetailTugasGuru($id_guru, $id_kelas, $id_mapel)
     {
-        $result = $this->db->query("SELECT tugas.id_tugas, tugas.judul, tugas.tipe, tugas.jenis_tugas, tugas.status_tugas, mapel.nama AS mapel, kelas.nama AS kelas FROM tugas LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = tugas.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE penugasan_guru.id_guru = '$id_guru' AND penugasan_guru.id_kelas = '$id_kelas' AND penugasan_guru.id_mapel = '$id_mapel' AND tugas.status_tugas = '1'")->result();
+        $result = $this->db->query("SELECT tugas.id_tugas, tugas.judul, tugas.tipe, tugas.jenis_tugas, tugas.status_tugas, mapel.nama AS mapel, kelas.nama AS kelas, guru.nama AS guru FROM tugas LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = tugas.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru WHERE penugasan_guru.id_guru = '$id_guru' AND penugasan_guru.id_kelas = '$id_kelas' AND penugasan_guru.id_mapel = '$id_mapel' AND tugas.status_tugas = '1' AND tugas.jenis_tugas = 'pekerjaan_rumah'")->result();
         return $result;
     }
 }

@@ -53,7 +53,7 @@
                         <ul class="nav navbar-nav notika-top-nav">
                             <li class="nav-item">
                                 <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
-                                   <?= ucfirst(get_users_detail($this->session->userdata('id'))->username) ?>
+                                    <?= ucfirst(get_users_detail($this->session->userdata('id'))->username) ?>
                                 </a>
                             </li>
                         </ul>
@@ -81,8 +81,8 @@
                                 <li>
                                     <a data-toggle="collapse" data-target="#pustaka" href="#">Pustaka</a>
                                     <ul class="collapse dropdown-header-top">
-                                        <li><a href="<?= siswa_url() ?>siswa_pengajar">Siswa Pengajar</a></li>
-                                        <li><a href="<?= siswa_url() ?>siswa_wali">Siswa Wali</a></li>
+                                        <li><a href="<?= siswa_url() ?>guru">Guru</a></li>
+                                        <!-- <li><a href="< ?= siswa_url() ?>mapel">Mata Pelajaran</a></li> -->
                                         <li><a href="<?= siswa_url() ?>materi">Materi</a></li>
                                         <li><a href="<?= siswa_url() ?>tugas">Tugas</a></li>
                                         <li><a href="<?= siswa_url() ?>ujian">Ujian</a></li>
@@ -140,7 +140,7 @@
                         <div id="pustaka" class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'mapel' || $this->uri->segment(2) == 'materi' || $this->uri->segment(2) == 'tugas' || $this->uri->segment(2) == 'ujian' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= siswa_url() ?>guru">Guru</a></li>
-                                <li><a href="<?= siswa_url() ?>mapel">Mata Pelajaran</a></li>
+                                <!-- <li><a href="< ?= siswa_url() ?>mapel">Mata Pelajaran</a></li> -->
                                 <li><a href="<?= siswa_url() ?>materi">Materi</a></li>
                                 <li><a href="<?= siswa_url() ?>tugas">Tugas</a></li>
                                 <li><a href="<?= siswa_url() ?>ujian">Ujian</a></li>

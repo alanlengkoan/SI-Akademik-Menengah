@@ -30,6 +30,7 @@ class Dashboard extends MY_Controller
             'halaman' => 'Dashboard Siswa',
             'content' => 'siswa/dashboard/view',
             'data'    => $this->m_pengumuman->getWhereRole('siswa'),
+            'guru'    => $this->m_penugasan_guru->getGuruKelas($siswaKelas->id_kelas),
             'mapel'   => $this->m_penugasan_guru->getGuruMapel($siswaKelas->id_kelas),
             'css'     => 'siswa/dashboard/css/view',
             'js'      => 'siswa/dashboard/js/view'
