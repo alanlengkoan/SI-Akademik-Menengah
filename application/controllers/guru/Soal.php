@@ -28,6 +28,7 @@ class Soal extends MY_Controller
     {
         $data = [
             'halaman'   => 'Soal',
+            'menu'      => 'soal',
             'content'   => 'guru/soal/view',
             'data'      => $this->m_ujian->getAll($id),
             'detail'    => $this->m_soal->getDetailSoal($id),

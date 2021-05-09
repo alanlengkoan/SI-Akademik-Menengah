@@ -28,6 +28,7 @@ class Materi extends MY_Controller
         $siswaKelas = $this->m_siswa->getDetailSiswa($this->users->id_users);
         $data = [
             'halaman' => 'Materi ' . $siswaKelas->kelas,
+            'menu'    => 'materi',
             'content' => 'siswa/materi/view',
             'data'    => $this->m_materi->getMateriKelas($siswaKelas->id_kelas),
             'css'     => '',
@@ -42,8 +43,9 @@ class Materi extends MY_Controller
     {
         $data = [
             'halaman' => 'Detail Materi',
+            'menu'    => '',
             'content' => 'siswa/materi/detail',
-            'guru'    => $this->m_materi->getDetailGuru($id),
+            'kelas'   => $this->m_materi->getDetailGuru($id),
             'data'    => $this->m_materi->getDetailMateriKelas($id),
             'css'     => '',
             'js'      => 'siswa/materi/js/detail'

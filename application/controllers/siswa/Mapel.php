@@ -26,6 +26,7 @@ class Mapel extends MY_Controller
         $siswaKelas = $this->m_siswa->getDetailSiswa($this->users->id_users);
         $data = [
             'halaman' => 'Daftar Mata Pelajaran ' . $siswaKelas->kelas,
+            'menu'    => 'mapel',
             'content' => 'siswa/mapel/view',
             'data'    => $this->m_penugasan_guru->getGuruMapel($siswaKelas->id_kelas),
             'css'     => '',

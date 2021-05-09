@@ -113,22 +113,22 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li class="<?= ($this->uri->segment(2) == 'dashboard' ? 'active' : '') ?>">
+                        <li class="<?= ($menu == 'dashboard' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#dashboard">
                                 <i class="fa fa-home"></i> Dashboard
                             </a>
                         </li>
-                        <li class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' || $this->uri->segment(2) == 'materi' || $this->uri->segment(2) == 'tugas' || $this->uri->segment(2) == 'ujian' || $this->uri->segment(2) == 'soal' ? 'active' : '') ?>">
+                        <li class="<?= ($menu == 'siswa_pengajar' || $menu == 'siswa_wali' || $menu == 'materi' || $menu == 'tugas' || $menu == 'ujian' || $menu == 'soal' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#pustaka">
                                 <i class="fa fa-archive"></i> Pustaka
                             </a>
                         </li>
-                        <li class="<?= ($this->uri->segment(2) == 'h_tugas' || $this->uri->segment(2) == 'h_ujian' ? 'active' : '') ?>">
+                        <li class="<?= ($menu == 'h_tugas' || $menu == 'h_ujian' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#hasil">
                                 <i class="fa fa-file"></i> Hasil
                             </a>
                         </li>
-                        <li class="<?= ($this->uri->segment(2) == 'profil' ? 'active' : '') ?>">
+                        <li class="<?= ($menu == 'profil' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#profil">
                                 <i class="fa fa-user"></i> Profil
                             </a>
@@ -138,18 +138,18 @@
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
-                        <div id="dashboard" class="<?= ($this->uri->segment(2) == 'dashboard' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="dashboard" class="<?= ($menu == 'dashboard' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= guru_url() ?>dashboard">Dashboard</a></li>
                             </ul>
                         </div>
-                        <div id="hasil" class="<?= ($this->uri->segment(2) == 'h_tugas' || $this->uri->segment(2) == 'h_ujian' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="hasil" class="<?= ($menu == 'h_tugas' || $menu == 'h_ujian' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= guru_url() ?>h_tugas">Tugas</a></li>
                                 <li><a href="<?= guru_url() ?>h_ujian">Ujian</a></li>
                             </ul>
                         </div>
-                        <div id="pustaka" class="<?= ($this->uri->segment(2) == 'siswa_pengajar' || $this->uri->segment(2) == 'siswa_wali' || $this->uri->segment(2) == 'materi' || $this->uri->segment(2) == 'tugas' || $this->uri->segment(2) == 'ujian' || $this->uri->segment(2) == 'soal' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="pustaka" class="<?= ($menu == 'siswa_pengajar' || $menu == 'siswa_wali' || $menu == 'materi' || $menu == 'tugas' || $menu == 'ujian' || $menu == 'soal' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= guru_url() ?>siswa_pengajar">Siswa Pengajar</a></li>
                                 <li><a href="<?= guru_url() ?>siswa_wali">Siswa Wali</a></li>
@@ -158,7 +158,7 @@
                                 <li><a href="<?= guru_url() ?>ujian">Ujian</a></li>
                             </ul>
                         </div>
-                        <div id="profil" class="<?= ($this->uri->segment(2) == 'profil' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="profil" class="<?= ($menu == 'profil' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li> <a href="<?= guru_url() ?>profil">Profil</a></li>
                             </ul>

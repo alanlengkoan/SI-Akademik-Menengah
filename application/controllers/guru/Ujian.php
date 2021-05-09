@@ -27,6 +27,7 @@ class Ujian extends MY_Controller
     {
         $data = [
             'halaman'   => 'Ujian',
+            'menu'      => 'ujian',
             'content'   => 'guru/ujian/view',
             'data'      => $this->m_soal->getAll($this->users->id_users),
             'mapel'     => $this->m_mapel->getWhereMapelGuru($this->users->id_users),

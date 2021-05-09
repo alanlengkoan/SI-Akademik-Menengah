@@ -11,7 +11,7 @@
                                     <i class="fa fa-home"></i>
                                 </div>
                                 <div class="breadcomb-ctn">
-                                    <h2><?= $halaman ?> | <?= $guru->guru ?></h2>
+                                    <h2><?= $halaman ?></h2>
                                     <p>Selamat Datang di <span class="bread-ntd"><b>AKADEMIK ONLINE Ver.1-0</b></span>
                                     </p>
                                 </div>

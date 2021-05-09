@@ -27,6 +27,7 @@ class Guru extends MY_Controller
         
         $data = [
             'halaman' => 'Daftar Guru '. $guruKelas->kelas,
+            'menu'    => 'guru',
             'content' => 'siswa/guru/view',
             'data'    => $this->m_penugasan_guru->getGuruKelas($guruKelas->id_kelas),
             'css'     => '',

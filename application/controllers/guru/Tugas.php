@@ -28,6 +28,7 @@ class Tugas extends MY_Controller
     {
         $data = [
             'halaman' => 'Tugas',
+            'menu'    => 'tugas',
             'content' => 'guru/tugas/view',
             'data'    => $this->m_tugas->getAll($this->users->id_users),
             'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
@@ -44,6 +45,7 @@ class Tugas extends MY_Controller
     {
         $data = [
             'halaman'     => 'Detail Tugas',
+            'menu'        => '',
             'content'     => 'guru/tugas/detail',
             'data'        => $this->m_tugas->getDetailTugas($id, $this->users->id_users),
             'hasil_tugas' => $this->m_tugas->getHasilTugas($id),

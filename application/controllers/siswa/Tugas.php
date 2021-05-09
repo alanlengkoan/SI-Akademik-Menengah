@@ -27,6 +27,7 @@ class Tugas extends MY_Controller
         $siswaKelas = $this->m_siswa->getDetailSiswa($this->users->id_users);
         $data = [
             'halaman' => 'Tugas ' . $siswaKelas->kelas,
+            'menu'    => 'tugas',
             'content' => 'siswa/tugas/view',
             'data'    => $this->m_tugas->getTugasKelas($siswaKelas->id_kelas, $this->users->id_users),
             'css'     => '',
@@ -41,6 +42,7 @@ class Tugas extends MY_Controller
     {
         $data = [
             'halaman'     => 'Detail Tugas',
+            'menu'        => '',
             'content'     => 'siswa/tugas/detail',
             'data'        => $this->m_tugas->getDetailTugasKelas($id, $this->users->id_users),
             'hasil_tugas' => $this->m_tugas->getHasilTugas($id),

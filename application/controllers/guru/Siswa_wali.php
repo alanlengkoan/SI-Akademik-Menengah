@@ -28,6 +28,7 @@ class Siswa_wali extends MY_Controller
         $id_kelas = ($guruWali !== null ? $guruWali->id_kelas : '');
         $data = [
             'halaman' => 'Wali Siswa',
+            'menu'    => 'siswa_wali',
             'content' => 'guru/siswa_wali/view',
             'data'    => $this->m_siswa->getWhereWali($id_kelas),
             'css'     => '',

@@ -21,6 +21,7 @@ class Dashboard extends MY_Controller
         $this->load->model('m_materi');
         $this->load->model('m_tugas');
         $this->load->model('m_soal');
+        $this->load->model('m_siswa');
         $this->load->model('m_penugasan_guru');
     }
 
@@ -28,6 +29,7 @@ class Dashboard extends MY_Controller
     {
         $data = [
             'halaman' => 'Dashboard Guru',
+            'menu'    => 'dashboard',
             'content' => 'guru/dashboard/view',
             'data'    => $this->m_pengumuman->getWhereRole('guru'),
             'kelas'   => $this->m_penugasan_guru->getWhere($this->users->id_users),
@@ -44,12 +46,16 @@ class Dashboard extends MY_Controller
 
         $data = [
             'halaman' => 'Detail Guru',
+            'menu'    => 'dashboard',
             'content' => 'guru/dashboard/detail',
             'materi'  => $this->m_materi->getDetailMateriGuru($result->id_guru,  $result->id_kelas, $result->id_mapel),
             'tugas'   => $this->m_tugas->getDetailTugasGuru($result->id_guru,  $result->id_kelas, $result->id_mapel),
             'soal'    => $this->m_soal->getDetailSoalGuru($result->id_guru,  $result->id_kelas, $result->id_mapel),
+            'h_tugas' => $this->m_tugas->getHasilTugasKelasSiswa($result->id_guru,  $result->id_kelas),
+            'h_ujian' => $this->m_soal->getHasilUjianKelasSiswa($result->id_guru,  $result->id_kelas),
+            'siswa'   => $this->m_siswa->getWhereStudent($result->id_kelas),
             'css'     => '',
-            'js'      => ''
+            'js'      => 'guru/dashboard/js/detail'
         ];
         // untuk load view
         $this->load->view('guru/base', $data);

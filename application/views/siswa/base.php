@@ -112,17 +112,17 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
-                        <li class="<?= ($this->uri->segment(2) == 'dashboard' ? 'active' : '') ?>">
+                        <li class="<?= ($menu == 'dashboard' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#dashboard">
                                 <i class="fa fa-home"></i> Dashboard
                             </a>
                         </li>
-                        <li class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'mapel' || $this->uri->segment(2) == 'materi' || $this->uri->segment(2) == 'tugas' || $this->uri->segment(2) == 'ujian' ? 'active' : '') ?>">
+                        <li class="<?= ($menu == 'guru' || $menu == 'mapel' || $menu == 'materi' || $menu == 'tugas' || $menu == 'ujian' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#pustaka">
                                 <i class="fa fa-archive"></i> Pustaka
                             </a>
                         </li>
-                        <li class="<?= ($this->uri->segment(2) == 'profil' ? 'active' : '') ?>">
+                        <li class="<?= ($menu == 'profil' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#profil">
                                 <i class="fa fa-user"></i> Profil
                             </a>
@@ -132,12 +132,12 @@
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
-                        <div id="dashboard" class="<?= ($this->uri->segment(2) == 'dashboard' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="dashboard" class="<?= ($menu == 'dashboard' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= siswa_url() ?>dashboard">Dashboard</a></li>
                             </ul>
                         </div>
-                        <div id="pustaka" class="<?= ($this->uri->segment(2) == 'guru' || $this->uri->segment(2) == 'mapel' || $this->uri->segment(2) == 'materi' || $this->uri->segment(2) == 'tugas' || $this->uri->segment(2) == 'ujian' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="pustaka" class="<?= ($menu == 'guru' || $menu == 'mapel' || $menu == 'materi' || $menu == 'tugas' || $menu == 'ujian' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= siswa_url() ?>guru">Guru</a></li>
                                 <!-- <li><a href="< ?= siswa_url() ?>mapel">Mata Pelajaran</a></li> -->
@@ -146,7 +146,7 @@
                                 <li><a href="<?= siswa_url() ?>ujian">Ujian</a></li>
                             </ul>
                         </div>
-                        <div id="profil" class="<?= ($this->uri->segment(2) == 'profil' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
+                        <div id="profil" class="<?= ($menu == 'profil' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li> <a href="<?= siswa_url() ?>profil">Profil</a></li>
                             </ul>

@@ -37,6 +37,7 @@ class Ujian extends MY_Controller
 
         $data = [
             'halaman' => 'Ujian Siswa ' . $siswaKelas->kelas,
+            'menu'    => 'ujian',
             'content' => 'siswa/ujian/view',
             'data'    => $this->m_ujian->getUjianKelas($siswaKelas->id_kelas, $id_ujian,  $this->users->id_users),
             'css'     => '',
@@ -51,6 +52,7 @@ class Ujian extends MY_Controller
     {
         $data = [
             'halaman'       => 'Detail Ujian',
+            'menu'          => '',
             'content'       => 'siswa/ujian/soal',
             'detail'        => $this->m_soal->getDetailSoal($id_soal),
             'pilihan_ganda' => $this->m_ujian->getDetailUjianKelasPilihanGanda($id_soal),
@@ -85,6 +87,7 @@ class Ujian extends MY_Controller
 
         $data = [
             'halaman'       => 'Hasil Ujian',
+            'menu'          => '',
             'content'       => 'siswa/ujian/hasil',
             'siswa'         => $this->m_siswa->getDetailSiswa($this->users->id_users),
             'nilai'         => round($nilaiAkhir),

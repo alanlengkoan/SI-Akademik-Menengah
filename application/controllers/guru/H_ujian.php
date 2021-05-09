@@ -27,6 +27,7 @@ class H_ujian extends MY_Controller
     {
         $data = [
             'halaman' => 'Hasil Ujian',
+            'menu'    => 'h_ujian',
             'content' => 'guru/h_ujian/view',
             'data'    => $this->m_soal->getAll($this->users->id_users),
             'css'     => '',
@@ -74,6 +75,7 @@ class H_ujian extends MY_Controller
 
         $data = [
             'halaman' => 'Hasil Ujian',
+            'menu'    => '',
             'content' => 'guru/h_ujian/detail',
             'data'    => $result,
             'css'     => '',
@@ -109,6 +111,7 @@ class H_ujian extends MY_Controller
 
         $data = [
             'halaman'       => 'Detail Ujian',
+            'menu'          => '',
             'content'       => 'guru/h_ujian/detail_ujian',
             'siswa'         => $this->m_siswa->getDetailSiswa($id_siswa),
             'nilai'         => round($nilaiAkhir),

@@ -25,6 +25,7 @@ class Profil extends MY_Controller
     {
         $data = [
             'halaman' => 'Profil',
+            'menu'    => 'profil',
             'content' => 'siswa/profil/view',
             'profil'  => $this->m_profil->getWhereSiswa($this->users->id_users),
             'css'     => '',

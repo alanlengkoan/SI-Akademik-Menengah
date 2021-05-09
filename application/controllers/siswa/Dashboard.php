@@ -28,9 +28,9 @@ class Dashboard extends MY_Controller
         $siswaKelas = $this->m_siswa->getDetailSiswa($this->users->id_users);
         $data = [
             'halaman' => 'Dashboard Siswa',
+            'menu'    => 'dashboard',
             'content' => 'siswa/dashboard/view',
             'data'    => $this->m_pengumuman->getWhereRole('siswa'),
-            'guru'    => $this->m_penugasan_guru->getGuruKelas($siswaKelas->id_kelas),
             'mapel'   => $this->m_penugasan_guru->getGuruMapel($siswaKelas->id_kelas),
             'css'     => 'siswa/dashboard/css/view',
             'js'      => 'siswa/dashboard/js/view'
@@ -47,10 +47,12 @@ class Dashboard extends MY_Controller
 
         $data = [
             'halaman' => 'Detail Siswa',
+            'menu'    => 'dashboard',
             'content' => 'siswa/dashboard/detail',
             'materi'  => $this->m_materi->getDetailMateriGuru($id_guru,  $id_kelas, $id_mapel),
             'tugas'   => $this->m_tugas->getDetailTugasGuru($id_guru,  $id_kelas, $id_mapel),
             'soal'    => $this->m_soal->getDetailSoalGuru($id_guru,  $id_kelas, $id_mapel),
+            'siswa'   => $this->m_siswa->getWhereStudent($id_kelas),
             'css'     => '',
             'js'      => ''
         ];

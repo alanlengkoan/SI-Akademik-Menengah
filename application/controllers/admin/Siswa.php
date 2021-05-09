@@ -22,10 +22,23 @@ class Siswa extends MY_Controller
         $data = [
             'halaman' => 'Siswa',
             'content' => 'admin/siswa/view',
-            'data'    => $this->m_siswa->getAll(),
-            'kelas'   => $this->m_kelas->getAll(),
+            'kelas'   => $this->m_kelas->getKelasJumlahSiswa(),
             'css'     => '',
-            'js'      => 'admin/siswa/js/view'
+            'js'      => ''
+        ];
+        // untuk load view
+        $this->load->view('admin/base', $data);
+    }
+
+    // untuk detail
+    public function detail($id)
+    {
+        $data = [
+            'halaman' => 'Siswa',
+            'content' => 'admin/siswa/detail',
+            'data'    => $this->m_siswa->getWhereStudent($id),
+            'css'     => '',
+            'js'      => 'admin/siswa/js/detail'
         ];
         // untuk load view
         $this->load->view('admin/base', $data);

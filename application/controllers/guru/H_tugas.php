@@ -26,6 +26,7 @@ class H_tugas extends MY_Controller
     {
         $data = [
             'halaman' => 'Hasil Tugas',
+            'menu'    => 'h_tugas',
             'content' => 'guru/h_tugas/view',
             'data'    => $this->m_tugas->getKelasSiswa($this->users->id_users),
             'css'     => '',
@@ -43,6 +44,7 @@ class H_tugas extends MY_Controller
 
         $data = [
             'halaman'     => 'Tugas Siswa',
+            'menu'        => 'h_tugas',
             'content'     => 'guru/h_tugas/siswa',
             'data'        => $this->m_tugas->getAllHasilTugasSiswa($id_guru, $id_kelas),
             'css'         => '',
@@ -60,6 +62,7 @@ class H_tugas extends MY_Controller
 
         $data = [
             'halaman'     => 'Hasil Tugas',
+            'menu'        => '',
             'content'     => 'guru/h_tugas/detail',
             'data'        => $this->m_tugas->getDetailTugasKelas($id_tugas, $id_siswa),
             'siswa'       => $this->m_siswa->getDetailSiswa($id_siswa),

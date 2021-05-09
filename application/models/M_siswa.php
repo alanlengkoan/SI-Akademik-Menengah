@@ -20,6 +20,13 @@ class M_siswa extends CI_Model
         return $result;
     }
 
+
+    public function getWhereStudent($kelas)
+    {
+        $result = $this->db->query("SELECT siswa.id_siswa, siswa.nis, siswa.nama AS siswa, siswa.tmp_lahir, siswa.tgl_lahir, siswa.ortu_wali, siswa.alamat, siswa.jen_kel, siswa.thn_masuk, kelas.nama AS kelas FROM siswa LEFT JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE siswa.id_kelas = '$kelas'")->result();
+        return $result;
+    }
+
     public function getWherePenugasan($kelas)
     {
         $result = $this->db->query("SELECT siswa.id_siswa, siswa.nis, siswa.nama AS siswa, siswa.tmp_lahir, siswa.tgl_lahir, siswa.ortu_wali, siswa.alamat, siswa.jen_kel, siswa.thn_masuk, kelas.nama AS kelas FROM siswa LEFT JOIN kelas ON siswa.id_kelas = kelas.id_kelas WHERE siswa.id_kelas IN ('$kelas');")->result();

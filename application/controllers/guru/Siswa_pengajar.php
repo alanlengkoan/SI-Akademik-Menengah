@@ -36,6 +36,7 @@ class Siswa_pengajar extends MY_Controller
       
         $data = [
             'halaman' => 'Pengajar Siswa',
+            'menu'    => 'siswa_pengajar',
             'content' => 'guru/siswa_pengajar/view',
             'data'    => $this->m_siswa->getWherePenugasan($id_kelas),
             'css'     => '',

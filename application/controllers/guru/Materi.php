@@ -27,6 +27,7 @@ class Materi extends MY_Controller
     {
         $data = [
             'halaman' => 'Materi',
+            'menu'    => 'materi',
             'content' => 'guru/materi/view',
             'data'    => $this->m_materi->getAll($this->users->id_users),
             'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
@@ -42,6 +43,7 @@ class Materi extends MY_Controller
     {
         $data = [
             'halaman' => 'Detail Materi',
+            'menu'    => '',
             'content' => 'guru/materi/detail',
             'data'    => $this->m_materi->getDetailMateriKelas($id),
             'css'     => '',
@@ -193,7 +195,7 @@ class Materi extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $file = $_FILES['inpfile']['name'];
-        
+
         $result = $this->crud->gda('materi', ['id_materi' => $post['inpid']]);
 
         if ($file) {
