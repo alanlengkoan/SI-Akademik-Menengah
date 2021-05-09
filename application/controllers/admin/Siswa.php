@@ -36,6 +36,7 @@ class Siswa extends MY_Controller
         $data = [
             'halaman' => 'Siswa',
             'content' => 'admin/siswa/detail',
+            'kelas'   => $this->m_kelas->getAll(),
             'data'    => $this->m_siswa->getWhereStudent($id),
             'css'     => '',
             'js'      => 'admin/siswa/js/detail'
