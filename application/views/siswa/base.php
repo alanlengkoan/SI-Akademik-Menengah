@@ -73,13 +73,10 @@
                         <nav id="dropdown">
                             <ul class="mobile-menu-nav">
                                 <li>
-                                    <a data-toggle="collapse" data-target="#dashboard" href="#">Dashboard</a>
-                                    <ul class="collapse dropdown-header-top">
-                                        <li><a href="<?= siswa_url() ?>dashboard">Dashboard</a></li>
-                                    </ul>
+                                    <a href="<?= siswa_url() ?>dashboard"><i class="fa fa-home"></i> Dashboard</a>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#pustaka" href="#">Pustaka</a>
+                                    <a data-toggle="collapse" data-target="#pustaka" href="#"><i class="fa fa-archive"></i> Pustaka</a>
                                     <ul class="collapse dropdown-header-top">
                                         <li><a href="<?= siswa_url() ?>guru">Guru</a></li>
                                         <!-- <li><a href="< ?= siswa_url() ?>mapel">Mata Pelajaran</a></li> -->
@@ -89,13 +86,16 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a data-toggle="collapse" data-target="#profil" href="#">Profil</a>
-                                    <ul class="collapse dropdown-header-top">
-                                        <li><a href="<?= siswa_url() ?>profil">Profil</a></li>
-                                    </ul>
+                                    <a href="<?= siswa_url() ?>jadwal"><i class="fa fa-calendar"></i> Jadwal</a>
                                 </li>
                                 <li>
-                                    <a href="<?= logout_url() ?>"><i class="fa fa-close"></i> Logout </a>
+                                    <a href="<?= siswa_url() ?>pengumuman"><i class="fa fa-info-circle"></i> Pengumuman</a>
+                                </li>
+                                <li>
+                                    <a href="<?= siswa_url() ?>profil"><i class="fa fa-user"></i> Profil</a>
+                                </li>
+                                <li>
+                                    <a href="<?= logout_url() ?>"><i class="fa fa-sign-out"></i> Logout </a>
                                 </li>
                             </ul>
                         </nav>
@@ -113,30 +113,27 @@
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <ul class="nav nav-tabs notika-menu-wrap menu-it-icon-pro">
                         <li class="<?= ($menu == 'dashboard' ? 'active' : '') ?>">
-                            <a data-toggle="tab" href="#dashboard">
-                                <i class="fa fa-home"></i> Dashboard
-                            </a>
+                            <a href="<?= siswa_url() ?>dashboard"><i class="fa fa-home"></i> Dashboard</a>
                         </li>
                         <li class="<?= ($menu == 'guru' || $menu == 'mapel' || $menu == 'materi' || $menu == 'tugas' || $menu == 'ujian' ? 'active' : '') ?>">
                             <a data-toggle="tab" href="#pustaka">
                                 <i class="fa fa-archive"></i> Pustaka
                             </a>
                         </li>
+                        <li class="<?= ($menu == 'jadwal' ? 'active' : '') ?>">
+                            <a href="<?= siswa_url() ?>jadwal"><i class="fa fa-calendar"></i> Jadwal</a>
+                        </li>
+                        <li class="<?= ($menu == 'pengumuman' ? 'active' : '') ?>">
+                            <a href="<?= siswa_url() ?>pengumuman"><i class="fa fa-info-circle"></i> Pengumuman</a>
+                        </li>
                         <li class="<?= ($menu == 'profil' ? 'active' : '') ?>">
-                            <a data-toggle="tab" href="#profil">
-                                <i class="fa fa-user"></i> Profil
-                            </a>
+                            <a href="<?= siswa_url() ?>profil"><i class="fa fa-user"></i> Profil</a>
                         </li>
                         <li>
                             <a href="<?= logout_url() ?>"><i class="fa fa-sign-out"></i> Logout </a>
                         </li>
                     </ul>
                     <div class="tab-content custom-menu-content">
-                        <div id="dashboard" class="<?= ($menu == 'dashboard' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li><a href="<?= siswa_url() ?>dashboard">Dashboard</a></li>
-                            </ul>
-                        </div>
                         <div id="pustaka" class="<?= ($menu == 'guru' || $menu == 'mapel' || $menu == 'materi' || $menu == 'tugas' || $menu == 'ujian' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
                             <ul class="notika-main-menu-dropdown">
                                 <li><a href="<?= siswa_url() ?>guru">Guru</a></li>
@@ -144,11 +141,6 @@
                                 <li><a href="<?= siswa_url() ?>materi">Materi</a></li>
                                 <li><a href="<?= siswa_url() ?>tugas">Tugas</a></li>
                                 <li><a href="<?= siswa_url() ?>ujian">Ujian</a></li>
-                            </ul>
-                        </div>
-                        <div id="profil" class="<?= ($menu == 'profil' ? 'active' : '') ?> tab-pane in notika-tab-menu-bg animated flipInX">
-                            <ul class="notika-main-menu-dropdown">
-                                <li> <a href="<?= siswa_url() ?>profil">Profil</a></li>
                             </ul>
                         </div>
                     </div>

@@ -20,6 +20,7 @@ class Materi extends MY_Controller
         $this->load->model('m_mapel');
         $this->load->model('m_materi');
         $this->load->model('m_chat');
+        $this->load->model('m_absen');
     }
 
     // untuk default
@@ -46,6 +47,7 @@ class Materi extends MY_Controller
             'menu'    => '',
             'content' => 'guru/materi/detail',
             'data'    => $this->m_materi->getDetailMateriKelas($id),
+            'absen'   => $this->m_absen->getDetailAbsen($id),
             'css'     => '',
             'js'      => 'guru/materi/js/detail'
         ];

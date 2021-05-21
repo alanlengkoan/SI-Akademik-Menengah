@@ -5,7 +5,7 @@
         $(document).ready(function() {
             $.ajax({
                 type: 'GET',
-                url: '<?= siswa_url() ?>dashboard/calender',
+                url: '<?= siswa_url() ?>jadwal/calender',
                 dataType: 'json',
                 success: function(response) {
                     var calendarEl = document.getElementById('calendar');

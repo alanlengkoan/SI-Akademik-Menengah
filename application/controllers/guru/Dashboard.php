@@ -31,10 +31,9 @@ class Dashboard extends MY_Controller
             'halaman' => 'Dashboard Guru',
             'menu'    => 'dashboard',
             'content' => 'guru/dashboard/view',
-            'data'    => $this->m_pengumuman->getWhereRole('guru'),
             'kelas'   => $this->m_penugasan_guru->getWhere($this->users->id_users),
-            'css'     => 'guru/dashboard/css/view',
-            'js'      => 'guru/dashboard/js/view'
+            'css'     => '',
+            'js'      => ''
         ];
         // untuk load view
         $this->load->view('guru/base', $data);
@@ -59,30 +58,5 @@ class Dashboard extends MY_Controller
         ];
         // untuk load view
         $this->load->view('guru/base', $data);
-    }
-
-    public function calender()
-    {
-        $hari  = [2 => 'Monday', 3 => 'Tuesday', 4 => 'Wednesday', 5 => 'Thursday', 6 => 'Friday', 7 => 'Saturday'];
-        $tahun = date('Y');
-        $bulan = date('m');
-        $get   = $this->m_jadwal->getJadwalGuru($this->users->id_users);
-
-        $data = [];
-        foreach ($get as $row) {
-            $data[] = getAllDaysInAMonth($tahun, $bulan, $hari[$row->hari]);
-        }
-
-        $calender = [];
-        foreach ($data as $key => $value) {
-            foreach ($value as $day) {
-                $calender[] = [
-                    'title' => "Mata Pelajaran: {$get[$key]->mapel} Kelas: {$get[$key]->kelas} Jam Mulai: {$get[$key]->jam_mulai} Jam Selesai: {$get[$key]->jam_selesai}",
-                    'start' => $day->format('Y-m-d'),
-                ];
-            }
-        }
-        // untuk response
-        $this->_response($calender);
     }
 }

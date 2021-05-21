@@ -29,19 +29,18 @@
 <div class="normal-table-area">
     <div class="container">
         <div class="row">
-            <?php foreach ($kelas as $key => $value) { ?>
+            <?php foreach ($data as $key => $value) { ?>
                 <div class="col-sm-6 col-md-6 col-lg-4 col-xs-12">
                     <div class="blog-inner-list notika-shadow mg-t-30 tb-res-ds-n dk-res-ds">
                         <div class="blog-img">
-                            <img src="https://pekanbaru.imigrasi.go.id/home/wp-content/uploads/2015/11/bg-02.jpg" alt="background">
+                            <img src="<?= $value->gambar !== null ? upload_url('gambar') . '' . $value->gambar : '//placehold.it/790'  ?>" alt="<?= $value->judul ?>">
                         </div>
                         <div class="blog-ctn">
                             <div class="blog-hd-sw">
-                                <h3><?= $value->kelas ?></h3>
-                                <h2><i class="fa fa-book"></i> <?= $value->mapel ?></h2>
-                                <h2><i class="fa fa-users"></i> <?= $value->siswa ?></h2>
+                                <h2><?= $value->judul ?></h2>
+                                By Admin on <?= $value->tgl_post ?>
                             </div>
-                            <a href="<?= guru_url() ?>dashboard/detail/<?= $value->id_penugasan_guru ?>" class="btn btn-success btn-block">Detail</a>
+                            <p><?= $value->isi ?></p>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
         $(document).ready(function() {
             $.ajax({
                 type: 'GET',
-                url: '<?= guru_url() ?>dashboard/calender',
+                url: '<?= guru_url() ?>jadwal/calender',
                 dataType: 'json',
                 success: function(response) {
                     var calendarEl = document.getElementById('calendar');

@@ -16,9 +16,11 @@ class Materi extends MY_Controller
         $this->users = get_users_detail($this->session->userdata('id'));
 
         // untuk load model
+        $this->load->model('crud');
         $this->load->model('m_siswa');
         $this->load->model('m_mapel');
         $this->load->model('m_materi');
+        $this->load->model('m_absen');
         $this->load->model('m_chat');
     }
 
@@ -42,13 +44,15 @@ class Materi extends MY_Controller
     public function detail($id)
     {
         $data = [
-            'halaman' => 'Detail Materi',
-            'menu'    => '',
-            'content' => 'siswa/materi/detail',
-            'kelas'   => $this->m_materi->getDetailGuru($id),
-            'data'    => $this->m_materi->getDetailMateriKelas($id),
-            'css'     => '',
-            'js'      => 'siswa/materi/js/detail'
+            'halaman'  => 'Detail Materi',
+            'menu'     => '',
+            'content'  => 'siswa/materi/detail',
+            'id_siswa' => $this->users->id_users,
+            'status'   => $this->m_absen->checkAbsenSiswa($id, $this->users->id_users),
+            'kelas'    => $this->m_materi->getDetailGuru($id),
+            'data'     => $this->m_materi->getDetailMateriKelas($id),
+            'css'      => '',
+            'js'       => 'siswa/materi/js/detail'
         ];
         // untuk load view
         $this->load->view('siswa/base', $data);
@@ -84,5 +88,27 @@ class Materi extends MY_Controller
         } else {
             $this->load_chat($data['id_materi']);
         }
+    }
+
+    // untuk absen
+    public function absen()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $data = [
+            'id_materi' => $post['id_materi'],
+            'id_siswa'  => $post['id_siswa']
+        ];
+
+        $this->db->trans_start();
+        $this->crud->i('absen', $data);
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk respon json
+        $this->_response($response);
     }
 }

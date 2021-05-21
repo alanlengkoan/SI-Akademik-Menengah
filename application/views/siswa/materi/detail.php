@@ -29,6 +29,20 @@
 <div class="normal-table-area">
     <div class="container">
         <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <?php if ($data->jenis_tugas == 'pekerjaan_sekolah') { ?>
+                    <?php if ($status == 0) { ?>
+                        <button type="button" class="btn btn-success btn-block" id="absen" data-id_materi="<?= $data->id_materi ?>" data-id_siswa="<?= $id_siswa ?>">Absen</button>
+                    <?php } else { ?>
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            Berhasil, melakukan Absen!
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                    <?php } ?>
+                <?php } ?>
+            </div>
             <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
                 <div class="mybox mg-t-30">
                     <div class="bsc-tbl">
@@ -44,7 +58,7 @@
                                 <div class="chat-widget-input">
                                     <div class="row">
                                         <div class="col-sm-12 col-md-12 col-sm-12 col-xs-12 chat-inputbar">
-                                            <form id="form-add" action="<?= guru_url() ?>materi/sent_chat" method="POST">
+                                            <form id="form-add" action="<?= siswa_url() ?>materi/sent_chat" method="POST">
                                                 <input type="hidden" name="id_materi" value="<?= $data->id_materi ?>" />
 
                                                 <div class="form-group todo-flex">

@@ -45,6 +45,39 @@
         });
     }();
 
+    // untuk absen
+    var untukAbsenData = function() {
+        $(document).on('click', '#absen', function(e) {
+            e.preventDefault();
+            var ini = $(this);
+
+            $.ajax({
+                method: 'post',
+                url: '<?= siswa_url() ?>materi/absen',
+                dataType: 'json',
+                data: {
+                    id_materi: ini.data('id_materi'),
+                    id_siswa: ini.data('id_siswa')
+                },
+                beforeSend: function() {
+                    ini.attr('disabled', 'disabled');
+                    ini.html('Menunggu..');
+                },
+                success: function(response) {
+                    swal({
+                        title: response.title,
+                        text: response.text,
+                        icon: response.type,
+                        button: response.button,
+                    })
+                    .then((value) => {
+                        location.reload();
+                    });
+                }
+            })
+        });
+    }();
+
     setInterval(function() {
         load_chat()
     }, 3000);

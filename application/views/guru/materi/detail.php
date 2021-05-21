@@ -81,6 +81,38 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="mybox mg-t-30">
+                    <div class="bsc-tbl">
+                        <h2>Absen</h2>
+                        <hr>
+                        <div class="table-responsive">
+                            <table id="data-table-basic" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>No</th>
+                                        <th>Siswa</th>
+                                        <th>Tanggal</th>
+                                        <th>Jam</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                    $no = 1;
+                                    foreach ($absen as $key => $value) { ?>
+                                        <tr>
+                                            <td><?= $no++ ?></td>
+                                            <td><?= $value->nama ?></td>
+                                            <td><?= date("d-m-Y", strtotime($value->waktu)) ?></td>
+                                            <td><?= date("H:i:s", strtotime($value->waktu)) ?></td>
+                                        </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
