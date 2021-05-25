@@ -68,7 +68,7 @@ class Tugas extends MY_Controller
             'tipe'              => $result['tipe'],
             'file'              => $result['file'],
             'jenis_tugas'       => $result['jenis_tugas'],
-            'id_materi'         => ($result['id_materi'] == "" ? null : $result['id_materi']),
+            'id_materi'         => $result['id_materi'],
             'start'             => ($result['start'] == "" ? null : date("d-m-Y", strtotime($result['start']))),
             'finish'            => ($result['finish'] == "" ? null : date("d-m-Y", strtotime($result['finish']))),
             'materi'            => $this->m_materi->getAll($this->users->id_users),
@@ -136,7 +136,7 @@ class Tugas extends MY_Controller
                 'tipe'              => $post['inptipe'],
                 'file'              => $detailFile['file_name'],
                 'jenis_tugas'       => $post['inpjenistugas'],
-                'id_materi'         => ($post['inpmateri'] == "" ? null : $post['inpmateri']),
+                'id_materi'         => $post['inpmateri'],
                 'start'             => ($post['inpstart'] == "" ? null : $start),
                 'finish'            => ($post['inpfinish'] == "" ? null : $finish),
             ];
@@ -158,7 +158,7 @@ class Tugas extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
         $file = $_FILES['inpfile']['name'];
-        
+
         $result = $this->crud->gda('tugas', ['id_tugas' => $post['inpid']]);
 
         $start  = date("Y-m-d", strtotime($post['inpstart']));
@@ -201,7 +201,7 @@ class Tugas extends MY_Controller
                     'tipe'              => $post['inptipe'],
                     'file'              => $detailFile['file_name'],
                     'jenis_tugas'       => $post['inpjenistugasubah'],
-                    'id_materi'         => ($post['inpjenistugasubah'] == "pekerjaan_sekolah" ? $post['inpmateri'] : null),
+                    'id_materi'         => $post['inpmateri'],
                     'start'             => ($post['inpjenistugasubah'] == "pekerjaan_rumah" ? $start : null),
                     'finish'            => ($post['inpjenistugasubah'] == "pekerjaan_rumah" ? $finish : null),
                 ];
@@ -220,7 +220,7 @@ class Tugas extends MY_Controller
                 'judul'             => $post['inpjudul'],
                 'tipe'              => $post['inptipe'],
                 'jenis_tugas'       => $post['inpjenistugasubah'],
-                'id_materi'         => ($post['inpjenistugasubah'] == "pekerjaan_sekolah" ? $post['inpmateri'] : null),
+                'id_materi'         => $post['inpmateri'],
                 'start'             => ($post['inpjenistugasubah'] == "pekerjaan_rumah" ? $start : null),
                 'finish'            => ($post['inpjenistugasubah'] == "pekerjaan_rumah" ? $finish : null),
             ];
