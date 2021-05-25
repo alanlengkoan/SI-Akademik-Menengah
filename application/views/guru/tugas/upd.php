@@ -56,6 +56,25 @@
         <div class="form-group">
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                    <label class="hrzn-fm">Materi</label>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                    <div class="nk-int-st">
+                        <select class="selectpicker" name="inpmateri" id="inpmateri">
+                            <option value="">- Pilih -</option>
+                            <?php foreach ($materi as $key => $value) { ?>
+                                <option value="<?= $value->id_materi ?>" <?= ($id_materi == $value->id_materi ? 'selected' : '') ?>>(<?= $value->kelas ?>) <?= $value->mapel ?> <?= $value->judul ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="form-example-int form-horizental">
+        <div class="form-group">
+            <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                     <label class="hrzn-fm">Jenis Tugas</label>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
@@ -110,27 +129,6 @@
                     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                         <div class="nk-int-st">
                             <input type="text" class="mydate form-control" name="inpfinish" id="inpfinish" value="<?= $finish ?>" readonly="readonly" placeholder="Masukkan Tanggal Selesai" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="pekerjaan_sekolah" style="display: none;">
-        <div class="form-example-int form-horizental">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                        <label class="hrzn-fm">Materi</label>
-                    </div>
-                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                        <div class="nk-int-st">
-                            <select class="selectpicker" name="inpmateri" id="inpmateri">
-                                <option value="">- Pilih -</option>
-                                <?php foreach ($materi as $key => $value) { ?>
-                                    <option value="<?= $value->id_materi ?>" <?= ($id_materi == $value->id_materi ? 'selected' : '') ?>>(<?= $value->kelas ?>) <?= $value->mapel ?> <?= $value->judul ?></option>
-                                <?php } ?>
-                            </select>
                         </div>
                     </div>
                 </div>
