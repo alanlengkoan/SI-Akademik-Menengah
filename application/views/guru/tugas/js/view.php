@@ -17,6 +17,7 @@
             $('#inpjudul').attr('required', 'required');
             $('#inptipe').attr('required', 'required');
             $('#inpfile').attr('required', 'required');
+            $('#inpmateri').attr('required', 'required');
 
             if ($('#form-add').parsley().isValid() == true) {
                 $.ajax({
@@ -32,14 +33,14 @@
                     },
                     success: function(response) {
                         swal({
-                                title: response.title,
-                                text: response.text,
-                                icon: response.type,
-                                button: response.button,
-                            })
-                            .then((value) => {
-                                location.reload();
-                            });
+                            title: response.title,
+                            text: response.text,
+                            icon: response.type,
+                            button: response.button,
+                        })
+                        .then((value) => {
+                            location.reload();
+                        });
                     }
                 })
             }
@@ -118,6 +119,7 @@
             $('#inpjudul').attr('required', 'required');
             $('#inptipe').attr('required', 'required');
             $('#inpfile').attr('required', 'required');
+            $('#inpmateri').attr('required', 'required');
 
             if ($('#form-upd').parsley().isValid() == true) {
                 $.ajax({
@@ -195,9 +197,7 @@
         $(document).on('change', '#inpjenistugas', function() {
             if (this.value === 'pekerjaan_rumah') {
                 $('#pekerjaan_rumah').removeAttr('style');
-                $('#pekerjaan_sekolah').attr('style', 'display: none;');
             } else {
-                $('#pekerjaan_sekolah').removeAttr('style');
                 $('#pekerjaan_rumah').attr('style', 'display: none;');
             }
         });
@@ -208,9 +208,7 @@
         $(document).on('change', '#inpjenistugasubah', function() {
             if (this.value === 'pekerjaan_rumah') {
                 $('#get-form-upd #pekerjaan_rumah').removeAttr('style');
-                $('#get-form-upd #pekerjaan_sekolah').attr('style', 'display: none;');
             } else {
-                $('#get-form-upd #pekerjaan_sekolah').removeAttr('style');
                 $('#get-form-upd #pekerjaan_rumah').attr('style', 'display: none;');
             }
         });
