@@ -35,7 +35,7 @@
                         <ul class="nav nav-tabs tab-nav-center">
                             <li><a data-toggle="tab" href="#materi">Materi</a></li>
                             <li><a data-toggle="tab" href="#tugas">Tugas</a></li>
-                            <li><a data-toggle="tab" href="#soal">Soal</a></li>
+                            <li><a data-toggle="tab" href="#soal">Ujian</a></li>
                             <li><a data-toggle="tab" href="#teman-belajar">Teman Belajar</a></li>
                         </ul>
                         <div class="tab-content tab-custom-st">
@@ -78,22 +78,32 @@
                                 <div class="row">
                                     <?php if (count($tugas) > 0) { ?>
                                         <?php foreach ($tugas as $key => $value) { ?>
-                                            <div class="col-sm-6 col-md-6 col-lg-4 col-xs-12">
-                                                <div class="blog-inner-list notika-shadow mg-t-30 tb-res-ds-n dk-res-ds">
-                                                    <div class="blog-img">
-                                                        <img src="https://pekanbaru.imigrasi.go.id/home/wp-content/uploads/2015/11/bg-02.jpg" alt="background">
-                                                    </div>
-                                                    <div class="blog-ctn">
-                                                        <div class="blog-hd-sw">
-                                                            <h3><?= $value->kelas ?> | Tugas Rumah</h3>
-                                                            <h2><i class="fa fa-user"></i>&nbsp;<?= $value->guru ?></h2>
-                                                            <h2><i class="fa fa-book"></i>&nbsp;<?= $value->mapel ?></h2>
-                                                            <h2><i class="fa fa-info-circle"></i>&nbsp;<?= $value->judul ?></h2>
+                                            <?php if (date('H:i:s') >= $value->jam_mulai) { ?>
+                                                <div class="col-sm-6 col-md-6 col-lg-4 col-xs-12">
+                                                    <div class="blog-inner-list notika-shadow mg-t-30 tb-res-ds-n dk-res-ds">
+                                                        <div class="blog-img">
+                                                            <img src="https://pekanbaru.imigrasi.go.id/home/wp-content/uploads/2015/11/bg-02.jpg" alt="background">
                                                         </div>
-                                                        <a href="<?= siswa_url() ?>tugas/detail/<?= $value->id_tugas ?>" class="btn btn-success btn-block">Detail</a>
+                                                        <div class="blog-ctn">
+                                                            <div class="blog-hd-sw">
+                                                                <h3><?= $value->kelas ?> | Tugas Rumah</h3>
+                                                                <h2><i class="fa fa-user"></i>&nbsp;<?= $value->guru ?></h2>
+                                                                <h2><i class="fa fa-book"></i>&nbsp;<?= $value->mapel ?></h2>
+                                                                <h2><i class="fa fa-info-circle"></i>&nbsp;<?= $value->judul ?></h2>
+                                                            </div>
+                                                            <a <?= ($value->sisah <= 0 ? 'disabled' : 'href="' . siswa_url() . 'tugas/detail/' . $value->id_tugas . '"') ?> class="btn btn-info btn-block"><?= ($value->status === '1' ? 'Hasil Tugas' : 'Kerjakan Tugas') ?></a>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            <?php } else { ?>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="alert-list">
+                                                        <div class="alert alert-danger alert-mg-b-0" role="alert">
+                                                            Tugas Kosong!
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            <?php } ?>
                                         <?php } ?>
                                     <?php } else { ?>
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

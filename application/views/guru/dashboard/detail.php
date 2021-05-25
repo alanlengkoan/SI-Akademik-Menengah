@@ -33,7 +33,7 @@
                 <ul class="nav nav-tabs tab-nav-center">
                     <li><a data-toggle="tab" href="#materi">Materi</a></li>
                     <li><a data-toggle="tab" href="#tugas">Tugas</a></li>
-                    <li><a data-toggle="tab" href="#soal">Soal</a></li>
+                    <li><a data-toggle="tab" href="#soal">Ujian</a></li>
                     <li><a data-toggle="tab" href="#hasil-tugas">Hasil Tugas</a></li>
                     <li><a data-toggle="tab" href="#hasil-ujian">Hasil Ujian</a></li>
                     <li><a data-toggle="tab" href="#siswa-ajar">Siswa Di Ajar</a></li>
