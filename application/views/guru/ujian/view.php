@@ -43,12 +43,7 @@
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Kelas</th>
-                                        <th>Jenis Ujian</th>
-                                        <th>Tanggal Ujian</th>
-                                        <th>Waktu Pengerjaan</th>
-                                        <th>Nilai Minimum</th>
-                                        <th>Soal</th>
-                                        <th>Status Soal</th>
+                                        <th>Jumlah Soal</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -60,25 +55,10 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $value->kelas ?></td>
-                                            <td><?= $value->jenis_ujian ?></td>
-                                            <td><?= tgl_indo($value->tgl_ujian) ?></td>
-                                            <td><?= $value->time ?></td>
-                                            <td><?= $value->nilai ?></td>
+                                            <td><?= $value->jumlah_soal ?></td>
                                             <td>
                                                 <div class="button-icon-btn">
-                                                    <a href="<?= guru_url() ?>soal/add/<?= $value->id_soal ?>" class="btn btn-success info-icon-notika">Tambahkan Soal</a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="nk-toggle-switch">
-                                                    <input class="btn-soal" data-id="<?= $value->id_soal ?>" data-value="<?= $value->status_soal ?>" id="tss<?= $value->id_soal ?>" type="checkbox" hidden="hidden" <?= ($value->status_soal === '1' ? 'checked' : '') ?>>
-                                                    <label for="tss<?= $value->id_soal ?>" class="ts-helper"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_soal ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id_soal ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                    <a href="<?= guru_url() ?>ujian/detail?id_guru=<?= $value->id_guru ?>&id_kelas=<?= $value->id_kelas ?>" class="btn btn-success info-icon-notika">Lihat materi</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -101,7 +81,7 @@
             <div class="modal-body">
                 <h2>Tambah <?= $halaman ?></h2>
 
-                <form id="form-add" action="<?= guru_url() ?>ujian/process_add" method="POST" enctype="multipart/form-data">
+                <form id="form-add" action="<?= guru_url() ?>tugas/process_add" method="POST" enctype="multipart/form-data">
                     <div class="form-example-int form-horizental">
                         <div class="form-group">
                             <div class="row">
@@ -125,14 +105,46 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Jenis Ujian</label>
+                                    <label class="hrzn-fm">Judul</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <select class="selectpicker" id="inpjenisujian" name="inpjenisujian">
+                                        <input type="text" class="form-control input-sm" name="inpjudul" id="inpjudul" placeholder="Masukkan Judul" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Tipe File</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <select class="selectpicker" name="inptipe" id="inptipe">
                                             <option value="">- Pilih -</option>
-                                            <?php foreach ($jen_ujian as $key => $value) { ?>
-                                                <option value="<?= $value->id_ujian_jenis ?>"><?= $value->jenis ?></option>
+                                            <option value="pdf">Pdf</option>
+                                            <option value="mp4">Mp4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Materi</label>
+                                </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <select class="selectpicker" name="inpmateri" id="inpmateri">
+                                            <option value="">- Pilih -</option>
+                                            <?php foreach ($materi as $key => $value) { ?>
+                                                <option value="<?= $value->id_materi ?>">(<?= $value->kelas ?>) <?= $value->mapel ?> <?= $value->judul ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -144,11 +156,15 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Tanggal Ujian</label>
+                                    <label class="hrzn-fm">Jenis Tugas</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control mydate" name="inptanggalujian" id="inptanggalujian" placeholder="Tanggal Ujian" readonly="readonly" />
+                                        <select class="selectpicker" name="inpjenistugas" id="inpjenistugas">
+                                            <option value="">- Pilih -</option>
+                                            <option value="pekerjaan_rumah">Pekerjaan Rumah</option>
+                                            <option value="pekerjaan_sekolah">Pekerjaan Sekolah</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -158,30 +174,49 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Waktu</label>
+                                    <label class="hrzn-fm">Upload File</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control input-sm" name="inptime" id="inptime" placeholder="Masukkan Waktu Pengerjaan" />
+                                        <input type="file" class="form-control input-sm" name="inpfile" id="inpfile" />
+                                        <p>File dengan tipe (*.pdf,*.mp4)</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="form-example-int form-horizental">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Nilai</label>
+                    <!-- begin:: waktu -->
+                    <div id="pekerjaan_rumah" style="display: none;">
+                        <div class="form-example-int form-horizental">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Start</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                        <div class="nk-int-st">
+                                            <input type="text" class="mydate form-control" name="inpstart" id="inpstart" readonly="readonly" placeholder="Masukkan Tanggal Mulai" />
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                    <div class="nk-int-st">
-                                        <input type="text" class="form-control input-sm" name="inpnilai" id="inpnilai" placeholder="Masukkan Nilai Minimum" />
+                            </div>
+                        </div>
+                        <div class="form-example-int form-horizental">
+                            <div class="form-group">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                        <label class="hrzn-fm">Finish</label>
+                                    </div>
+                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                        <div class="nk-int-st">
+                                            <input type="text" class="mydate form-control" name="inpfinish" id="inpfinish" readonly="readonly" placeholder="Masukkan Tanggal Selesai" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <!-- end:: waktu -->
                     <div class="text-center button-icon-btn button-icon-btn-cl">
                         <button type="submit" class="btn btn-success" name="add" id="add"><i class="fa fa-save"></i></button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
@@ -192,19 +227,3 @@
     </div>
 </div>
 <!-- end:: modal tambah -->
-
-<!-- begin:: modal ubah -->
-<div class="modal fade" id="modalUpd" role="dialog">
-    <div class="modal-dialog modals-default">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h2>Ubah <?= $halaman ?></h2>
-
-                <!-- begin:: form ubah -->
-                <div id="get-form-upd"></div>
-                <!-- end:: form ubah -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end:: modal ubah -->

@@ -30,7 +30,7 @@ class Tugas extends MY_Controller
             'halaman' => 'Tugas',
             'menu'    => 'tugas',
             'content' => 'guru/tugas/view',
-            'data'    => $this->m_tugas->getAll($this->users->id_users),
+            'data'    => $this->m_tugas->getKelasSiswa($this->users->id_users),
             'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
             'materi'  => $this->m_materi->getAll($this->users->id_users),
             'css'     => '',
@@ -52,6 +52,25 @@ class Tugas extends MY_Controller
             'css'         => '',
             'js'          => ''
         ];
+        // untuk load view
+        $this->load->view('guru/base', $data);
+    }
+
+    // untuk detail materi
+    public function info()
+    {
+        $id_guru  = $this->input->get('id_guru');
+        $id_kelas = $this->input->get('id_kelas');
+
+        $data = [
+            'halaman'     => 'Detail Tugas',
+            'menu'        => 'tugas',
+            'content'     => 'guru/tugas/info',
+            'data'        => $this->m_tugas->getAllTugasSiswa($id_guru, $id_kelas),
+            'css'         => '',
+            'js'          => 'guru/tugas/js/info'
+        ];
+
         // untuk load view
         $this->load->view('guru/base', $data);
     }
