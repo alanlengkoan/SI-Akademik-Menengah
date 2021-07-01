@@ -76,9 +76,15 @@ class M_tugas extends CI_Model
         return $result;
     }
 
-    public function getDetailTugasGuru($id_guru, $id_kelas, $id_mapel, $id_siswa)
+    public function getDetailTugasSiswa($id_guru, $id_kelas, $id_mapel, $id_siswa)
     {
-        $result = $this->db->query("SELECT tugas.id_tugas, tugas.judul, tugas.tipe, tugas.jenis_tugas, tugas.status_tugas, mapel.nama AS mapel, kelas.nama AS kelas, guru.nama AS guru, jadwal.jam_mulai, jadwal.jam_selesai, DATEDIFF( tugas.finish, tugas.`start` ) AS waktu, DATEDIFF( tugas.finish, CURRENT_DATE ()) AS sisah, CASE WHEN ( SELECT id_tugas FROM hasil_tugas WHERE id_tugas = tugas.id_tugas AND id_siswa = '$id_siswa' ) IS NOT NULL THEN 1 ELSE 0 END AS status FROM tugas LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = tugas.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru LEFT JOIN jadwal ON penugasan_guru.id_penugasan_guru = jadwal.id_penugasan_guru WHERE penugasan_guru.id_guru = '$id_guru' AND penugasan_guru.id_kelas = '$id_kelas' AND penugasan_guru.id_mapel = '$id_mapel' AND tugas.status_tugas = '1' AND tugas.jenis_tugas = 'pekerjaan_rumah'")->result();
+        $result = $this->db->query("SELECT tugas.id_tugas, tugas.judul, tugas.taipe, tugas.jenis_tugas, tugas.status_tugas, mapel.nama AS mapel, kelas.nama AS kelas, guru.nama AS guru, jadwal.jam_mulai, jadwal.jam_selesai, DATEDIFF( tugas.finish, tugas.`start` ) AS waktu, DATEDIFF( tugas.finish, CURRENT_DATE ()) AS sisah, CASE WHEN ( SELECT id_tugas FROM hasil_tugas WHERE id_tugas = tugas.id_tugas AND id_siswa = '$id_siswa' ) IS NOT NULL THEN 1 ELSE 0 END AS status FROM tugas LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = tugas.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru LEFT JOIN jadwal ON penugasan_guru.id_penugasan_guru = jadwal.id_penugasan_guru WHERE penugasan_guru.id_guru = '$id_guru' AND penugasan_guru.id_kelas = '$id_kelas' AND penugasan_guru.id_mapel = '$id_mapel' AND tugas.status_tugas = '1' AND tugas.jenis_tugas = 'pekerjaan_rumah'")->result();
+        return $result;
+    }
+
+    public function getDetailTugasGuru($id_guru, $id_kelas, $id_mapel)
+    {
+        $result = $this->db->query("SELECT tugas.id_tugas, tugas.judul, tugas.tipe, tugas.jenis_tugas, tugas.status_tugas, mapel.nama AS mapel, kelas.nama AS kelas, guru.nama AS guru FROM tugas LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = tugas.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN guru ON penugasan_guru.id_guru = guru.id_guru WHERE penugasan_guru.id_guru = '$id_guru' AND penugasan_guru.id_kelas = '$id_kelas' AND penugasan_guru.id_mapel = '$id_mapel' AND tugas.status_tugas = '1' AND tugas.jenis_tugas = 'pekerjaan_rumah'")->result();
         return $result;
     }
 }
