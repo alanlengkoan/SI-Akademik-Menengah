@@ -81,7 +81,7 @@
             <div class="modal-body">
                 <h2>Tambah <?= $halaman ?></h2>
 
-                <form id="form-add" action="<?= guru_url() ?>tugas/process_add" method="POST" enctype="multipart/form-data">
+                <form id="form-add" action="<?= guru_url() ?>ujian/process_add" method="POST" enctype="multipart/form-data">
                     <div class="form-example-int form-horizental">
                         <div class="form-group">
                             <div class="row">
@@ -105,46 +105,14 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Judul</label>
+                                    <label class="hrzn-fm">Jenis Ujian</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="text" class="form-control input-sm" name="inpjudul" id="inpjudul" placeholder="Masukkan Judul" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-example-int form-horizental">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Tipe File</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                    <div class="nk-int-st">
-                                        <select class="selectpicker" name="inptipe" id="inptipe">
+                                        <select class="selectpicker" id="inpjenisujian" name="inpjenisujian">
                                             <option value="">- Pilih -</option>
-                                            <option value="pdf">Pdf</option>
-                                            <option value="mp4">Mp4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-example-int form-horizental">
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Materi</label>
-                                </div>
-                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                    <div class="nk-int-st">
-                                        <select class="selectpicker" name="inpmateri" id="inpmateri">
-                                            <option value="">- Pilih -</option>
-                                            <?php foreach ($materi as $key => $value) { ?>
-                                                <option value="<?= $value->id_materi ?>">(<?= $value->kelas ?>) <?= $value->mapel ?> <?= $value->judul ?></option>
+                                            <?php foreach ($jen_ujian as $key => $value) { ?>
+                                                <option value="<?= $value->id_ujian_jenis ?>"><?= $value->jenis ?></option>
                                             <?php } ?>
                                         </select>
                                     </div>
@@ -156,15 +124,11 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Jenis Tugas</label>
+                                    <label class="hrzn-fm">Tanggal Ujian</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <select class="selectpicker" name="inpjenistugas" id="inpjenistugas">
-                                            <option value="">- Pilih -</option>
-                                            <option value="pekerjaan_rumah">Pekerjaan Rumah</option>
-                                            <option value="pekerjaan_sekolah">Pekerjaan Sekolah</option>
-                                        </select>
+                                        <input type="text" class="form-control mydate" name="inptanggalujian" id="inptanggalujian" placeholder="Tanggal Ujian" readonly="readonly" />
                                     </div>
                                 </div>
                             </div>
@@ -174,49 +138,30 @@
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <label class="hrzn-fm">Upload File</label>
+                                    <label class="hrzn-fm">Waktu</label>
                                 </div>
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
-                                        <input type="file" class="form-control input-sm" name="inpfile" id="inpfile" />
-                                        <p>File dengan tipe (*.pdf,*.mp4)</p>
+                                        <input type="text" class="form-control input-sm" name="inptime" id="inptime" placeholder="Masukkan Waktu Pengerjaan" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- begin:: waktu -->
-                    <div id="pekerjaan_rumah" style="display: none;">
-                        <div class="form-example-int form-horizental">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Start</label>
-                                    </div>
-                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                        <div class="nk-int-st">
-                                            <input type="text" class="mydate form-control" name="inpstart" id="inpstart" readonly="readonly" placeholder="Masukkan Tanggal Mulai" />
-                                        </div>
-                                    </div>
+                    <div class="form-example-int form-horizental">
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                    <label class="hrzn-fm">Nilai</label>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="form-example-int form-horizental">
-                            <div class="form-group">
-                                <div class="row">
-                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                        <label class="hrzn-fm">Finish</label>
-                                    </div>
-                                    <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
-                                        <div class="nk-int-st">
-                                            <input type="text" class="mydate form-control" name="inpfinish" id="inpfinish" readonly="readonly" placeholder="Masukkan Tanggal Selesai" />
-                                        </div>
+                                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                    <div class="nk-int-st">
+                                        <input type="text" class="form-control input-sm" name="inpnilai" id="inpnilai" placeholder="Masukkan Nilai Minimum" />
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <!-- end:: waktu -->
                     <div class="text-center button-icon-btn button-icon-btn-cl">
                         <button type="submit" class="btn btn-success" name="add" id="add"><i class="fa fa-save"></i></button>
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fa fa-close"></i></button>
