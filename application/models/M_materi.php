@@ -8,15 +8,15 @@ class M_materi extends CI_Model
         return $result;
     }
 
-    public function getAllMateriSiswa($id_guru, $id_kelas)
+    public function getAllMateriSiswa($id_guru, $id_kelas, $id_mapel)
     {
-        $result = $this->db->query("SELECT materi.id_materi, materi.id_penugasan_guru, materi.judul, materi.tipe, materi.status, materi.status_materi, mapel.nama AS mapel, kelas.nama AS kelas FROM materi LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE penugasan_guru.id_kelas = '$id_kelas' AND penugasan_guru.id_guru = '$id_guru'")->result();
+        $result = $this->db->query("SELECT materi.id_materi, materi.id_penugasan_guru, materi.judul, materi.tipe, materi.status, materi.status_materi, mapel.nama AS mapel, kelas.nama AS kelas FROM materi LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE penugasan_guru.id_kelas = '$id_kelas' AND penugasan_guru.id_guru = '$id_guru' AND penugasan_guru.id_mapel = '$id_mapel'")->result();
         return $result;
     }
 
     public function getKelasSiswa($id)
     {
-        $result = $this->db->query("SELECT penugasan_guru.id_guru, penugasan_guru.id_kelas, kelas.nama AS kelas, mapel.nama AS mapel, (SELECT COUNT(*) FROM materi LEFT JOIN penugasan_guru AS pg ON materi.id_penugasan_guru = pg.id_penugasan_guru WHERE pg.id_kelas = penugasan_guru.id_kelas AND pg.id_guru = '$id') AS jumlah_materi FROM penugasan_guru LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN materi ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru WHERE penugasan_guru.id_guru = '$id' GROUP BY penugasan_guru.id_guru, penugasan_guru.id_kelas, kelas.nama, mapel.nama")->result();
+        $result = $this->db->query("SELECT penugasan_guru.id_guru, penugasan_guru.id_kelas, penugasan_guru.id_mapel, kelas.nama AS kelas, mapel.nama AS mapel, (SELECT COUNT(*) FROM materi LEFT JOIN penugasan_guru AS pg ON materi.id_penugasan_guru = pg.id_penugasan_guru WHERE pg.id_kelas = penugasan_guru.id_kelas AND pg.id_guru = '$id' AND pg.id_mapel = mapel.id_mapel) AS jumlah_materi FROM penugasan_guru LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN materi ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru WHERE penugasan_guru.id_guru = '$id' GROUP BY penugasan_guru.id_guru, penugasan_guru.id_kelas, kelas.nama, mapel.nama")->result();
         return $result;
     }
 

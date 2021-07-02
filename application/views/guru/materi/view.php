@@ -58,7 +58,7 @@
                                             <td><?= $value->jumlah_materi ?></td>
                                             <td>
                                                 <div class="button-icon-btn">
-                                                    <a href="<?= guru_url() ?>materi/info?id_guru=<?= $value->id_guru ?>&id_kelas=<?= $value->id_kelas ?>" class="btn btn-success info-icon-notika">Lihat materi</a>
+                                                    <a href="<?= guru_url() ?>materi/info?id_guru=<?= $value->id_guru ?>&id_kelas=<?= $value->id_kelas ?>&id_mapel=<?= $value->id_mapel ?>" class="btn btn-success info-icon-notika">Lihat materi</a>
                                                 </div>
                                             </td>
                                         </tr>

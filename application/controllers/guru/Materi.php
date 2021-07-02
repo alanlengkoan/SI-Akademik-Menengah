@@ -60,12 +60,13 @@ class Materi extends MY_Controller
     {
         $id_guru  = $this->input->get('id_guru');
         $id_kelas = $this->input->get('id_kelas');
+        $id_mapel = $this->input->get('id_mapel');
 
         $data = [
             'halaman'     => 'Detail Materi',
             'menu'        => 'materi',
             'content'     => 'guru/materi/info',
-            'data'        => $this->m_materi->getAllMateriSiswa($id_guru, $id_kelas),
+            'data'        => $this->m_materi->getAllMateriSiswa($id_guru, $id_kelas, $id_mapel),
             'css'         => '',
             'js'          => 'guru/materi/js/info'
         ];
