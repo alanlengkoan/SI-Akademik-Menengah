@@ -33,17 +33,43 @@
                     },
                     success: function(response) {
                         swal({
-                            title: response.title,
-                            text: response.text,
-                            icon: response.type,
-                            button: response.button,
-                        })
-                        .then((value) => {
-                            location.reload();
-                        });
+                                title: response.title,
+                                text: response.text,
+                                icon: response.type,
+                                button: response.button,
+                            })
+                            .then((value) => {
+                                location.reload();
+                            });
                     }
                 })
             }
+        });
+    }();
+
+    // untuk pilih materi
+    var untukPilihMateri = function() {
+        $(document).on('change', '#inppenugasan', function() {
+            var ini = $(this);
+
+            $.ajax({
+                method: 'post',
+                url: '<?= guru_url() ?>tugas/get_materi',
+                data: {
+                    id_penugasan: ini.val()
+                },
+                dataType: 'json',
+                beforeSend: function() {
+                    $('#inpmateri').empty().append('option');
+                },
+                success: function(response) {
+                    $('#inpmateri').append(new Option('- Pilih -', ''));
+                    $.each(response, function(index, value) {
+                        $('#inpmateri').append(new Option(`(${value.kelas}) ${value.mapel} ${value.judul}`, value.id_materi));
+                    });
+                    $("#inpmateri").selectpicker("refresh");
+                }
+            })
         });
     }();
 

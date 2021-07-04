@@ -32,7 +32,6 @@ class Tugas extends MY_Controller
             'content' => 'guru/tugas/view',
             'data'    => $this->m_tugas->getKelasSiswa($this->users->id_users),
             'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
-            'materi'  => $this->m_materi->getAll($this->users->id_users),
             'css'     => '',
             'js'      => 'guru/tugas/js/view'
         ];
@@ -95,6 +94,35 @@ class Tugas extends MY_Controller
         ];
         // untuk load view
         $this->load->view('guru/tugas/upd', $data);
+    }
+
+    // untuk ambil materi
+    public function get_materi()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $get = $this->m_materi->getWhereMateri($this->users->id_users, $post['id_penugasan']);
+        $num = $get->num_rows();
+
+        if ($num > 0) {
+            foreach ($get->result() as $key => $value) {
+                $response[] = [
+                    'id_materi' => $value->id_materi,
+                    'judul'     => $value->judul,
+                    'mapel'     => $value->mapel,
+                    'kelas'     => $value->kelas,
+                ];
+            }
+        } else {
+            $response[] = [
+                'id_materi' => '',
+                'judul'     => 'tidak ada!',
+                'mapel'     => 'tidak ada!',
+                'kelas'     => 'tidak ada!',
+            ];
+        }
+        // untuk response json
+        $this->_response($response);
     }
 
     // untuk proses update tugas
