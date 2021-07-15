@@ -150,16 +150,28 @@ class Tugas extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
 
-        if ($post['inptipe'] === 'pdf') {
-            $config['upload_path']   = './' . upload_path('pdf');
-            $config['allowed_types'] = 'pdf';
-            $config['encrypt_name']  = TRUE;
-            $config['overwrite']     = TRUE;
-        } else {
-            $config['upload_path']   = './' . upload_path('mp4');
-            $config['allowed_types'] = 'mp4';
-            $config['encrypt_name']  = TRUE;
-            $config['overwrite']     = TRUE;
+        switch ($post['inptipe']) {
+            case 'pdf':
+                $config['upload_path']   = './' . upload_path('pdf');
+                $config['allowed_types'] = 'pdf';
+                $config['encrypt_name']  = TRUE;
+                $config['overwrite']     = TRUE;
+                break;
+            case 'doc':
+                $config['upload_path']   = './' . upload_path('doc');
+                $config['allowed_types'] = 'doc|docx';
+                $config['encrypt_name']  = TRUE;
+                $config['overwrite']     = TRUE;
+                break;
+            case 'mp4':
+                $config['upload_path']   = './' . upload_path('mp4');
+                $config['allowed_types'] = 'mp4';
+                $config['encrypt_name']  = TRUE;
+                $config['overwrite']     = TRUE;
+                break;
+            default:
+                echo "Gagal";
+                break;
         }
 
         $this->load->library('upload', $config);

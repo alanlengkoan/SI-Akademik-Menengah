@@ -126,6 +126,7 @@
                                         <select class="selectpicker" name="inptipe" id="inptipe">
                                             <option value="">- Pilih -</option>
                                             <option value="pdf">Pdf</option>
+                                            <option value="doc">Doc</option>
                                             <option value="mp4">Mp4</option>
                                         </select>
                                     </div>

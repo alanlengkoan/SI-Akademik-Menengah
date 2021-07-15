@@ -89,7 +89,7 @@
                                 <hr>
                                 <p><?= $data->judul ?></p>
                                 <?php if ($data->jenis_tugas == 'pekerjaan_sekolah') { ?>
-                                    <a <?= (date('H:i:s') >= $data->jam_mulai && date('H:i:s') <= $data->jam_selesai ? 'disabled' : 'href="' . siswa_url() . '/tugas/detail/' . $data->id_tugas . '"') ?> class="btn btn-info btn-block">Tugas Latihan</a>
+                                    <a <?= (date('H:i:s') >= $data->jam_mulai && date('H:i:s') <= $data->jam_selesai ? 'href="' . siswa_url() . '/tugas/detail/' . $data->id_tugas . '"' : 'disabled') ?> class="btn btn-info btn-block">Tugas Latihan</a>
                                 <?php } ?>
                                 <hr>
                                 <?php if ($data->tipe === 'pdf') { ?>
