@@ -29,7 +29,7 @@
 <div class="normal-table-area">
     <div class="container">
         <div class="row">
-            <?php if (date('H:i:s') >= $data->jam_mulai && date('H:i:s') <= $data->jam_selesai) { ?>
+            <?php if (date('w', strtotime(date('Y-m-d'))) + 1 == $data->hari && date('H:i:s') >= $data->jam_mulai && date('H:i:s') <= $data->jam_selesai) { ?>
                 <?php if ($status == 0) { ?>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="mybox mg-t-30">

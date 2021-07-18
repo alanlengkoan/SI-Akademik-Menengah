@@ -34,7 +34,7 @@ class M_materi extends CI_Model
 
     public function getDetailMateriKelas($id)
     {
-        $result = $this->db->query("SELECT materi.id_materi, materi.judul, materi.tipe, materi.file, materi.status, mapel.nama AS mapel, kelas.nama AS kelas, tugas.id_tugas, tugas.judul AS tugas, tugas.jenis_tugas, jadwal.jam_mulai, jadwal.jam_selesai FROM materi LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN tugas ON tugas.id_materi = materi.id_materi LEFT JOIN jadwal ON jadwal.id_penugasan_guru = materi.id_penugasan_guru WHERE materi.id_materi = '$id'")->row();
+        $result = $this->db->query("SELECT materi.id_materi, materi.judul, materi.tipe, materi.file, materi.status, mapel.nama AS mapel, kelas.nama AS kelas, tugas.id_tugas, tugas.judul AS tugas, tugas.jenis_tugas, jadwal.hari, jadwal.jam_mulai, jadwal.jam_selesai FROM materi LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas LEFT JOIN tugas ON tugas.id_materi = materi.id_materi LEFT JOIN jadwal ON jadwal.id_penugasan_guru = materi.id_penugasan_guru WHERE materi.id_materi = '$id'")->row();
         return $result;
     }
 

@@ -21,11 +21,13 @@
 
             if ($('#form-add').parsley().isValid() == true) {
                 $.ajax({
-                    method: $(this).attr('method'),
+                    type: $(this).attr('method'),
+                    enctype: $(this).attr('enctype'),
                     url: $(this).attr('action'),
                     data: new FormData(this),
                     contentType: false,
                     processData: false,
+                    cache: false,
                     dataType: 'json',
                     beforeSend: function() {
                         $('#add').attr('disabled', 'disabled');
