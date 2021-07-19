@@ -142,7 +142,7 @@
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
                                         <input type="file" class="form-control input-sm" name="inpfile" id="inpfile" />
-                                        <p>File dengan tipe (*.pdf,*.mp4)</p>
+                                        <p>File dengan tipe (*.pdf,*.mp4) Max. 20MB</p>
                                     </div>
                                 </div>
                             </div>
