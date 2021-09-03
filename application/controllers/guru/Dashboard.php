@@ -48,7 +48,7 @@ class Dashboard extends MY_Controller
             'menu'    => 'dashboard',
             'content' => 'guru/dashboard/detail',
             'materi'  => $this->m_materi->getDetailMateriGuru($result->id_guru,  $result->id_kelas, $result->id_mapel),
-            'tugas'   => $this->m_tugas->getDetailTugasGuru($result->id_guru,  $result->id_kelas, $result->id_mapel),
+            'tugas'   => $this->m_tugas->getDetailTugasGuru($result->id_guru, $result->id_kelas, $result->id_mapel),
             'soal'    => $this->m_soal->getDetailSoalGuru($result->id_guru,  $result->id_kelas, $result->id_mapel),
             'h_tugas' => $this->m_tugas->getHasilTugasKelasSiswa($result->id_guru,  $result->id_kelas),
             'h_ujian' => $this->m_soal->getHasilUjianKelasSiswa($result->id_guru,  $result->id_kelas),

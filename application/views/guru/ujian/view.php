@@ -43,12 +43,7 @@
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Kelas</th>
-                                        <th>Jenis Ujian</th>
-                                        <th>Tanggal Ujian</th>
-                                        <th>Waktu Pengerjaan</th>
-                                        <th>Nilai Minimum</th>
-                                        <th>Soal</th>
-                                        <th>Status Soal</th>
+                                        <th>Jumlah Soal</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -60,25 +55,10 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $value->kelas ?></td>
-                                            <td><?= $value->jenis_ujian ?></td>
-                                            <td><?= tgl_indo($value->tgl_ujian) ?></td>
-                                            <td><?= $value->time ?></td>
-                                            <td><?= $value->nilai ?></td>
+                                            <td><?= $value->jumlah_soal ?></td>
                                             <td>
                                                 <div class="button-icon-btn">
-                                                    <a href="<?= guru_url() ?>soal/add/<?= $value->id_soal ?>" class="btn btn-success info-icon-notika">Tambahkan Soal</a>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="nk-toggle-switch">
-                                                    <input class="btn-soal" data-id="<?= $value->id_soal ?>" data-value="<?= $value->status_soal ?>" id="tss<?= $value->id_soal ?>" type="checkbox" hidden="hidden" <?= ($value->status_soal === '1' ? 'checked' : '') ?>>
-                                                    <label for="tss<?= $value->id_soal ?>" class="ts-helper"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_soal ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id_soal ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                    <a href="<?= guru_url() ?>ujian/detail?id_guru=<?= $value->id_guru ?>&id_kelas=<?= $value->id_kelas ?>" class="btn btn-success info-icon-notika">Lihat materi</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -192,19 +172,3 @@
     </div>
 </div>
 <!-- end:: modal tambah -->
-
-<!-- begin:: modal ubah -->
-<div class="modal fade" id="modalUpd" role="dialog">
-    <div class="modal-dialog modals-default">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h2>Ubah <?= $halaman ?></h2>
-
-                <!-- begin:: form ubah -->
-                <div id="get-form-upd"></div>
-                <!-- end:: form ubah -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end:: modal ubah -->

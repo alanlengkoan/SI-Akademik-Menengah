@@ -28,7 +28,7 @@ class H_tugas extends MY_Controller
             'halaman' => 'Hasil Tugas',
             'menu'    => 'h_tugas',
             'content' => 'guru/h_tugas/view',
-            'data'    => $this->m_tugas->getKelasSiswa($this->users->id_users),
+            'data'    => $this->m_tugas->getKelasHasilTugasSiswa($this->users->id_users),
             'css'     => '',
             'js'      => ''
         ];

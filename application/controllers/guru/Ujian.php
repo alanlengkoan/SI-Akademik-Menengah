@@ -29,12 +29,31 @@ class Ujian extends MY_Controller
             'halaman'   => 'Ujian',
             'menu'      => 'ujian',
             'content'   => 'guru/ujian/view',
-            'data'      => $this->m_soal->getAll($this->users->id_users),
+            'data'      => $this->m_soal->getKelasSiswa($this->users->id_users),
             'mapel'     => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
             'jen_ujian' => $this->m_jenis_ujian->getAll(),
             'css'       => '',
             'js'        => 'guru/ujian/js/view'
         ];
+        // untuk load view
+        $this->load->view('guru/base', $data);
+    }
+
+    // untuk detail materi
+    public function detail()
+    {
+        $id_guru  = $this->input->get('id_guru');
+        $id_kelas = $this->input->get('id_kelas');
+
+        $data = [
+            'halaman'     => 'Detail Ujian',
+            'menu'        => 'ujian',
+            'content'     => 'guru/ujian/detail',
+            'data'        => $this->m_soal->getAllSoalSiswa($id_guru, $id_kelas),
+            'css'         => '',
+            'js'          => 'guru/ujian/js/detail'
+        ];
+
         // untuk load view
         $this->load->view('guru/base', $data);
     }

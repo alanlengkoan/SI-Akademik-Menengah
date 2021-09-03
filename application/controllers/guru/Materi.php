@@ -30,7 +30,7 @@ class Materi extends MY_Controller
             'halaman' => 'Materi',
             'menu'    => 'materi',
             'content' => 'guru/materi/view',
-            'data'    => $this->m_materi->getAll($this->users->id_users),
+            'data'    => $this->m_materi->getKelasSiswa($this->users->id_users),
             'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
             'css'     => '',
             'js'      => 'guru/materi/js/view'
@@ -51,6 +51,26 @@ class Materi extends MY_Controller
             'css'     => '',
             'js'      => 'guru/materi/js/detail'
         ];
+        // untuk load view
+        $this->load->view('guru/base', $data);
+    }
+
+    // untuk detail materi
+    public function info()
+    {
+        $id_guru  = $this->input->get('id_guru');
+        $id_kelas = $this->input->get('id_kelas');
+        $id_mapel = $this->input->get('id_mapel');
+
+        $data = [
+            'halaman'     => 'Detail Materi',
+            'menu'        => 'materi',
+            'content'     => 'guru/materi/info',
+            'data'        => $this->m_materi->getAllMateriSiswa($id_guru, $id_kelas, $id_mapel),
+            'css'         => '',
+            'js'          => 'guru/materi/js/info'
+        ];
+
         // untuk load view
         $this->load->view('guru/base', $data);
     }

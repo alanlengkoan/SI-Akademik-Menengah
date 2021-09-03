@@ -30,9 +30,8 @@ class Tugas extends MY_Controller
             'halaman' => 'Tugas',
             'menu'    => 'tugas',
             'content' => 'guru/tugas/view',
-            'data'    => $this->m_tugas->getAll($this->users->id_users),
+            'data'    => $this->m_tugas->getKelasSiswa($this->users->id_users),
             'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
-            'materi'  => $this->m_materi->getAll($this->users->id_users),
             'css'     => '',
             'js'      => 'guru/tugas/js/view'
         ];
@@ -52,6 +51,25 @@ class Tugas extends MY_Controller
             'css'         => '',
             'js'          => ''
         ];
+        // untuk load view
+        $this->load->view('guru/base', $data);
+    }
+
+    // untuk detail materi
+    public function info()
+    {
+        $id_guru  = $this->input->get('id_guru');
+        $id_kelas = $this->input->get('id_kelas');
+
+        $data = [
+            'halaman'     => 'Detail Tugas',
+            'menu'        => 'tugas',
+            'content'     => 'guru/tugas/info',
+            'data'        => $this->m_tugas->getAllTugasSiswa($id_guru, $id_kelas),
+            'css'         => '',
+            'js'          => 'guru/tugas/js/info'
+        ];
+
         // untuk load view
         $this->load->view('guru/base', $data);
     }
@@ -76,6 +94,35 @@ class Tugas extends MY_Controller
         ];
         // untuk load view
         $this->load->view('guru/tugas/upd', $data);
+    }
+
+    // untuk ambil materi
+    public function get_materi()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $get = $this->m_materi->getWhereMateri($this->users->id_users, $post['id_penugasan']);
+        $num = $get->num_rows();
+
+        if ($num > 0) {
+            foreach ($get->result() as $key => $value) {
+                $response[] = [
+                    'id_materi' => $value->id_materi,
+                    'judul'     => $value->judul,
+                    'mapel'     => $value->mapel,
+                    'kelas'     => $value->kelas,
+                ];
+            }
+        } else {
+            $response[] = [
+                'id_materi' => '',
+                'judul'     => 'tidak ada!',
+                'mapel'     => 'tidak ada!',
+                'kelas'     => 'tidak ada!',
+            ];
+        }
+        // untuk response json
+        $this->_response($response);
     }
 
     // untuk proses update tugas
@@ -103,16 +150,28 @@ class Tugas extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
 
-        if ($post['inptipe'] === 'pdf') {
-            $config['upload_path']   = './' . upload_path('pdf');
-            $config['allowed_types'] = 'pdf';
-            $config['encrypt_name']  = TRUE;
-            $config['overwrite']     = TRUE;
-        } else {
-            $config['upload_path']   = './' . upload_path('mp4');
-            $config['allowed_types'] = 'mp4';
-            $config['encrypt_name']  = TRUE;
-            $config['overwrite']     = TRUE;
+        switch ($post['inptipe']) {
+            case 'pdf':
+                $config['upload_path']   = './' . upload_path('pdf');
+                $config['allowed_types'] = 'pdf';
+                $config['encrypt_name']  = TRUE;
+                $config['overwrite']     = TRUE;
+                break;
+            case 'doc':
+                $config['upload_path']   = './' . upload_path('doc');
+                $config['allowed_types'] = 'doc|docx';
+                $config['encrypt_name']  = TRUE;
+                $config['overwrite']     = TRUE;
+                break;
+            case 'mp4':
+                $config['upload_path']   = './' . upload_path('mp4');
+                $config['allowed_types'] = 'mp4';
+                $config['encrypt_name']  = TRUE;
+                $config['overwrite']     = TRUE;
+                break;
+            default:
+                echo "Gagal";
+                break;
         }
 
         $this->load->library('upload', $config);

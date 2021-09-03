@@ -50,8 +50,8 @@ class Dashboard extends MY_Controller
             'menu'    => 'dashboard',
             'content' => 'siswa/dashboard/detail',
             'materi'  => $this->m_materi->getDetailMateriGuru($id_guru,  $id_kelas, $id_mapel),
-            'tugas'   => $this->m_tugas->getDetailTugasGuru($id_guru,  $id_kelas, $id_mapel, $siswaKelas->id_kelas),
-            'soal'    => $this->m_soal->getDetailSoalGuru($id_guru,  $id_kelas, $id_mapel),
+            'tugas'   => $this->m_tugas->getDetailTugasSiswa($id_guru, $id_kelas, $id_mapel, $siswaKelas->id_kelas),
+            'soal'    => $this->m_soal->getDetailSoalGuru($id_guru, $id_kelas, $id_mapel),
             'siswa'   => $this->m_siswa->getWhereStudent($id_kelas),
             'css'     => '',
             'js'      => ''

@@ -43,10 +43,7 @@
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Kelas</th>
-                                        <th>Judul</th>
-                                        <th>Tipe</th>
-                                        <th>Jenis Tugas</th>
-                                        <th>Status Tugas</th>
+                                        <th>Jumlah Tugas</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -58,19 +55,10 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $value->kelas ?></td>
-                                            <td><?= $value->judul ?></td>
-                                            <td><?= $value->tipe ?></td>
-                                            <td><?= ucfirst(str_replace('_', ' ', $value->jenis_tugas)) ?></td>
+                                            <td><?= $value->jumlah_tugas ?></td>
                                             <td>
-                                                <div class="nk-toggle-switch">
-                                                    <input class="btn-tugas" data-id="<?= $value->id_tugas ?>" data-value="<?= $value->status_tugas ?>" id="tss<?= $value->id_tugas ?>" type="checkbox" hidden="hidden" <?= ($value->status_tugas === '1' ? 'checked' : '') ?>>
-                                                    <label for="tss<?= $value->id_tugas ?>" class="ts-helper"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="button-icon-btn button-icon-btn-cl">
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_tugas ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id_tugas ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                <div class="button-icon-btn">
+                                                    <a href="<?= guru_url() ?>tugas/info?id_guru=<?= $value->id_guru ?>&id_kelas=<?= $value->id_kelas ?>" class="btn btn-success info-icon-notika">Lihat materi</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -138,6 +126,7 @@
                                         <select class="selectpicker" name="inptipe" id="inptipe">
                                             <option value="">- Pilih -</option>
                                             <option value="pdf">Pdf</option>
+                                            <option value="doc">Doc</option>
                                             <option value="mp4">Mp4</option>
                                         </select>
                                     </div>
@@ -155,9 +144,6 @@
                                     <div class="nk-int-st">
                                         <select class="selectpicker" name="inpmateri" id="inpmateri">
                                             <option value="">- Pilih -</option>
-                                            <?php foreach ($materi as $key => $value) { ?>
-                                                <option value="<?= $value->id_materi ?>">(<?= $value->kelas ?>) <?= $value->mapel ?> <?= $value->judul ?></option>
-                                            <?php } ?>
                                         </select>
                                     </div>
                                 </div>
@@ -191,7 +177,7 @@
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
                                         <input type="file" class="form-control input-sm" name="inpfile" id="inpfile" />
-                                        <p>File dengan tipe (*.pdf,*.mp4)</p>
+                                        <p>File dengan tipe (*.pdf,*.doc/docx,*.mp4) Max. 20MB</p>
                                     </div>
                                 </div>
                             </div>
@@ -239,19 +225,3 @@
     </div>
 </div>
 <!-- end:: modal tambah -->
-
-<!-- begin:: modal ubah -->
-<div class="modal fade" id="modalUpd" role="dialog">
-    <div class="modal-dialog modals-default">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h2>Ubah <?= $halaman ?></h2>
-
-                <!-- begin:: form ubah -->
-                <div id="get-form-upd"></div>
-                <!-- end:: form ubah -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end:: modal ubah -->

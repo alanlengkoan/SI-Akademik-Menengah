@@ -43,10 +43,7 @@
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Kelas</th>
-                                        <th>Judul</th>
-                                        <th>Tipe</th>
-                                        <th>Chat</th>
-                                        <th>Status Materi</th>
+                                        <th>Jumlah Materi</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -58,25 +55,10 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $value->kelas ?></td>
-                                            <td><?= $value->judul ?></td>
-                                            <td><?= $value->tipe ?></td>
+                                            <td><?= $value->jumlah_materi ?></td>
                                             <td>
-                                                <div class="nk-toggle-switch">
-                                                    <input class="btn-chat" data-id="<?= $value->id_materi ?>" data-value="<?= $value->status ?>" id="ts<?= $value->id_materi ?>" type="checkbox" hidden="hidden" <?= ($value->status === '1' ? 'checked' : '') ?>>
-                                                    <label for="ts<?= $value->id_materi ?>" class="ts-helper"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="nk-toggle-switch">
-                                                    <input class="btn-materi" data-id="<?= $value->id_materi ?>" data-value="<?= $value->status_materi ?>" id="tss<?= $value->id_materi ?>" type="checkbox" hidden="hidden" <?= ($value->status_materi === '1' ? 'checked' : '') ?>>
-                                                    <label for="tss<?= $value->id_materi ?>" class="ts-helper"></label>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="button-icon-btn button-icon-btn-cl">
-                                                    <a href="<?= guru_url() ?>materi/detail/<?= $value->id_materi ?>" class="btn btn-success success-icon-notika"><i class="fa fa-comments-o"></i></a>
-                                                    <button type="button" id="btn-upd" data-id="<?= $value->id_materi ?>" class="btn btn-info info-icon-notika" data-toggle="modal" data-target="#modalUpd"><i class="fa fa-pencil"></i></button>
-                                                    <button type="button" id="btn-del" data-id="<?= $value->id_materi ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
+                                                <div class="button-icon-btn">
+                                                    <a href="<?= guru_url() ?>materi/info?id_guru=<?= $value->id_guru ?>&id_kelas=<?= $value->id_kelas ?>&id_mapel=<?= $value->id_mapel ?>" class="btn btn-success info-icon-notika">Lihat materi</a>
                                                 </div>
                                             </td>
                                         </tr>
@@ -160,7 +142,7 @@
                                 <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                     <div class="nk-int-st">
                                         <input type="file" class="form-control input-sm" name="inpfile" id="inpfile" />
-                                        <p>File dengan tipe (*.pdf,*.mp4)</p>
+                                        <p>File dengan tipe (*.pdf,*.mp4) Max. 20MB</p>
                                     </div>
                                 </div>
                             </div>
@@ -176,19 +158,3 @@
     </div>
 </div>
 <!-- end:: modal tambah -->
-
-<!-- begin:: modal ubah -->
-<div class="modal fade" id="modalUpd" role="dialog">
-    <div class="modal-dialog modals-default">
-        <div class="modal-content">
-            <div class="modal-body">
-                <h2>Ubah <?= $halaman ?></h2>
-
-                <!-- begin:: form ubah -->
-                <div id="get-form-upd"></div>
-                <!-- end:: form ubah -->
-            </div>
-        </div>
-    </div>
-</div>
-<!-- end:: modal ubah -->
