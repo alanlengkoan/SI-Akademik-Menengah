@@ -78,7 +78,7 @@ class Materi extends MY_Controller
             'id_materi' => $post['id_materi'],
             'id_users'  => $this->users->id_users,
             'level'     => $this->users->role,
-            'pesan'     => $post['pesan'],
+            'pesan'     => $this->_parsingPesan($post['pesan']),
         ];
         $this->db->trans_start();
         $this->crud->i('forum', $data);
@@ -110,5 +110,32 @@ class Materi extends MY_Controller
         }
         // untuk respon json
         $this->_response($response);
+    }
+
+    public function _parsingPesan(string $pesan)
+    {
+        $cek_pesan = stristr($pesan, 'http://') ?: stristr($pesan, 'https://');
+
+        if ($cek_pesan !== false) {
+            $cari = $cek_pesan;
+
+            if ($cek_pesan == trim($cek_pesan) && strpos($cek_pesan, ' ') !== false) {
+                $array_link = explode(" ", $cek_pesan);
+
+                for ($i = 0; $i < count($array_link); $i++) {
+                    $parsing_link[] = '<a href="' . $array_link[$i] . '" target="_blank">' . $array_link[$i] . '</a>';
+                }
+
+                $ganti = implode(" ", $parsing_link);
+            } else {
+                $ganti = '<a href="' . $cek_pesan . '" target="_blank">' . $cek_pesan . '</a>';
+            }
+
+            $result = str_replace($cari, $ganti, $pesan);
+        } else {
+            $result = $pesan;
+        }
+
+        return $result;
     }
 }
