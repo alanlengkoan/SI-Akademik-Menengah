@@ -5,10 +5,8 @@
     var untukTambahData = function() {
         $(document).on('submit', '#form-add', function(e) {
             e.preventDefault();
-            $('#inpmapel').attr('required', 'required');
+            $('#inppenugasan').attr('required', 'required');
             $('#inpjudul').attr('required', 'required');
-            $('#inptipe').attr('required', 'required');
-            $('#inpfile').attr('required', 'required');
 
             if ($('#form-add').parsley().isValid() == true) {
                 $.ajax({
@@ -32,7 +30,7 @@
                                 button: response.button,
                             })
                             .then((value) => {
-                                location.reload();
+                                location.href = '<?= guru_url() ?>materi/upd/' + response.id_materi
                             });
                     }
                 })

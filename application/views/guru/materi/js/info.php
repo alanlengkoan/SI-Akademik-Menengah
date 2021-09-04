@@ -2,33 +2,6 @@
 
 <script>
     // untuk get id
-    var untukGetIdData = function() {
-        $(document).on('click', '#btn-upd', function() {
-            var ini = $(this);
-
-            $.ajax({
-                type: "post",
-                url: "<?= guru_url() ?>materi/get",
-                dataType: 'html',
-                data: {
-                    id: ini.data('id')
-                },
-                beforeSend: function() {
-                    $('#get-form-upd').html(`<div class="center"><div class="loader"></div></div>`);
-                    ini.attr('disabled', 'disabled');
-                    ini.html('<i class="fa fa-spinner"></i>');
-                },
-                success: function(response) {
-                    $('#get-form-upd').html(response);
-                    $('.selectpicker').selectpicker();
-                    ini.removeAttr('disabled');
-                    ini.html('<i class="fa fa-pencil"></i>');
-                }
-            });
-        });
-    }();
-
-    // untuk get id
     var untukChat = function() {
         $(document).on('click', '.btn-chat', function() {
             var ini = $(this);

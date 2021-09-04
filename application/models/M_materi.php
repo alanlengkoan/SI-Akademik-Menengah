@@ -2,6 +2,18 @@
 
 class M_materi extends CI_Model
 {
+    public function getWhereDetail($id_materi)
+    {
+        $result = $this->db->query("SELECT m.id_materi, m.id_penugasan_guru, m.judul FROM materi AS m WHERE m.id_materi = '$id_materi'")->row();
+        return $result;
+    }
+
+    public function getWhereMateriDetail($id_materi)
+    {
+        $result = $this->db->query("SELECT md.id_materi_detail, md.id_materi, md.tipe, md.file, m.judul FROM materi_detail AS md LEFT JOIN materi AS m ON md.id_materi = m.id_materi WHERE md.id_materi = '$id_materi'")->result();
+        return $result;
+    }
+
     public function getAll($id)
     {
         $result = $this->db->query("SELECT materi.id_materi, materi.id_penugasan_guru, materi.judul, materi.tipe, materi.status, materi.status_materi, mapel.nama AS mapel, kelas.nama AS kelas FROM materi LEFT JOIN penugasan_guru ON penugasan_guru.id_penugasan_guru = materi.id_penugasan_guru LEFT JOIN mapel ON penugasan_guru.id_mapel = mapel.id_mapel LEFT JOIN kelas ON penugasan_guru.id_kelas = kelas.id_kelas WHERE penugasan_guru.id_guru = '$id'")->result();

@@ -29,11 +29,44 @@ class Materi extends MY_Controller
         $data = [
             'halaman' => 'Materi',
             'menu'    => 'materi',
-            'content' => 'guru/materi/view',
             'data'    => $this->m_materi->getKelasSiswa($this->users->id_users),
+            'content' => 'guru/materi/view',
+            'css'     => '',
+            'js'      => ''
+        ];
+        // untuk load view
+        $this->load->view('guru/base', $data);
+    }
+
+    // untuk tambah
+    public function add()
+    {
+        $data = [
+            'halaman' => 'Tambah Materi',
+            'menu'    => 'materi',
+            'content' => 'guru/materi/add',
             'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
             'css'     => '',
-            'js'      => 'guru/materi/js/view'
+            'js'      => 'guru/materi/js/add'
+        ];
+        // untuk load view
+        $this->load->view('guru/base', $data);
+    }
+
+    // untuk tambah
+    public function upd()
+    {
+        $id_materi = base64url_decode($this->uri->segment('4'));
+
+        $data = [
+            'halaman' => 'Tambah Materi',
+            'menu'    => 'materi',
+            'mapel'   => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
+            'materi'  => $this->m_materi->getWhereDetail($id_materi),
+            'detail'  => $this->m_materi->getWhereMateriDetail($id_materi),
+            'content' => 'guru/materi/upd',
+            'css'     => '',
+            'js'      => 'guru/materi/js/upd'
         ];
         // untuk load view
         $this->load->view('guru/base', $data);
@@ -86,28 +119,11 @@ class Materi extends MY_Controller
         $this->load->view('guru/materi/chat', $data);
     }
 
-    // untuk get data by id
-    public function get()
-    {
-        $post   = $this->input->post(NULL, TRUE);
-        $result = $this->crud->gda('materi', ['id_materi' => $post['id']]);
-        $data = [
-            'id_materi'         => $result['id_materi'],
-            'id_penugasan_guru' => $result['id_penugasan_guru'],
-            'judul'             => $result['judul'],
-            'tipe'              => $result['tipe'],
-            'file'              => $result['file'],
-            'mapel'             => $this->m_mapel->getWhereMapelGuru($this->users->id_users),
-        ];
-        // untuk load view
-        $this->load->view('guru/materi/upd', $data);
-    }
-
     // untuk sent chat room
     public function sent_chat()
     {
         $post = $this->input->post(NULL, TRUE);
-        
+
         $data = [
             'id_forum'  => acak_id('forum', 'id_forum'),
             'id_materi' => $post['id_materi'],
@@ -170,6 +186,96 @@ class Materi extends MY_Controller
     {
         $post = $this->input->post(NULL, TRUE);
 
+        $data = [
+            'id_materi'         => acak_id('materi', 'id_materi'),
+            'id_penugasan_guru' => $post['inppenugasan'],
+            'judul'             => $post['inpjudul'],
+        ];
+        $this->db->trans_start();
+        $this->crud->i('materi', $data);
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!', 'id_materi' => base64url_encode($data['id_materi'])];
+        }
+        // untuk response json
+        $this->_response($response);
+    }
+
+    // untuk proses ubah data
+    public function process_upd()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $id_materi = $this->uri->segment('4');
+
+        $data = [
+            'id_penugasan_guru' => $post['inppenugasan'],
+            'judul'             => $post['inpjudul'],
+        ];
+        $this->db->trans_start();
+        $this->crud->u('materi', $data, ['id_materi' => $id_materi]);
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk response json
+        $this->_response($response);
+    }
+
+    // untuk proses hapus data
+    public function process_del()
+    {
+        $post   = $this->input->post(NULL, TRUE);
+        $result = $this->crud->gda('materi', ['id_materi' => $post['id']]);
+        $nma_file = $result['file'];
+        // menghapus foto yg tersimpan
+        if ($nma_file !== '' || $nma_file !== null) {
+            if ($result['tipe'] === 'pdf') {
+                if (file_exists(upload_path('pdf') . $result['file'])) {
+                    unlink(upload_path('pdf') . $result['file']);
+                }
+            } else {
+                if (file_exists(upload_path('mp4') . $result['file'])) {
+                    unlink(upload_path('mp4') . $result['file']);
+                }
+            }
+        }
+        $this->db->trans_start();
+        $this->crud->d('materi', $post['id'], 'id_materi');
+        $this->db->trans_complete();
+        if ($this->db->trans_status() === FALSE) {
+            $response = ['title' => 'Gagal!', 'text' => 'Gagal Hapus!', 'type' => 'error', 'button' => 'Ok!'];
+        } else {
+            $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Hapus!', 'type' => 'success', 'button' => 'Ok!'];
+        }
+        // untuk response json
+        $this->_response($response);
+    }
+
+    // untuk get data by id
+    public function get_detail()
+    {
+        $post   = $this->input->post(NULL, TRUE);
+        $result = $this->crud->gda('materi_detail', ['id_materi_detail' => $post['id']]);
+        $data = [
+            'id_materi_detail' => $result['id_materi_detail'],
+            'id_materi'        => $result['id_materi'],
+            'tipe'             => $result['tipe'],
+            'file'             => $result['file'],
+        ];
+        // untuk load view
+        $this->load->view('guru/materi/upd_detail', $data);
+    }
+
+    // untuk proses tambah data detail
+    public function process_add_detail()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
         if ($post['inptipe'] === 'pdf') {
             $config['upload_path']   = './' . upload_path('pdf');
             $config['allowed_types'] = 'pdf';
@@ -194,32 +300,30 @@ class Materi extends MY_Controller
             $detailFile = $this->upload->data();
 
             $data = [
-                'id_materi'         => acak_id('materi', 'id_materi'),
-                'id_penugasan_guru' => $post['inppenugasan'],
-                'judul'             => $post['inpjudul'],
-                'tipe'              => $post['inptipe'],
-                'file'              => $detailFile['file_name'],
+                'id_materi_detail' => acak_id('materi_detail', 'id_materi_detail'),
+                'id_materi'        => $post['inpidmateri'],
+                'tipe'             => $post['inptipe'],
+                'file'             => $detailFile['file_name'],
             ];
             $this->db->trans_start();
-            $this->crud->i('materi', $data);
+            $this->crud->i('materi_detail', $data);
             $this->db->trans_complete();
             if ($this->db->trans_status() === FALSE) {
                 $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
             } else {
-                $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!'];
+                $response = ['title' => 'Berhasil!', 'text' => 'Berhasil Simpan!', 'type' => 'success', 'button' => 'Ok!', 'id_materi' => base64url_encode($data['id_materi'])];
             }
         }
         // untuk response json
         $this->_response($response);
     }
 
-    // untuk proses ubah data
-    public function process_upd()
+    public function process_upd_detail()
     {
         $post = $this->input->post(NULL, TRUE);
         $file = $_FILES['inpfile']['name'];
 
-        $result = $this->crud->gda('materi', ['id_materi' => $post['inpid']]);
+        $result = $this->crud->gda('materi_detail', ['id_materi_detail' => $post['inpid']]);
 
         if ($file) {
             if ($post['inptipe'] === 'pdf') {
@@ -253,13 +357,11 @@ class Materi extends MY_Controller
                 }
 
                 $data = [
-                    'id_penugasan_guru' => $post['inppenugasan'],
-                    'judul'             => $post['inpjudul'],
                     'tipe'              => $post['inptipe'],
                     'file'              => $detailFile['file_name'],
                 ];
                 $this->db->trans_start();
-                $this->crud->u('materi', $data, ['id_materi' => $post['inpid']]);
+                $this->crud->u('materi_detail', $data, ['id_materi_detail' => $post['inpid']]);
                 $this->db->trans_complete();
                 if ($this->db->trans_status() === FALSE) {
                     $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
@@ -269,12 +371,11 @@ class Materi extends MY_Controller
             }
         } else {
             $data = [
-                'id_penugasan_guru' => $post['inppenugasan'],
                 'judul'             => $post['inpjudul'],
                 'tipe'              => $post['inptipe'],
             ];
             $this->db->trans_start();
-            $this->crud->u('materi', $data, ['id_materi' => $post['inpid']]);
+            $this->crud->u('materi_detail', $data, ['id_materi_detail' => $post['inpid']]);
             $this->db->trans_complete();
             if ($this->db->trans_status() === FALSE) {
                 $response = ['title' => 'Gagal!', 'text' => 'Gagal Simpan!', 'type' => 'error', 'button' => 'Ok!'];
@@ -286,11 +387,11 @@ class Materi extends MY_Controller
         $this->_response($response);
     }
 
-    // untuk proses hapus data
-    public function process_del()
+    // untuk proses hapus data detail
+    public function process_del_detail()
     {
         $post   = $this->input->post(NULL, TRUE);
-        $result = $this->crud->gda('materi', ['id_materi' => $post['id']]);
+        $result = $this->crud->gda('materi_detail', ['id_materi_detail' => $post['id']]);
         $nma_file = $result['file'];
         // menghapus foto yg tersimpan
         if ($nma_file !== '' || $nma_file !== null) {
@@ -305,7 +406,7 @@ class Materi extends MY_Controller
             }
         }
         $this->db->trans_start();
-        $this->crud->d('materi', $post['id'], 'id_materi');
+        $this->crud->d('materi_detail', $post['id'], 'id_materi_detail');
         $this->db->trans_complete();
         if ($this->db->trans_status() === FALSE) {
             $response = ['title' => 'Gagal!', 'text' => 'Gagal Hapus!', 'type' => 'error', 'button' => 'Ok!'];
