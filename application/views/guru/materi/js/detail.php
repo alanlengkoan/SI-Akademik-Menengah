@@ -4,7 +4,7 @@
     function load_chat() {
         $.ajax({
             type: 'POST',
-            url: '<?= guru_url() ?>materi/load_chat/<?= $data->id_materi ?>',
+            url: '<?= guru_url() ?>materi/load_chat/<?= $materi->id_materi ?>',
             dataType: 'html',
             success: function(response) {
                 $('#dom_chat').html(response);

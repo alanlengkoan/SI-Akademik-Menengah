@@ -37,10 +37,9 @@
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Judul</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Kelas</th>
-                                        <th>Judul</th>
-                                        <th>Tipe</th>
                                         <th>Chat</th>
                                         <th>Status Materi</th>
                                         <th>Aksi</th>
@@ -52,10 +51,9 @@
                                     foreach ($data as $key => $value) { ?>
                                         <tr>
                                             <td><?= $no++ ?></td>
+                                            <td><?= $value->judul ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $value->kelas ?></td>
-                                            <td><?= $value->judul ?></td>
-                                            <td><?= $value->tipe ?></td>
                                             <td>
                                                 <div class="nk-toggle-switch">
                                                     <input class="btn-chat" data-id="<?= $value->id_materi ?>" data-value="<?= $value->status ?>" id="ts<?= $value->id_materi ?>" type="checkbox" hidden="hidden" <?= ($value->status === '1' ? 'checked' : '') ?>>
@@ -71,6 +69,7 @@
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
                                                     <a href="<?= guru_url() ?>materi/detail/<?= $value->id_materi ?>" class="btn btn-success success-icon-notika"><i class="fa fa-comments-o"></i></a>
+                                                    <a href="<?= guru_url() ?>materi/upd/<?= base64_encode($value->id_materi) ?>" class="btn btn-info info-icon-notika"><i class="fa fa-pencil"></i></a>
                                                     <button type="button" id="btn-del" data-id="<?= $value->id_materi ?>" class="btn btn-warning warning-icon-notika"><i class="fa fa-trash"></i></button>
                                                 </div>
                                             </td>

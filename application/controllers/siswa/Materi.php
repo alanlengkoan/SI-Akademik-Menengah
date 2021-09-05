@@ -50,7 +50,8 @@ class Materi extends MY_Controller
             'id_siswa' => $this->users->id_users,
             'status'   => $this->m_absen->checkAbsenSiswa($id, $this->users->id_users),
             'kelas'    => $this->m_materi->getDetailGuru($id),
-            'data'     => $this->m_materi->getDetailMateriKelas($id),
+            'materi'   => $this->m_materi->getDetailMateriKelas($id),
+            'detail'   => $this->m_materi->getWhereMateriDetail($id),
             'css'      => '',
             'js'       => 'siswa/materi/js/detail'
         ];

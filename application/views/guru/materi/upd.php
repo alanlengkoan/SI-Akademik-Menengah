@@ -65,7 +65,21 @@
                                         </div>
                                         <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                                             <div class="nk-int-st">
-                                                <input type="text" class="form-control input-sm" name="inpjudul" id="inpjudul" value="<?= $materi->judul ?>" />
+                                                <input type="text" class="form-control input-sm" name="inpjudul" id="inpjudul" value="<?= $materi->judul ?>" placeholder="Masukkan Judul" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-example-int form-horizental">
+                                <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
+                                            <label class="hrzn-fm">Pertemuan</label>
+                                        </div>
+                                        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
+                                            <div class="nk-int-st">
+                                                <input type="text" class="form-control input-sm" name="inppertemuan" id="inppertemuan" value="<?= $materi->pertemuan ?>" placeholder="Masukkan Pertemuan" />
                                             </div>
                                         </div>
                                     </div>

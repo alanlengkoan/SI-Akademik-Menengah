@@ -79,7 +79,8 @@ class Materi extends MY_Controller
             'halaman' => 'Detail Materi',
             'menu'    => '',
             'content' => 'guru/materi/detail',
-            'data'    => $this->m_materi->getDetailMateriKelas($id),
+            'materi'  => $this->m_materi->getDetailMateriKelas($id),
+            'detail'  => $this->m_materi->getWhereMateriDetail($id),
             'absen'   => $this->m_absen->getDetailAbsen($id),
             'css'     => '',
             'js'      => 'guru/materi/js/detail'
@@ -190,6 +191,7 @@ class Materi extends MY_Controller
             'id_materi'         => acak_id('materi', 'id_materi'),
             'id_penugasan_guru' => $post['inppenugasan'],
             'judul'             => $post['inpjudul'],
+            'pertemuan'         => $post['inppertemuan'],
         ];
         $this->db->trans_start();
         $this->crud->i('materi', $data);
@@ -213,6 +215,7 @@ class Materi extends MY_Controller
         $data = [
             'id_penugasan_guru' => $post['inppenugasan'],
             'judul'             => $post['inpjudul'],
+            'pertemuan'         => $post['inppertemuan'],
         ];
         $this->db->trans_start();
         $this->crud->u('materi', $data, ['id_materi' => $id_materi]);

@@ -7,6 +7,7 @@
             e.preventDefault();
             $('#inppenugasan').attr('required', 'required');
             $('#inpjudul').attr('required', 'required');
+            $('#inppertemuan').attr('required', 'required');
 
             if ($('#form-add').parsley().isValid() == true) {
                 $.ajax({
