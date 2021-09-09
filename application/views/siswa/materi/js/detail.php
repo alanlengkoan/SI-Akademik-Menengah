@@ -1,6 +1,35 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.9.2/parsley.min.js"></script>
+<script src="<?= assets_url() ?>admin/js/dropzone/dropzone.js"></script>
 
 <script>
+    Dropzone.options.formAdd = {
+        maxFiles: 1,
+        acceptedFiles: ".pdf, .doc, .docx",
+        accept: function(file, done) {
+            done();
+        },
+        init: function() {
+            // untuk upload file
+            this.on("addedfile", function() {
+                if (this.files[1] != null) {
+                    this.removeFile(this.files[1]);
+                    swal("Gagal!", "Maaf Anda hanya mendapat mengupload 1 file!", "error");
+                }
+            });
+
+            // untuk mengirim data
+            this.on("sending", function(file, xhr, formData) {
+                formData.append("id_materi", <?= $materi->id_materi ?>);
+            });
+
+            // jika berhasil
+            this.on("success", function(file, response) {
+                $('#modalAdd').modal('hide');
+            })
+        }
+    };
+
+
     function load_chat() {
         $.ajax({
             type: 'POST',
@@ -65,14 +94,14 @@
                 },
                 success: function(response) {
                     swal({
-                        title: response.title,
-                        text: response.text,
-                        icon: response.type,
-                        button: response.button,
-                    })
-                    .then((value) => {
-                        location.reload();
-                    });
+                            title: response.title,
+                            text: response.text,
+                            icon: response.type,
+                            button: response.button,
+                        })
+                        .then((value) => {
+                            location.reload();
+                        });
                 }
             })
         });

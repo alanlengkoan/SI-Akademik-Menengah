@@ -82,7 +82,7 @@ class Materi extends MY_Controller
             'materi'  => $this->m_materi->getDetailMateriKelas($id),
             'detail'  => $this->m_materi->getWhereMateriDetail($id),
             'absen'   => $this->m_absen->getDetailAbsen($id),
-            'css'     => '',
+            'css'     => 'guru/materi/css/detail',
             'js'      => 'guru/materi/js/detail'
         ];
         // untuk load view
@@ -118,6 +118,47 @@ class Materi extends MY_Controller
         ];
         // untuk load view
         $this->load->view('guru/materi/chat', $data);
+    }
+
+    // untuk upload
+    public function upload()
+    {
+        $post = $this->input->post(NULL, TRUE);
+
+        $config['upload_path']   = './' . upload_path('file');
+        $config['allowed_types'] = 'pdf|doc|docx';
+        $config['encrypt_name']  = TRUE;
+        $config['overwrite']     = TRUE;
+
+        $this->load->library('upload', $config);
+
+        if (!$this->upload->do_upload('file')) {
+            // apa bila gagal
+            $error = array('error' => $this->upload->display_errors());
+
+            echo strip_tags($error['error']);
+        } else {
+            // apa bila berhasil
+            $detailFile = $this->upload->data();
+
+            $pesan = '<a href="' . upload_url('file') . '' . $detailFile['file_name'] . '" target="_blank">' . $detailFile['file_name'] . '</a>';
+
+            $data = [
+                'id_forum'  => acak_id('forum', 'id_forum'),
+                'id_materi' => $post['id_materi'],
+                'id_users'  => $this->users->id_users,
+                'level'     => $this->users->role,
+                'pesan'     => $pesan,
+            ];
+            $this->db->trans_start();
+            $this->crud->i('forum', $data);
+            $this->db->trans_complete();
+            if ($this->db->trans_status() === FALSE) {
+                echo 'gagal';
+            } else {
+                $this->load_chat($data['id_materi']);
+            }
+        }
     }
 
     // untuk sent chat room

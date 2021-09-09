@@ -52,7 +52,8 @@
                                                         <input type="text" name="pesan" id="pesan" class="form-control chat-input" placeholder="Masukkan Pesan Anda">
                                                     </div>
                                                     <div class="chat-send">
-                                                        <button type="submit" id="kirim" class="btn btn-md btn-primary btn-block notika-chat-btn">Kirim</button>
+                                                        <button type="button" class="btn btn-md btn-primary notika-chat-btn" data-toggle="modal" data-target="#modalAdd"><i class="fa fa-paperclip"></i></button>
+                                                        <button type="submit" id="kirim" class="btn btn-md btn-primary notika-chat-btn">Kirim</button>
                                                     </div>
                                                 </div>
                                             </form>
@@ -121,3 +122,23 @@
     </div>
 </div>
 <!-- end:: contents -->
+
+<!-- begin:: modal tambah -->
+<div class="modal fade" id="modalAdd" role="dialog">
+    <div class="modal-dialog modals-default">
+        <div class="modal-content">
+            <div class="modal-body">
+                <form action="<?= guru_url() ?>materi/upload" class="dropzone dropzone-nk" id="formAdd">
+                    <div id="dropzone1" class="multi-uploader-cs">
+                        <div class="dz-message needsclick download-custom">
+                            <i class="notika-icon notika-cloud"></i>
+                            <h2>Silahkan upload!</h2>
+                            <p>Silahkan upload file tugas Anda disini.</p>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- end:: modal tambah -->

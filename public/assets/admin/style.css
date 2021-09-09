@@ -2833,7 +2833,8 @@ hr {
 }
 .nk-int-st:not(.form-group) {
     display: inline-block;
-    width: 100%;
+    /* width: 100%; */
+    width: 77%;
 }
 .nk-int-st.nk-toggled:after {
     -webkit-transform:scale(1);
@@ -4100,7 +4101,7 @@ textarea.auto-size {
 	border-radius: 0px;
     position: relative;
     top: 2px;
-    padding: 6px 25px;
+    /* padding: 6px 25px; */
 }
 .chosen-container-single .chosen-search input[type="text"]{
 	background: white url(chosen-sprite.png) no-repeat 100% -20px;

@@ -54,7 +54,7 @@
                                                             <h3><?= $value->kelas ?> | Materi</h3>
                                                             <h2><i class="fa fa-user"></i>&nbsp;<?= $value->guru ?></h2>
                                                             <h2><i class="fa fa-book"></i>&nbsp;<?= $value->mapel ?></h2>
-                                                            <h2><i class="fa fa-info-circle"></i>&nbsp;<?= $value->judul ?></h2>
+                                                            <h2><i class="fa fa-info-circle"></i>&nbsp;<?= $value->pertemuan ?> | <?= $value->judul ?></h2>
                                                         </div>
                                                         <a href="<?= siswa_url() ?>materi/detail/<?= $value->id_materi ?>" class="btn btn-success btn-block">Detail</a>
                                                     </div>
