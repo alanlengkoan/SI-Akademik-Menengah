@@ -41,7 +41,7 @@
                                         <th>No</th>
                                         <th>Mata Pelajaran</th>
                                         <th>Judul</th>
-                                        <th>Tipe</th>
+                                        <th>Pertemuan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -53,7 +53,7 @@
                                             <td><?= $no++ ?></td>
                                             <td><?= $value->mapel ?></td>
                                             <td><?= $value->judul ?></td>
-                                            <td><?= $value->tipe ?></td>
+                                            <td><?= $value->pertemuan ?></td>
                                             <td>
                                                 <div class="button-icon-btn button-icon-btn-cl">
                                                     <a href="<?= siswa_url() ?>materi/detail/<?= $value->id_materi ?>" class="btn btn-info info-icon-notika"><i class="fa fa-info-circle"></i></a>
